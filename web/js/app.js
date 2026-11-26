@@ -4,6 +4,8 @@ import { validarDestinos, buscarDestinos, coordenadaDe } from './destinos.js';
 import { validarRutas, buscarRutas, filtrarCatalogo } from './rutas.js';
 import { crearMapa } from './mapa.js';
 import { dibujarLugares, llenarSelector, llenarEmpresas, dibujarRutas, dibujarCatalogo } from './listas.js';
+import { validarAccesibilidad, buscarAccesibilidad } from './accesibilidad.js';
+import { crearVistaAccesibilidad } from './accesibilidadVista.js';
 
 const ESPERA_UBICACION_MS = 10000;
 const NOMBRE_PUNTO_MARCADO = 'Punto marcado en el mapa';
@@ -15,14 +17,17 @@ const RESULTADOS_NUEVOS = Object.freeze({ rutasVisibles: false, elegida: 0, toda
 const TITULOS = Object.freeze({ viaje: '¿A dónde vas?', rutas: 'Rutas de bus' });
 
 const $ = (selector) => document.querySelector(selector);
-const lugarDe = (destino) => ({ nombre: destino.nombre, punto: coordenadaDe(destino) });
+// El id permite buscar la accesibilidad; un punto marcado en el mapa no lo tiene.
+const lugarDe = (destino) => ({ id: destino.id, nombre: destino.nombre, punto: coordenadaDe(destino) });
 
 let estado = Object.freeze({
   modo: 'viaje', rutaVista: null, origen: null, destino: null, ...RESULTADOS_NUEVOS, mensaje: '', esError: false,
 });
 let datos = { destinos: [], rutas: [] };
 let vista = null;
+let accesibilidad = null;
 let solicitudUbicacion = 0;
+const vistaAccesibilidad = crearVistaAccesibilidad($('[data-acceso]'));
 
 function cambiar(parcial) {
   estado = Object.freeze({ ...estado, mensaje: '', esError: false, ...parcial });
@@ -63,6 +68,10 @@ function pintarViaje(opciones) {
   });
 }
 
+function pintarAccesibilidad() {
+  vistaAccesibilidad.pintar(buscarAccesibilidad(accesibilidad, estado.destino));
+}
+
 function pintarCuantas(total) {
   const hayMas = total > OPCIONES_INICIALES;
   const resumen = $('[data-cuantas]');
@@ -83,6 +92,7 @@ function pintar() {
   pintarModo();
   pintarPasos();
   pintarViaje(opciones);
+  pintarAccesibilidad();
   pintarCatalogo();
   vista?.pintar(contenidoDelMapa(opciones));
 }
@@ -241,6 +251,19 @@ async function cargarDatos() {
   return { destinos: destinos.destinos, rutas: [...transmetro.rutas, ...tradicionales.rutas] };
 }
 
+// Es un complemento: si falla, el viaje sigue igual y no se afirma nada sobre accesibilidad.
+async function cargarAccesibilidad() {
+  try {
+    const leido = await cargarJson('data/accesibilidad.json');
+    const errores = validarAccesibilidad(leido, datos.destinos);
+    if (errores.length) throw new Error(errores.join(' '));
+    accesibilidad = leido;
+    pintarAccesibilidad();
+  } catch (error) {
+    console.warn('No se muestra la accesibilidad.', error);
+  }
+}
+
 async function arrancar() {
   try {
     datos = await cargarDatos();
@@ -260,6 +283,7 @@ async function arrancar() {
   $('#buscar').disabled = false;
   filtrarLugares();
   pintar();
+  cargarAccesibilidad();
 }
 
 arrancar();

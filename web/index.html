@@ -12,10 +12,10 @@
 <meta property="og:image" content="share.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#0f2a54">
+<meta name="theme-color" content="#000000">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
 <link rel="stylesheet" href="css/paleta.css">
 <link rel="stylesheet" href="css/app.css">
@@ -24,8 +24,9 @@
 <a class="saltar" href="#panel">Saltar al buscador</a>
 
 <header class="barra">
-  <span class="barra__marca"><span class="barra__anillo" aria-hidden="true"></span>Barranquilla Lista</span>
+  <span class="barra__marca">Barranquilla Lista</span>
   <nav class="barra__nav" aria-label="Principal">
+    <a class="barra__enlace" href="./" aria-current="page">Mapa</a>
     <a class="barra__enlace" href="punto-lista/">Punto Lista</a>
   </nav>
 </header>
@@ -76,8 +77,30 @@
       <div class="bloque" data-viaje hidden>
         <dl class="datos">
           <div><dt>Distancia en línea recta</dt><dd data-distancia></dd></div>
-          <div><dt>Accesibilidad</dt><dd>Sin información verificada</dd></div>
         </dl>
+        <!-- Accesibilidad: solo aparece si data/accesibilidad.json tiene datos reales del destino (ejemplo: false),
+             tomados de una fuente citada o de una visita del equipo. -->
+        <section class="acceso" data-acceso aria-labelledby="acceso-titulo" hidden>
+          <h2 class="solo-lector" id="acceso-titulo">Accesibilidad del destino</h2>
+          <div class="acceso__linea">
+            <svg class="acceso__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="4" r="2.2" />
+              <path d="M4.5 8.2 12 9.6l7.5-1.4M12 9.6v5.2L8.6 21.3M12 14.8l3.4 6.5" />
+            </svg>
+            <p class="acceso__resumen">
+              <strong data-acceso-veredicto></strong>
+              <span class="acceso__fecha" data-acceso-fecha></span>
+            </p>
+            <button class="boton acceso__boton" type="button" data-acceso-ver-detalle aria-expanded="false" aria-controls="acceso-detalle"><span data-texto>Ver detalle</span><span class="solo-lector"> de accesibilidad</span></button>
+          </div>
+          <div class="acceso__detalle" id="acceso-detalle" hidden>
+            <ul class="acceso__filas" data-acceso-filas></ul>
+            <button class="boton acceso__boton" type="button" data-acceso-ver-todos aria-expanded="false" aria-controls="acceso-criterios"><span data-texto>Ver todos los criterios</span></button>
+            <div class="acceso__criterios" id="acceso-criterios" data-acceso-criterios hidden></div>
+            <div data-acceso-origen></div>
+            <p class="ayuda">No es una certificación oficial.</p>
+          </div>
+        </section>
         <button class="boton boton--principal" type="button" data-ver-rutas aria-expanded="false" aria-controls="rutas">Ver rutas de bus</button>
         <div id="rutas" hidden>
           <p class="ayuda" data-cuantas hidden></p>
