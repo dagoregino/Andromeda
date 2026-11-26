@@ -19,7 +19,6 @@
 7. [Arquitectura inicial](#7-arquitectura-inicial)
 8. [Mapa de las cinco dimensiones](#8-mapa-de-las-cinco-dimensiones)
 9. [Aprendizajes de otras ciudades](#9-aprendizajes-de-otras-ciudades)
-10. [Decisiones y pendientes](#10-decisiones-y-pendientes)
 
 ---
 
@@ -93,20 +92,20 @@ Aún no se ha contactado a ninguno.
 
 La falta de coordinación, de información compartida y de un responsable es una **hipótesis del equipo** que debe verificarse.
 
-### Árbol de causas y efectos
+### Causas y efectos
 
-```mermaid
-flowchart BT
-    C1[Redes y transporte insuficientes] --> P
-    C2[Calor, poco verde y drenaje limitado] --> P
-    C3[Gestión fragmentada, por verificar] --> P
-    C4[Brechas sociales y educativas] --> P
-    P[La ciudad no funciona como sistema]
-    P --> E1[Interrupciones de servicios y movilidad]
-    P --> E2[Riesgos para la salud]
-    P --> E3[Mayor desigualdad]
-    P --> E4[Legado débil después del evento]
-```
+Cada fila muestra qué **causa** genera cada **problema** y qué **efecto** provoca.
+
+| # | Causa | Problema que genera | Efecto que provoca |
+|:-:|---|---|---|
+| 1 | Cobertura y financiación insuficientes del transporte *(hipótesis)* | El transporte público pierde usuarios | Viajes difíciles y congestión durante el evento |
+| 2 | Inversiones incumplidas en la red eléctrica | Apagones recurrentes | Servicios y comercio interrumpidos |
+| 3 | Suelo impermeable, poco drenaje y basura | Arroyos e inundaciones | Movilidad paralizada y daño ambiental |
+| 4 | Poco verde y desigualdad urbana | Más calor en los barrios vulnerables | Riesgos para la salud |
+| 5 | Brechas educativas e informalidad | Muchas personas quedan fuera de las oportunidades | Mayor desigualdad |
+| 6 | Gestión fragmentada *(hipótesis)* | Respuestas aisladas y sin seguimiento | Legado débil después del evento |
+
+Las seis cadenas alimentan el problema central: **la ciudad no funciona como un sistema**. Las relaciones son el análisis del equipo; las marcadas como hipótesis deben verificarse.
 
 ## 5. Propuesta de valor
 
@@ -118,7 +117,28 @@ flowchart BT
 | D | **Ciudad que avisa y responde** | Datos de calor, lluvia, energía y movilidad, con reportes ciudadanos y respuesta | Residentes y autoridades |
 | E | **El Mundial también vende en el barrio** | Vendedores, jóvenes y cultura local dentro de la economía del evento | Economía popular y emprendedores |
 | F | **Legado que se vigila** | Presupuesto abierto, veedurías y un responsable permanente | Toda la ciudadanía |
-| G | **Escuela de ciudad: Generación 2034** | Conciencia social y capacidades a largo plazo | Niños, jóvenes, docentes, familias, vendedores y comunidades |
+| G | **Escuela de ciudad: Generación 2034** | Conciencia social y capacidades a largo plazo, con cursos cortos | Niños, jóvenes, docentes, familias, vendedores y comunidades |
+
+### Inclusión en cada propuesta
+
+La inclusión no es un componente aparte: **atraviesa las siete propuestas**.
+
+| | Quién puede quedar por fuera | Cómo se incluye |
+|---|---|---|
+| **A** | Adultos mayores, personas con discapacidad, vendedores y barrios con pocos árboles | Rutas accesibles con sombra, agua y descanso gratuitos, priorizando sur y occidente y definidas con la comunidad |
+| **B** | Hogares junto a arroyos, personas que dependen de equipos médicos eléctricos y recicladores | Alertas por texto, voz, radio y líderes de barrio; respaldo en centros de salud; recicladores vinculados al manejo de residuos |
+| **C** | Personas con discapacidad física, visual o auditiva, quienes viven lejos de las rutas y hogares de bajos ingresos | Andenes continuos, información visual, sonora y en lenguaje claro, rutas alimentadoras, tarifas asequibles y pruebas con usuarios |
+| **D** | Personas sin internet o con pocas habilidades digitales | Atención presencial y telefónica además de la aplicación, y protección de datos personales |
+| **E** | Vendedores informales, mujeres, jóvenes, migrantes y creadores culturales | Censo y acuerdos previos, puestos en las zonas del evento, capacitación y ningún desplazamiento sin alternativa acordada |
+| **F** | Comunidades sin voz en las decisiones | Veedurías con representación de barrios, mujeres, jóvenes y personas con discapacidad; cuentas en lenguaje claro |
+| **G** | Quienes trabajan, no estudian o viven lejos de la oferta formativa | Formación gratuita, horarios flexibles y modalidades presencial y virtual |
+
+### Compromisos de inclusión
+1. **Participar antes de decidir**, no solo ser informados.
+2. **Accesibilidad desde el diseño**, probada con personas con discapacidad.
+3. **Nadie desplazado** sin una solución acordada.
+4. **Prioridad** para los barrios con mayores carencias.
+5. **Canales para todos**, con o sin internet.
 
 ## 6. Objetivos
 
@@ -141,84 +161,43 @@ flowchart BT
 
 **Transformación común:** una ciudad que funcione como sistema, reciba al mundo y mejore la vida de sus habitantes.
 
-```mermaid
-flowchart TB
-    subgraph ACCION[Acción]
-        A[A. Fresca y verde]
-        B[B. No se detiene]
-        C[C. Moverse fácil]
-        E[E. Economía de barrio]
-    end
-    subgraph CONEXION[Conexión]
-        D[D. Datos, alertas, reportes y respuesta]
-    end
-    subgraph BASE[Base]
-        F[F. Transparencia y legado]
-        G[G. Escuela de ciudad]
-    end
-    ACCION <--> CONEXION
-    BASE --> CONEXION
-    BASE --> ACCION
-```
+El programa **Barranquilla Lista** reúne siete componentes organizados en tres niveles que trabajan juntos: la **acción** transforma la vida en la calle, la **conexión** avisa y coordina, y la **base** sostiene el programa a largo plazo.
 
-### Componentes y conexiones
+### Nivel 1: Acción
 
-| Componente | Función | Entrega | Necesita | Actores propuestos |
-|---|---|---|---|---|
-| **A** | Reducir calor y cuidar ecosistemas | Rutas con sombra, agua y zonas verdes | Datos de calor y cuidado vecinal | Alcaldía, salud, autoridad ambiental, comunidades |
-| **B** | Mantener la ciudad en funcionamiento | Drenaje, menos residuos y respaldo de energía | Alertas y hábitos de cuidado | Alcaldía, operadores de energía, agua y aseo, recicladores |
-| **C** | Conectar con accesibilidad | Rutas y andenes accesibles | Avisos y datos de demanda | Transmetro, transportadores, personas con discapacidad |
-| **D** | Anticipar y responder | Alertas e información | Reportes, sensores y equipos de respuesta | Distrito, Gobernación, universidades |
-| **E** | Incluir la economía popular | Empleo y puntos de venta | Capacitación y espacios acordados | Vendedores, emprendedores, gremios |
-| **F** | Vigilar y sostener | Presupuesto abierto y seguimiento | Datos y veedores formados | Concejo, entidades de control, ciudadanía |
-| **G** | Formar conciencia y capacidades | Líderes, cursos y proyectos | Docentes, espacios y financiación | Colegios, SENA, universidades, juntas de barrio |
+**A. Ciudad fresca y verde.** Reduce la exposición al calor y cuida los ecosistemas. Entrega rutas con sombra, agua y zonas verdes, y protege la Ciénaga de Mallorquín. Necesita datos de calor y cuidado vecinal. Actores propuestos: Alcaldía, sector salud, autoridad ambiental y comunidades.
 
-### G. Escuela de ciudad: Generación 2034
+**B. Ciudad que no se detiene.** Mantiene la ciudad en funcionamiento ante lluvias y apagones. Entrega drenaje sostenible, menos residuos en los arroyos y respaldo de energía en servicios críticos. Necesita alertas oportunas y hábitos de cuidado. Actores propuestos: Alcaldía, operadores de energía, agua y aseo, y recicladores.
 
-| Línea | Qué incluye |
-|---|---|
-| En los colegios | Cada colegio estudia un problema de su barrio y desarrolla un proyecto |
-| Conciencia social | Agua y arroyos, respeto, inclusión, accesibilidad y convivencia |
-| Jóvenes líderes | Mentorías, voluntariado y semilleros de tecnología e innovación |
-| Formación para el trabajo | Idiomas, turismo, servicios digitales y emprendimiento |
-| Cursos cortos | Formación abierta para toda la ciudadanía |
+**C. Moverse fácil y accesible.** Conecta la ciudad para todas las personas. Entrega transporte integrado, andenes accesibles e información de rutas. Necesita avisos y datos de demanda. Actores propuestos: Transmetro, transportadores y personas con discapacidad.
 
-| Curso corto | Dirigido a | Duración sugerida | Resultado práctico |
-|---|---|:-:|---|
-| Cuidar los arroyos | Vecinos y comerciantes | 6 h | Plan de manejo de residuos de la cuadra |
-| Convivencia ciudadana | Toda la comunidad | 4 h | Acuerdo de barrio |
-| Inclusión y accesibilidad | Transportadores, hoteles, vendedores y funcionarios | 6 h | Recorrido para identificar barreras |
-| Calor y primeros auxilios | Líderes, familias y vendedores | 8 h | Reconocer una emergencia y actuar |
-| Prevención de explotación y trata | Hoteles, transporte, jóvenes y familias | 4 h | Identificar señales y saber a quién reportar |
-| Anfitriones de ciudad | Jóvenes y personas que atienden visitantes | 8 h | Atención respetuosa y turismo responsable |
-| Veeduría ciudadana | Jóvenes y organizaciones de barrio | 8 h | Seguimiento a un compromiso público |
+**E. El Mundial también vende en el barrio.** Incluye a la economía popular en las oportunidades del evento. Entrega empleo y puntos de venta. Necesita capacitación y espacios acordados. Actores propuestos: vendedores, emprendedores y gremios.
 
-- **Modalidad:** colegios, espacios comunitarios y en línea; noches y fines de semana para quienes trabajan.
-- **Acceso:** gratuito, comenzando en los puntos críticos, con certificado.
-- **Multiplicadores:** quienes lo deseen se forman para enseñar en su barrio.
-- **Medición:** conocimientos antes y después, y acciones realizadas semanas más tarde.
+### Nivel 2: Conexión
 
-| Etapa | Enfoque |
-|---|---|
-| 2027-2028 | Diagnóstico y prueba piloto en barrios críticos |
-| 2029-2033 | Ampliación a toda la ciudad |
-| 2034 | Participación de jóvenes y comunidades en el evento |
-| 2035 en adelante | Programa permanente |
+**D. Ciudad que avisa y responde.** Une los componentes de acción: anticipa problemas, comunica alertas y coordina la respuesta. Necesita reportes ciudadanos, sensores y equipos que atiendan cada aviso. Actores propuestos: Distrito, Gobernación y universidades.
 
-### Puntos críticos
-● intervención principal · ○ apoyo
+### Nivel 3: Base
 
-| Punto | A | B | C | D | E | F | G |
-|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Metropolitano | ● | ○ | ● | ● | ● | ○ | ○ |
-| Aeropuerto | ○ | ○ | ● | ● | ○ | ○ | ○ |
-| Centro y Gran Bazar | ● | ○ | ● | ○ | ● | ○ | ● |
-| Sur y occidente | ● | ● | ● | ○ | ○ | ● | ● |
-| Zonas de arroyos | ○ | ● | ○ | ● | ○ | ○ | ● |
-| Malecón y Mallorquín | ● | ● | ○ | ○ | ● | ○ | ● |
+**F. Legado que se vigila.** Cuida que los compromisos se cumplan y continúen. Entrega presupuesto abierto y seguimiento público. Necesita datos y veedores formados. Actores propuestos: Concejo, entidades de control y ciudadanía.
 
-### Ejemplo de funcionamiento
-Llueve antes de un partido: **D** emite la alerta, **B** atiende el punto afectado, **C** desvía las rutas, los líderes formados en **G** orientan al barrio y **F** registra si se respondió a tiempo.
+**G. Escuela de ciudad: Generación 2034.** Forma conciencia social y capacidades. Entrega líderes, cursos y proyectos. Necesita docentes, espacios y financiación. Actores propuestos: colegios, SENA, universidades y juntas de barrio.
+
+### Cómo se conectan
+Los componentes de acción (A, B, C y E) envían información a D y reciben sus avisos. F vigila los resultados de todo el programa, y G prepara a las personas que participan en cada componente.
+
+**Ejemplo:** llueve antes de un partido. D emite la alerta, B atiende el punto afectado, C desvía las rutas, los líderes formados en G orientan al barrio y F registra si se respondió a tiempo.
+
+### Dónde actúa primero
+
+| Punto crítico | Intervención principal | Apoyo |
+|---|---|---|
+| Metropolitano | A, C, D y E | B, F y G |
+| Aeropuerto | C y D | A, B, E, F y G |
+| Centro y Gran Bazar | A, C, E y G | B, D y F |
+| Sur y occidente | A, B, C, F y G | D y E |
+| Zonas de arroyos | B, D y G | A, C, E y F |
+| Malecón y Mallorquín | A, B, E y G | C, D y F |
 
 ## 8. Mapa de las cinco dimensiones
 ● aporte principal · ○ aporte de apoyo
@@ -247,19 +226,3 @@ Llueve antes de un partido: **D** emite la alerta, **B** atiende el punto afecta
 | [Barranquilla 2027](https://github.com/dagoregino/Andromeda/blob/docs/investigacion-barranquilla-2034/investigacion/02-casos/11-casos-complementarios.md) | Cumplir compromisos con garantías de todos los gobiernos | F |
 
 La investigación completa está en la rama [`docs/investigacion-barranquilla-2034`](https://github.com/dagoregino/Andromeda/tree/docs/investigacion-barranquilla-2034/investigacion).
-
-## 10. Decisiones y pendientes
-
-### Decisiones del equipo
-- El entorno es toda la ciudad, con puntos críticos.
-- Se aprobaron las propuestas de valor y se sumó la Escuela de ciudad con cursos cortos.
-- Se aprobó la arquitectura, ampliando A (verde y Mallorquín) y B (energía).
-
-### Pendientes
-- Verificar en campo las hipótesis del diagnóstico.
-- Abrir las fuentes antes de presentar cifras.
-- Confirmar con la organización si se exige prototipo físico, digital o ambos.
-- Asignar roles: coordinación, investigación, diseño, prototipado y comunicación.
-
-### Paso al Sprint 2
-Programa estructurado, prototipo inicial, funcionamiento, recursos, alianzas, indicadores y hoja de ruta preliminar.
