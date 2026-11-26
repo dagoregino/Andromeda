@@ -114,7 +114,7 @@ Las seis cadenas alimentan el problema central: **la ciudad no funciona como un 
 | A | **Ciudad fresca y verde** | Rutas con sombra, agua y descanso; arbolado y protección de Mallorquín | Peatones, adultos mayores, trabajadores, comunidades y visitantes |
 | B | **Ciudad que no se detiene** | Drenaje sostenible, menos basura, alertas y respaldo de energía en servicios críticos | Barrios inundables, usuarios de servicios críticos y quienes se desplazan |
 | C | **Moverse fácil y accesible** | Transporte integrado, andenes continuos e información de rutas | Usuarios del transporte y personas con discapacidad |
-| D | **Ciudad que avisa y responde** | Datos de calor, lluvia, energía y movilidad, con reportes ciudadanos y respuesta | Residentes y autoridades |
+| D | **Ciudad que avisa y responde** | Datos de calor, lluvia, energía y movilidad, con reportes ciudadanos y respuesta. Los equipos de campo pueden registrar reportes durante cortes de conectividad y enviarlos cuando exista una ruta de comunicación. | Residentes, equipos de campo y autoridades |
 | E | **El Mundial también vende en el barrio** | Vendedores, jóvenes y cultura local dentro de la economía del evento | Economía popular y emprendedores |
 | F | **Legado que se vigila** | Presupuesto abierto, veedurías y un responsable permanente | Toda la ciudadanía |
 | G | **Escuela de ciudad: Generación 2034** | Conciencia social y capacidades a largo plazo, con cursos cortos | Niños, jóvenes, docentes, familias, vendedores y comunidades |
@@ -152,7 +152,7 @@ La inclusión no es un componente aparte: **atraviesa las siete propuestas**.
 | A | Reducir la exposición al calor en recorridos y barrios vulnerables, ampliar el arbolado y proteger la Ciénaga de Mallorquín. |
 | B | Disminuir las afectaciones por arroyos con drenaje sostenible, manejo de residuos y alertas, y asegurar respaldo de energía en servicios críticos. |
 | C | Mejorar la conexión entre barrios, aeropuerto, estadio y zonas de actividad con transporte integrado y accesible. |
-| D | Integrar datos y reportes ciudadanos para anticipar problemas y responder a tiempo. |
+| D | Integrar datos y reportes ciudadanos para anticipar problemas y responder a tiempo. Validar la entrega y confirmación de reportes operativos con conectividad intermitente. |
 | E | Vincular a vendedores, jóvenes y cultura local a las oportunidades antes, durante y después del evento. |
 | F | Asegurar transparencia, participación y un responsable del legado más allá de 2034. |
 | G | Fortalecer la conciencia social y las capacidades de la ciudadanía mediante un proceso educativo continuo que comience en 2027 y siga después de 2034. |
@@ -176,6 +176,12 @@ El programa **Barranquilla Lista** reúne siete componentes organizados en tres 
 ### Nivel 2: Conexión
 
 **D. Ciudad que avisa y responde.** Une los componentes de acción: anticipa problemas, comunica alertas y coordina la respuesta. Necesita reportes ciudadanos, sensores y equipos que atiendan cada aviso. Actores propuestos: Distrito, Gobernación y universidades.
+
+#### Continuidad de reportes con conectividad intermitente
+
+D incorpora el almacenamiento local de reportes operativos y evalúa el reenvío mediante una red tolerante al retardo (DTN). Durante un corte, el dispositivo guarda el reporte con identificador, hora, ubicación, estado y vigencia. El reporte se sincroniza cuando el dispositivo recupera conexión o se transfiere a un nodo de relevo que lo reenvía cuando dispone de una ruta al receptor. El sistema registra la confirmación del receptor, identifica duplicados y marca los reportes vencidos. Las alertas urgentes siguen por los canales establecidos.
+
+**Prueba para el Sprint 2.** Simular un cierre por arroyo como caso de uso de B, con un brigadista, un relevo y un receptor operativo. Comparar el canal habitual, la sincronización desde el dispositivo de origen y el reenvío por el relevo bajo el mismo corte simulado. Medir la proporción de reportes confirmados dentro del plazo útil acordado con el receptor y el tiempo hasta la decisión operativa. Adoptar el relevo si mejora la entrega a tiempo frente a la sincronización directa mientras el origen sigue desconectado y existe un equipo que pueda operar los nodos.
 
 ### Nivel 3: Base
 
