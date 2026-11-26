@@ -3,7 +3,7 @@
 ← [Índice](README.md)
 
 ## El reto
-**QUJAM, Bootcamp de Innovación:** en un escenario futuro, Barranquilla es anunciada como sede de un Mundial de Fútbol en 2034. ¿Está preparada para recibir al mundo?
+**QUIJAM, Bootcamp de Innovación:** en un escenario futuro, Barranquilla es anunciada como sede de un Mundial de Fútbol en 2034. ¿Está preparada para recibir al mundo?
 
 > ⚠️ **Es un escenario hipotético.** En la realidad, el Congreso de la FIFA [adjudicó el Mundial 2034 a Arabia Saudita](https://inside.fifa.com/organisation/congress/media-releases/extraordinary-congress-appoints-hosts-of-2030-and-2034-editions-of-fifa-world-cup) el 11 de diciembre de 2024. Este trabajo usa 2034 como horizonte de planeación.
 

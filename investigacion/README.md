@@ -1,6 +1,6 @@
 # Barranquilla 2034: ¿estamos preparados para recibir al mundo?
 
-**Bootcamp de Innovación QUJAM** · Investigación con corte al **26 de noviembre de 2026**
+**Bootcamp de Innovación QUIJAM** · Investigación con corte al **26 de noviembre de 2026**
 
 > **Respuesta corta:** todavía no. Pero lo que falta para recibir al mundo es, sobre todo, lo que ya hace falta para vivir mejor: energía confiable, transporte, sombra, drenaje y una gobernanza que dure.
 
