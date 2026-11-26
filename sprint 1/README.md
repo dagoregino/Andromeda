@@ -140,6 +140,14 @@ La inclusión no es un componente aparte: **atraviesa las siete propuestas**.
 4. **Prioridad** para los barrios con mayores carencias.
 5. **Canales para todos**, con o sin internet.
 
+### Pilar fundamental: Punto Lista
+
+**La ciudad que te escucha y te responde.**
+
+Proponemos un dispositivo con inteligencia artificial, micrófono, parlante y pantalla, donde **cualquier persona** pueda preguntar y recibir la respuesta hablada y escrita: cómo llegar, qué hay cerca y qué avisos hay, sin necesitar celular ni datos propios.
+
+Está pensado para habitantes y visitantes de todas las edades. La inclusión viene desde el diseño: la voz ayuda a las personas ciegas y la pantalla, a las personas sordas.
+
 ## 6. Objetivos
 
 ### Objetivo general
