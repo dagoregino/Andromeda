@@ -1,0 +1,47 @@
+/* Pantallas medianas */
+@media (max-width: 900px) {
+  :root { --ancho: calc(100vw - 40px); }
+  .seccion { padding-block: 88px; }
+  .manifiesto { padding-block: 112px; }
+  .portada__pie { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .portada__escena { bottom: 230px; }
+  .portada__fondo { top: 21%; }
+  .pildora { align-self: stretch; justify-content: space-between; }
+  .visor { grid-template-columns: 1fr; padding: 16px; }
+  .visor__escena { order: -1; height: 440px; }
+  .partes { align-items: stretch; }
+  .trio, .pasos, .avance { grid-template-columns: 1fr; margin-top: 40px; }
+}
+
+/* Teléfonos */
+@media (max-width: 600px) {
+  :root { --ancho: calc(100vw - 32px); --radio: 22px; }
+  .barra-global__fila > a { font-size: 14px; }
+  .barra-local { padding-left: 16px; }
+  .barra-local__nombre { font-size: 16px; }
+  .pista { gap: 12px; margin-top: 32px; }
+  .tarjeta { flex-basis: calc(100vw - 56px); height: 480px; }
+  .puntos { padding-inline: 6px; }
+  .punto { width: 26px; }
+  .punto::before, .punto[aria-current="true"]::after { left: 9px; }
+  .punto[aria-current="true"] { width: 56px; }
+  .punto[aria-current="true"]::before, .punto[aria-current="true"]::after { width: 38px; }
+  @keyframes avanzar { from { width: 8px; } to { width: 38px; } }
+  .demo__escena { height: clamp(260px, 42svh, 380px); }
+  .demo__preguntas { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .pregunta { padding: 8px 12px; border-radius: 18px; font-size: 14px; line-height: 1.3; }
+  .cierre__escena { height: 380px; }
+  .cierre__acciones { flex-direction: column; }
+  .avance__caja { padding: 28px 22px; }
+}
+
+/* Ventanas bajas: la portada sigue completa. */
+@media (max-height: 640px) and (min-width: 901px) {
+  .portada__escena { bottom: 120px; }
+  .portada h1 { font-size: 52px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
