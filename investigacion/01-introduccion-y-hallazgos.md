@@ -52,4 +52,5 @@ flowchart TD
 - Varias cifras vienen de prensa o de partes interesadas; se señalan.
 - Hay poca evidencia comparable sobre accesibilidad, agua, energía, telecomunicaciones y medio ambiente en varios casos.
 - No se obtuvieron informes de BID u ONU-Hábitat con evaluación detallada de estos casos; de ONU-Hábitat se cita una guía general.
+- Una segunda ronda amplió [ciudad inteligente, biodiversidad, economía popular y accesibilidad](12-dimensiones-complementarias.md); las tablas comparativas y las puntuaciones de recomendaciones aún no incorporan esos temas.
 - Las calificaciones, semáforos y prioridades son **juicios del equipo**, no mediciones.

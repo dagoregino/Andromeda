@@ -21,6 +21,7 @@
 | 9 | [Recomendaciones](09-recomendaciones.md) | 12 propuestas priorizadas |
 | 10 | [Conclusión](10-conclusion.md) | Qué aprender y la prueba final |
 | 11 | [Referencias](11-referencias.md) | Fuentes y nivel de verificación |
+| 12 | [Dimensiones complementarias](12-dimensiones-complementarias.md) | Ciudad inteligente, biodiversidad, economía popular, accesibilidad y las cinco dimensiones del reto |
 
 ## Rutas de lectura
 - **5 minutos:** [hallazgos](01-introduccion-y-hallazgos.md) → [conclusión](10-conclusion.md).

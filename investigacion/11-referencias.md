@@ -167,6 +167,32 @@ Un enlace 🟢 confirma que la fuente dice eso, no que el dato sea incontroverti
 - 🟡 El Heraldo, claves de la calificación. <https://www.elheraldo.co/atlantico/2026/05/16/cuales-son-las-claves-detras-de-la-maxima-calificacion-financiera-de-fitch-ratings-a-barranquilla/>
 - 🟡 Minuto60, deuda. <https://minuto60.com/investigacion/deudas-barranquilla-generan-preocupacion-firman-nuevo-credito/14635>
 
+## 14. Dimensiones complementarias
+- 🟢 Greater London Authority (2013). *Games Changer?* <https://www.london.gov.uk/media/4922/download>
+- 🟢 StreetNet/WIEGO (2013). *World Cup for All*. <https://wiego.org/wp-content/uploads/2019/09/Wintour-World-Cup-For-All.pdf>
+- 🟢 El Tiempo, cámaras y drones del Atlántico. <https://www.eltiempo.com/colombia/barranquilla/asi-es-el-centro-desde-donde-controlan-44-drones-y-411-camaras-inteligentes-que-vigilan-a-18-municipios-del-atlantico-costo-69-392-millones-3604447>
+- 🟢 Rueda la Economía, Internet gratuito. <https://www.ruedalaeconomia.com/2026/09/29/en-barranquilla-45-000-familias-de-estratos-1-y-2-tendran-internet-gratis/>
+- 🟢 TDI Colombia, limpieza de arroyos (calidad editorial baja). <https://tdicolombia.com.co/2026/10/12/barranquilla-invierte-17-000-millones-de-pesos-en-limpieza-de-arroyos-ante-amenaza-a-cienaga-y-mar-caribe/>
+- 🟢 El Tiempo, Carnaval 2026. <https://www.eltiempo.com/colombia/barranquilla/carnaval-de-barranquilla-2026-rompio-records-6-millones-de-asistentes-y-840-000-millones-movidos-en-los-cuatro-dias-de-fiesta-3533428>
+- 🟢 Minuto60, contrato del Metropolitano. <https://minuto60.com/investigacion/control-politico-millonarias-obras-metropolitano-barranquilla/17429>
+- 🟢 El Espectador, Gran Bazar. <https://www.elespectador.com/colombia/barranquilla/arranco-la-reubicacion-de-vendedores-al-nuevo-mercado-gran-bazar-en-barranquilla/>
+- 🟢 El Tiempo, vendedores del Centro. <https://www.eltiempo.com/colombia/barranquilla/las-nuevas-dinamicas-en-el-centro-de-barranquilla-estan-funcionando-los-programas-sociales-3424959>
+- 🟡 BID, ciudad inteligente en Río. <https://publications.iadb.org/en/publication/international-case-studies-smart-cities-rio-de-janeiro-brazil>
+- 🟡 Sidewalk Talk, críticas a Río. <https://medium.com/sidewalk-talk/4-lessons-from-rios-flawed-smart-cities-initiative-31cbf4e54b72>
+- 🟡 Contratexto, participación en Río. <https://revistas.ulima.edu.pe/index.php/contratexto/article/view/3897/3936>
+- 🟡 Asamblea de Londres, legado de transporte. <https://www.london.gov.uk/media/86369/download>
+- 🟡 TfL, datos abiertos. <https://greatermanchester-ca.gov.uk/media/3545/tfl-open-data.pdf>
+- 🟡 CNIL, cámaras en París 2024. <https://www.cnil.fr/en/2024-olympics-cnils-qa-your-privacy-and-freedoms>
+- 🟡 Lawfare, vigilancia algorítmica. <https://lawfaremedia.org/article/algorithmic-surveillance-takes-the-stage-at-the-paris-olympics>
+- 🟡 El Heraldo, alumbrado inteligente. <https://elheraldo.co/barranquilla/instalan-17300-sensores-en-barranquilla-para-alumbrado-inteligente-657866>
+- 🟡 Universidad del Norte, calidad del agua. <https://manglar.uninorte.edu.co/bitstream/handle/10584/13681/14-06-2025-TESIS-MAESTRIA_LOD.pdf?sequence=1>
+- 🟡 SENA, Mallorquín. <https://www.sena.edu.co/sala-de-prensa/noticias/investigacion-del-sena-aporta-alternativas-para-la-proteccion-de-la-cienaga-de-mallorquin>
+- 🟡 African Centre for Cities, vendedores y megaeventos. <https://www.africancentreforcities.net/programme/wiego/mega-events-working-poor/>
+- 🟡 AP/ABC, accesibilidad en París. <https://abcnews.go.com/Sports/wireStory/paris-become-accessible-disabled-after-olympics-paralympics-112702828>
+- 🟡 El Heraldo, estaciones de Transmetro. <https://www.elheraldo.co/atlantico/barranquilla/2026/08/04/transmetro-fortalece-su-infraestructura-con-renovacion-y-mantenimiento-en-sus-estaciones/>
+- 🟡 El Universal, comercio en días de partido. <https://www.eluniversal.com.co/deportes/2024/11/19/seleccion-colombia-un-motor-que-mueve-la-economia-en-barranquilla/>
+- 🟡 Flyvbjerg y otros (2021), *Regression to the tail*. <https://arxiv.org/abs/2009.14682>
+
 ## Datos sin enlace (verificar antes de presentar)
 - Barranquilla como sede del Mundial Sub-20 de 2011.
 - Calendario electoral colombiano (2027, 2030, 2031, 2034).

@@ -75,6 +75,11 @@ Antecedentes: déficit financiero y flota parada ya reportados en [2022](https:/
 - Pérdida de los [Panamericanos 2027](02-casos/11-casos-complementarios.md) en 2024.
 - Sin informe público de uso de las sedes de 2018 localizado en esta investigación.
 
+### P13. Costo de las obras del estadio
+Un medio local reporta que el contrato pasó de $ 172.969 a $ 279.346 millones (+61,5 %) y que el Concejo aprobó un debate de control ([detalle y cautelas](12-dimensiones-complementarias.md#5-hallazgo-nuevo-el-contrato-del-metropolitano)). Pendiente de confirmar en SECOP.
+
+Más sobre ciudad inteligente, biodiversidad, economía popular y accesibilidad en [dimensiones complementarias](12-dimensiones-complementarias.md).
+
 ## 2. Brecha frente a requisitos de sede FIFA 2034
 
 > El Mundial 2034 real [fue adjudicado a Arabia Saudita](https://inside.fifa.com/organisation/congress/media-releases/extraordinary-congress-appoints-hosts-of-2030-and-2034-editions-of-fifa-world-cup) en diciembre de 2024. Se usan sus requisitos como **referencia exigente** para el escenario del reto. Fuente: [Overview of Hosting Requirements 2034](https://images.assettype.com/esakal/2024-12-11/zhas8zsy/FWC2034_Overview_of_Hosting_Requirements_EN.pdf) (copia alojada por un tercero).
