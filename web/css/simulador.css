@@ -36,7 +36,7 @@
 
 .sim-controls { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-top: var(--s-5); }
 .sim-status { min-height: 1.5em; margin: var(--s-3) 0 0; font-size: var(--t-small); }
-.sim-status.is-error { color: #9b1c1c; font-weight: 500; }
+.sim-status.is-error { padding-left: var(--s-3); border-left: 3px solid var(--c-rojo); font-weight: 500; }
 
 .sim-meter { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); margin: var(--s-5) 0 0; padding-top: var(--s-4); border-top: 1px solid var(--line); }
 .sim-meter dt { font-size: var(--t-label); color: var(--muted); }
@@ -49,11 +49,11 @@
 .pin { display: grid; place-items: center; }
 .pin span {
   display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%;
-  background: var(--p-bg); color: var(--p-ink); border: 2px solid var(--p-ink);
+  background: var(--c-azul); color: var(--c-blanco); border: 2px solid var(--c-blanco);
   font: 500 14px/1 var(--font-text); box-shadow: 0 2px 6px rgb(0 0 0 / .25); transition: transform .25s ease, background-color .25s ease;
 }
-.pin.is-active span { background: var(--p-ink); color: var(--p-bg); transform: scale(1.2); }
-.pin.is-active::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 2px solid var(--p-ink); animation: sim-pulso 1.8s ease-out infinite; }
+.pin.is-active span { background: var(--c-amarillo); color: var(--c-azul); border-color: var(--c-azul); transform: scale(1.2); }
+.pin.is-active::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 3px solid var(--c-rojo); animation: sim-pulso 1.8s ease-out infinite; }
 @keyframes sim-pulso { from { opacity: .7; transform: scale(.8); } to { opacity: 0; transform: scale(1.6); } }
 .leaflet-container { font-family: var(--font-text); }
 
@@ -65,7 +65,7 @@
   font: 400 var(--t-body)/1.5 var(--font-text); transition: transform .2s ease;
 }
 .sim-point__btn:hover { transform: translateY(-2px); }
-.sim-point__btn[aria-pressed="true"] { border-color: var(--p-ink); }
+.sim-point__btn[aria-pressed="true"] { border-color: var(--action); box-shadow: inset 0 0 0 1px var(--action); }
 .sim-point__num { font-size: var(--t-label); font-weight: 500; color: var(--muted); }
 .sim-point__name { font-size: var(--t-lead); line-height: 1.3; }
 .sim-point__why { font-size: var(--t-body); }
@@ -93,5 +93,7 @@
 
 /* El simulador es una herramienta: sus secciones crecen con el contenido, no se fijan a una pantalla. */
 .sim main > section { height: auto; min-height: 0; padding: 0; }
+.sim main > .sim-app { padding-block: var(--s-7) var(--s-8); }
+.sim main > .sim-points { padding-block: var(--s-8); }
 .sim main > section > .wrap { height: auto; }
 .sim main > .sim-app > .wrap { display: grid; }

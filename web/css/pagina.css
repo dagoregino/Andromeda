@@ -12,6 +12,21 @@
   .causes__row > span:nth-child(2)::before { content: "Genera"; }
   .causes__row > span:nth-child(3)::before { content: "Provoca"; }
 }
+/* Color con significado: rojo en el diagnóstico (problemas), verde en la inclusión (compromisos). */
+#diagnostico .rows__name::before, #inclusion .rows__name::before {
+  content: ""; position: absolute; left: calc(-1 * var(--s-4)); top: calc(50% - 4px); width: 8px; height: 8px; border-radius: 50%;
+}
+#diagnostico .rows__name, #inclusion .rows__name { position: relative; }
+#diagnostico .rows__name::before { background: var(--c-rojo); }
+#inclusion .rows__name::before { background: var(--c-verde); }
+#diagnostico .rows__value, #lecciones .rows__value { color: var(--accent); }
+.rows__value[data-tipo] { padding: 2px var(--s-3); border-radius: 999px; font-size: var(--t-label); font-weight: 600; }
+.rows__value[data-tipo="accion"] { background: var(--c-verde); color: var(--c-blanco); }
+.rows__value[data-tipo="conexion"] { background: var(--c-amarillo); color: var(--c-azul); }
+.rows__value[data-tipo="base"] { box-shadow: inset 0 0 0 1px var(--line-strong); color: var(--ink); }
+.causes__row--head > span { border-top: 3px solid var(--line-strong); padding-top: var(--s-2); }
+.causes__row--head > span:nth-child(2) { border-top-color: var(--c-rojo); }
+.causes__row--head > span:nth-child(3) { border-top-color: var(--c-amarillo); }
 .fn { font-size: var(--t-label); margin-left: 2px; vertical-align: super; line-height: 0; }
 .sources { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-2); font-size: var(--t-small); counter-reset: fuente; }
 
