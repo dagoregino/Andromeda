@@ -2,7 +2,7 @@
 
 ## Barranquilla Lista: primero para su gente
 
-**Bootcamp de Innovación QUJAM** · Fecha de corte: 26 de noviembre de 2026
+**Bootcamp de Innovación QUIJAM** · Fecha de corte: 26 de noviembre de 2026
 **Entregable:** diagnóstico, problema central y arquitectura inicial
 
 > **Escenario ficticio de prospectiva:** imaginamos que Barranquilla es anunciada como sede de un Mundial de Fútbol en 2034.
