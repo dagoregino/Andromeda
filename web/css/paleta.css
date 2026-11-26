@@ -1,5 +1,5 @@
-/* Paleta de Barranquilla Lista: única fuente de color para las tres páginas.
-   Proporción: el azul manda, el blanco se lee, el amarillo marca la acción y los datos,
+/* Paleta de Barranquilla Lista: única fuente de color.
+   Proporción: el azul manda, el blanco se lee, el amarillo marca la acción,
    el rojo señala problemas y el verde soluciones. Rojo y verde solo en detalles, nunca en texto. */
 :root {
   --c-azul: #0f2a54;
@@ -8,36 +8,16 @@
   --c-rojo: #f01622;
   --c-blanco: #ffffff;
 
-  --p-bg: var(--c-azul);
-  --p-surface: #17345f;
-  --p-ink: var(--c-blanco);
-  --p-muted: #b9c6dc;
-  --p-accent: var(--c-amarillo);
-  --p-accent-ink: var(--c-azul);
-  --p-action: var(--c-amarillo);
-  --p-action-ink: var(--c-azul);
+  --fondo: var(--c-azul);
+  --superficie: #17345f;
+  --texto: var(--c-blanco);
+  --texto-suave: #b9c6dc;
+  --accion: var(--c-amarillo);
+  --accion-texto: var(--c-azul);
+  --linea: rgb(255 255 255 / .16);
+  --linea-fuerte: rgb(255 255 255 / .38);
 
-  --p-inv-bg: #0a1d3b;
-  --p-inv-surface: var(--p-surface);
-  --p-inv-ink: var(--c-blanco);
-  --p-inv-muted: var(--p-muted);
-  --p-inv-accent: var(--c-amarillo);
-  --p-inv-accent-ink: var(--c-azul);
-  --p-inv-action: var(--c-amarillo);
-  --p-inv-action-ink: var(--c-azul);
-
-  --font-display: "Work Sans", system-ui, sans-serif;
-  --font-text: "Work Sans", system-ui, sans-serif;
-  --display-weight: 400;
-  --display-tracking: -0.025em;
-  --display-tracking-xl: -0.035em;
+  --fuente: "Work Sans", system-ui, sans-serif;
 
   color-scheme: dark;
-}
-
-/* Franja superior de tres colores: la firma de la marca en todas las páginas. */
-.nav::before {
-  content: ""; position: absolute; inset: 0 0 auto 0; height: 3px;
-  background: linear-gradient(90deg,
-    var(--c-verde) 0 33.333%, var(--c-amarillo) 33.333% 66.666%, var(--c-rojo) 66.666%);
 }

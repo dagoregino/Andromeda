@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test --experimental-test-coverage tests/escenarios.test.mjs",
+    "test": "node --test --experimental-test-coverage tests/*.test.mjs",
     "start": "npx --yes serve@14 -l 4173 ."
   }
 }

@@ -117,3 +117,13 @@ python -m http.server 4173
 - [ ] `npm test` pasa con al menos 80 % de cobertura en la lógica
 - [ ] Revisada a 390, 768 y 1440 px
 - [ ] Patterns mirrored, not reinvented
+
+## Notas de ejecución (2026-11-26)
+- Supuestos 1 a 6 aprobados.
+- Rutas tomadas de OpenStreetMap (ODbL): B1, S2, GM, VM y A-16 en los dos sentidos. No se usó el visor del AMB.
+- Se agregó `web/js/listas.js` para separar las listas de la interacción.
+- Se eliminó todo `web/assets/` porque la aplicación ya no lo usa; `paleta.css` quedó solo con colores y fuente.
+- La salida elegida en la lista se confirma con un botón, para que funcione con teclado.
+- Pendiente de la Task 6: prueba con 5 personas.
+- Se agregó la vista "Todas las rutas" (buscar por código o empresa y ver recorrido y paradas), pedida después del plan.
+- Con permiso del usuario se cargaron 87 de los 89 recorridos del AMB (`web/data/rutas-amb.json`); reemplazan la A-16 de OpenStreetMap. Pendiente: autorización del AMB antes de publicar y confirmar el sentido de las rutas.
