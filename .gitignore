@@ -1,0 +1,24 @@
+# Dependencias y compilados
+node_modules/
+/dist/
+/build/
+
+# Secretos y configuración local
+.env
+.env.*
+!.env.example
+.claude/settings.local.json
+
+# Estado local del instalador de ECC (contiene rutas de este equipo)
+.claude/ecc/
+
+# Temporales
+.playwright-cli/
+*.log
+.DS_Store
+Thumbs.db
+
+# Archivos de trabajo de la revisión de diseño y capturas
+web/.taste-skill/
+web/shots/
+web/node_modules/

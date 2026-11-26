@@ -1,0 +1,11 @@
+{
+  "nota": "Ubicaciones aproximadas, solo para el simulador.",
+  "puntos": [
+    { "id": "metropolitano", "nombre": "Estadio Metropolitano y alrededores", "motivo": "Concentra la multitud en días de partido.", "lat": 10.9268, "lng": -74.8003, "componentes": ["A", "C", "D", "E"] },
+    { "id": "aeropuerto", "nombre": "Aeropuerto Ernesto Cortissoz", "motivo": "Puerta de llegada de visitantes, con obras pendientes.", "lat": 10.8896, "lng": -74.7808, "componentes": ["C", "D"] },
+    { "id": "centro", "nombre": "Centro y Gran Bazar", "motivo": "Comercio informal y mucha actividad.", "lat": 10.9813, "lng": -74.7787, "componentes": ["A", "C", "E", "G"] },
+    { "id": "suroccidente", "nombre": "Barrios del sur y occidente", "motivo": "Donde más coinciden el calor y la vulnerabilidad.", "lat": 10.9447, "lng": -74.8166, "componentes": ["A", "B", "C", "F", "G"] },
+    { "id": "arroyos", "nombre": "Zona de arroyos", "motivo": "Inundaciones que cortan la movilidad.", "lat": 10.9695, "lng": -74.8205, "componentes": ["B", "D", "G"] },
+    { "id": "malecon", "nombre": "Gran Malecón y Ciénaga de Mallorquín", "motivo": "Turismo y presión ambiental.", "lat": 11.0095, "lng": -74.7905, "componentes": ["A", "B", "E", "G"] }
+  ]
+}
