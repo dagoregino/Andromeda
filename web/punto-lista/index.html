@@ -52,7 +52,7 @@
     <div class="ancho portada__pie">
       <h1 id="portada-titulo"><span class="portada__nombre">Punto Lista</span> La ciudad te escucha.</h1>
       <div class="pildora">
-        <p>Prototipo en desarrollo<sup>1</sup><br><span>Imagen conceptual<sup>2</sup></span></p>
+        <p>Imagen conceptual<sup>2</sup></p>
         <a class="boton" href="#probar">Probar</a>
       </div>
     </div>
@@ -76,7 +76,7 @@
         <div class="escena" data-escena="boton" aria-hidden="true"><canvas></canvas><div class="respaldo"><span></span></div></div>
       </li>
       <li class="tarjeta">
-        <p>Sin celular<br>ni datos propios.<sup>4</sup></p>
+        <p>Sin celular propio.<br>El punto usa internet.</p>
         <div class="escena" data-escena="libre" aria-hidden="true"><canvas></canvas><div class="respaldo"><span></span></div></div>
       </li>
       <li class="tarjeta">
@@ -94,41 +94,18 @@
     <div class="ancho ancho--texto" data-aparece>
       <p class="antetitulo">Pilar fundamental</p>
       <h2 id="manifiesto-titulo" class="titulo titulo--gigante">Para todas las personas.</h2>
-      <p class="entradilla">Proponemos un dispositivo con <strong>inteligencia artificial, micrófono, parlante y pantalla</strong>, donde <strong>cualquier persona</strong> pueda preguntar y recibir la respuesta <strong>hablada y escrita</strong>: cómo llegar, qué hay cerca y qué avisos hay, sin necesitar celular ni datos propios.</p>
+      <p class="entradilla">Proponemos un dispositivo con <strong>inteligencia artificial, micrófono, parlante y pantalla</strong>, donde <strong>cualquier persona</strong> pueda preguntar y recibir la respuesta <strong>hablada y escrita</strong>: cómo llegar, qué hay cerca y qué avisos hay, sin necesitar celular propio. El punto debe estar conectado a internet.</p>
     </div>
   </section>
 
   <section class="seccion seccion--gris" id="diseno" aria-labelledby="diseno-titulo">
     <div class="ancho">
-      <p class="antetitulo">Diseño</p>
-      <h2 id="diseno-titulo" class="titulo titulo--grande" data-aparece>Todo lo necesario<br>para conversar.</h2>
-      <div class="visor" data-visor>
-        <ul class="partes">
-          <li>
-            <button type="button" data-parte="pantalla" aria-expanded="false" aria-controls="parte-pantalla">Pantalla</button>
-            <p id="parte-pantalla"><strong>Pantalla.</strong> Muestra por escrito lo que el dispositivo responde, con letra grande y frases cortas.</p>
-          </li>
-          <li>
-            <button type="button" data-parte="microfono" aria-expanded="false" aria-controls="parte-microfono">Micrófono</button>
-            <p id="parte-microfono"><strong>Micrófono.</strong> Recibe la pregunta hablada. La propuesta es que escuche solo cuando alguien lo active.</p>
-          </li>
-          <li>
-            <button type="button" data-parte="parlante" aria-expanded="false" aria-controls="parte-parlante">Parlante</button>
-            <p id="parte-parlante"><strong>Parlante.</strong> Dice la respuesta en voz alta, una ayuda para quien no puede leer la pantalla.</p>
-          </li>
-          <li>
-            <button type="button" data-parte="boton" aria-expanded="false" aria-controls="parte-boton">Botón</button>
-            <p id="parte-boton"><strong>Botón.</strong> Propuesta de diseño: un control que se encuentra con el tacto, para activar el equipo o elegir una opción sin hablar.</p>
-          </li>
-          <li>
-            <button type="button" data-parte="nube" aria-expanded="false" aria-controls="parte-nube">Nube</button>
-            <p id="parte-nube"><strong>Nube.</strong> Una placa ESP32 conecta el equipo con el modelo de inteligencia artificial por internet.<sup>4</sup></p>
-          </li>
-        </ul>
-        <div class="escena visor__escena" data-escena="diseno" role="img" aria-label="Imagen conceptual del dispositivo, enfocada en la parte elegida">
-          <canvas></canvas>
-          <div class="respaldo" aria-hidden="true"><span></span></div>
-        </div>
+      <p class="antetitulo antetitulo--centro">Diseño</p>
+      <h2 id="diseno-titulo" class="titulo titulo--grande titulo--centro" data-aparece>Todo lo necesario<br>para conversar.</h2>
+      <p class="entradilla entradilla--centro">Micrófono, parlante, pantalla y un botón en un solo punto.<sup>1</sup></p>
+      <div class="escena diseno__escena" data-escena="diseno" role="img" aria-label="Imagen conceptual del dispositivo visto de medio lado">
+        <canvas></canvas>
+        <div class="respaldo" aria-hidden="true"><span></span></div>
       </div>
     </div>
   </section>
@@ -176,45 +153,6 @@
     </div>
   </section>
 
-  <section class="seccion" aria-labelledby="como-titulo">
-    <div class="ancho">
-      <p class="antetitulo antetitulo--centro">Cómo funciona</p>
-      <h2 id="como-titulo" class="titulo titulo--grande titulo--centro" data-aparece>De tu pregunta<br>a la respuesta.</h2>
-      <ol class="pasos">
-        <li data-aparece><span class="pasos__numero">1</span><h3>Preguntas</h3><p>Hablas frente al dispositivo.</p></li>
-        <li data-aparece><span class="pasos__numero">2</span><h3>La IA responde</h3><p>La pregunta viaja por internet a un modelo que sigue las indicaciones dadas.<sup>4</sup></p></li>
-        <li data-aparece><span class="pasos__numero">3</span><h3>Escuchas y lees</h3><p>La respuesta suena por el parlante y aparece en la pantalla.</p></li>
-      </ol>
-    </div>
-  </section>
-
-  <section class="seccion seccion--clara" aria-labelledby="estado-titulo">
-    <div class="ancho">
-      <h2 id="estado-titulo" class="titulo" data-aparece>En qué va el prototipo.</h2>
-      <div class="avance">
-        <div class="avance__caja" data-aparece>
-          <h3>Hoy</h3>
-          <ul>
-            <li>Asistente de inteligencia artificial sobre una ESP32</li>
-            <li>Micrófono, parlante y pantalla</li>
-            <li>Conexión a la nube</li>
-            <li>Comportamiento ajustable con indicaciones</li>
-          </ul>
-        </div>
-        <div class="avance__caja" data-aparece>
-          <h3>Lo que sigue</h3>
-          <ul>
-            <li>Cargar lugares, rutas y avisos de la ciudad</li>
-            <li>Botón o pantalla táctil para preguntar sin hablar</li>
-            <li>Respaldo para apagones o falta de internet</li>
-            <li>Escuchar solo cuando se active y no guardar audios</li>
-            <li>Pruebas con personas con discapacidad</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="seccion cierre" aria-labelledby="cierre-titulo">
     <div class="ancho">
       <div class="escena cierre__escena" data-escena="cierre" aria-hidden="true"><canvas></canvas><div class="respaldo"><span>Punto Lista</span></div></div>
@@ -230,11 +168,9 @@
 <footer class="pie">
   <div class="ancho">
     <ol>
-      <li>Prototipo del Bootcamp de Innovación QUIJAM. Las funciones para la ciudad son propuestas y aún no están configuradas en el dispositivo.</li>
+      <li>Propuesta del equipo Andromeda para el Bootcamp de Innovación QUIJAM. Las funciones para la ciudad aún no están configuradas en el dispositivo.</li>
       <li>Las imágenes son conceptuales: representan una propuesta de diseño y no son fotografías del equipo.</li>
-      <li>Las respuestas de la demostración se escribieron como ejemplo. No son rutas, lugares ni avisos reales. La voz la genera tu navegador, no el dispositivo, y esta página no graba audio.</li>
-      <li>Requiere conexión a internet.</li>
-    </ol>
+      <li>Las respuestas de la demostración se escribieron como ejemplo. No son rutas, lugares ni avisos reales. La voz la genera tu navegador, no el dispositivo, y esta página no graba audio.</li>    </ol>
     <p><a href="../index.html">Barranquilla Lista</a> · Escenario ficticio de prospectiva: Mundial 2034.</p>
   </div>
 </footer>

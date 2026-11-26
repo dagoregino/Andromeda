@@ -25,9 +25,7 @@
 .portada__pie { position: relative; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; padding-bottom: 34px; }
 .portada h1 { font-size: clamp(42px, 6vw, 88px); font-weight: 600; line-height: 1.04; letter-spacing: -.032em; }
 .portada__nombre { display: block; margin-bottom: 8px; font-size: clamp(21px, 2vw, 28px); letter-spacing: 0; }
-.pildora { display: flex; align-items: center; gap: 22px; padding: 10px 10px 10px 26px; border-radius: 999px; background: var(--gris); font-size: 14px; font-weight: 600; line-height: 1.5; }
-.pildora span { color: var(--suave-gris); font-weight: 400; }
-.aviso-3d { padding-block: 16px; color: var(--suave-gris); font-size: 14px; text-align: center; }
+.pildora { display: flex; align-items: center; gap: 22px; padding: 10px 10px 10px 26px; border-radius: 999px; background: var(--gris); font-size: 14px; font-weight: 600; line-height: 1.5; }.aviso-3d { padding-block: 16px; color: var(--suave-gris); font-size: 14px; text-align: center; }
 
 /* Destacados */
 .destacados { padding-block: 110px 90px; overflow: hidden; }
@@ -63,27 +61,8 @@
 /* Manifiesto */
 .manifiesto { padding-block: 180px; }
 
-/* Visor de diseño */
-.visor { display: grid; grid-template-columns: minmax(250px, 380px) 1fr; align-items: center; gap: 24px; margin-top: 56px; padding: 32px; border-radius: var(--radio); background: var(--negro); }
-.partes { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
-.partes button { display: flex; align-items: center; gap: 12px; min-height: 54px; padding: 10px 22px 10px 16px; border: 0; border-radius: 999px; background: var(--gris); font-weight: 600; transition: background-color .25s ease; }
-.partes button:hover { background: #333336; }
-.partes button::before { content: "+"; display: grid; place-items: center; width: 24px; height: 24px; border: 2px solid currentColor; border-radius: 50%; font-size: 18px; line-height: 1; }
-.partes p { display: none; padding: 20px 22px; border-radius: 22px; background: var(--gris); color: var(--suave-gris); }
-.partes p strong { color: var(--texto); }
-.partes .parte--abierta p { display: block; }
-.partes .parte--abierta button { margin-bottom: 8px; background: var(--texto); color: var(--negro); }
-.partes .parte--abierta button::before { content: "−"; }
-.visor__escena { height: 620px; }
-/* Los acercamientos se desvanecen en los bordes en vez de verse recortados. */
-.visor__escena canvas {
-  --borde-x: linear-gradient(to right, transparent, #000 9%, #000 91%, transparent);
-  --borde-y: linear-gradient(to bottom, transparent, #000 9%, #000 91%, transparent);
-  -webkit-mask-image: var(--borde-x), var(--borde-y);
-  -webkit-mask-composite: source-in;
-  mask-image: var(--borde-x), var(--borde-y);
-  mask-composite: intersect;
-}
+/* Diseño: una sola vista del dispositivo, sin detallar sus partes. */
+.diseno__escena { height: 500px; margin-top: 40px; border-radius: var(--radio); background: var(--negro); }
 
 /* Demostración */
 .demo { background: radial-gradient(70% 50% at 50% 45%, #0e2347 0%, #000 75%); }
@@ -98,23 +77,13 @@
 .demo__voz { margin-top: 24px; text-align: center; }
 .demo__aviso { min-height: 1.5em; margin-top: 8px; color: var(--suave-gris); font-size: 14px; text-align: center; }
 
-/* Inclusión y pasos */
-.trio, .pasos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 64px; }
+/* Inclusión */
+.trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 64px; }
 .trio li { padding: 36px 32px 40px; border-radius: var(--radio); background: var(--negro); }
 .trio svg { width: 52px; height: 52px; fill: none; stroke: var(--amarillo); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
 .trio h3 { margin: 28px 0 10px; font-size: 28px; font-weight: 600; letter-spacing: -.015em; }
-.trio p, .pasos p { color: var(--suave); font-weight: 600; }
+.trio p { color: var(--suave); font-weight: 600; }
 .nota { max-width: 760px; margin-top: 40px; color: var(--suave); font-size: 19px; font-weight: 600; }
-.pasos li { padding-top: 32px; border-top: 1px solid var(--linea); text-align: center; }
-.pasos__numero { display: block; font-size: 64px; font-weight: 600; line-height: 1; background: linear-gradient(180deg, #fff, #4f7fd0); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.pasos h3 { margin: 20px 0 8px; font-size: 24px; }
-.pasos p { max-width: 300px; margin-inline: auto; }
-
-/* Estado del prototipo */
-.avance { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 48px; }
-.avance__caja { padding: 40px; border-radius: var(--radio); background: #fff; }
-.avance h3 { margin-bottom: 16px; font-size: 28px; }
-.avance li { padding-block: 14px; border-top: 1px solid #e8e8ed; font-weight: 600; }
 
 /* Cierre */
 .cierre { padding-block: 60px 130px; }

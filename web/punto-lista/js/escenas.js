@@ -32,14 +32,6 @@ export const ESCENAS = Object.freeze({
   ),
 
   diseno: escena({ rx: 0.08, ry: -0.52, ocupa: 0.82 }),
-  'parte-pantalla': escena(
-    { ry: -0.16, ocupa: 1.16, fy: 0.62, fz: 0.4 },
-    { tipo: 'respuesta', titulo: '¿Hay sombra cerca?', texto: 'Sí, junto al parque más cercano.' },
-  ),
-  'parte-microfono': escena({ rx: 0.3, ry: -0.3, ocupa: 1.85, dy: 0.08, fy: 1.75, fz: 0.4 }, { tipo: 'escuchando' }),
-  'parte-parlante': escena({ rx: -0.15, ry: 0.5, ocupa: 2.4, fx: -0.45, fy: -1.45, fz: 0.4 }),
-  'parte-boton': escena({ rx: -0.2, ry: -0.85, ocupa: 2.4, fx: 0.85, fy: -1.45, fz: 0.45 }, { tipo: 'botones' }),
-  'parte-nube': escena({ rx: -0.5, ry: 0.75, rz: 0.1, ocupa: 0.74 }, { tipo: 'nube' }),
 
   demo: escena({ ry: -0.12, ocupa: 0.94 }),
   cierre: escena({ rx: 0.1, ry: 0.5, rz: 0.06, ocupa: 0.88 }),

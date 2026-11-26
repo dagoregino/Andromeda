@@ -24,7 +24,7 @@ We'll know we're right when **4 de cada 5 personas de prueba encuentren un desti
 ## Pilar fundamental: Punto Lista
 **La ciudad que te escucha y te responde.**
 
-Proponemos un dispositivo con inteligencia artificial, micrófono, parlante y pantalla, donde **cualquier persona** pueda preguntar y recibir la respuesta hablada y escrita: cómo llegar, qué hay cerca y qué avisos hay, sin necesitar celular ni datos propios.
+Proponemos un dispositivo con inteligencia artificial, micrófono, parlante y pantalla, donde **cualquier persona** pueda preguntar y recibir la respuesta hablada y escrita: cómo llegar, qué hay cerca y qué avisos hay, sin necesitar celular propio. El punto debe estar conectado a internet.
 
 Está pensado para habitantes y visitantes de todas las edades. La inclusión viene desde el diseño: la voz ayuda a las personas ciegas y la pantalla, a las personas sordas.
 

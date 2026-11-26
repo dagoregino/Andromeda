@@ -2,7 +2,6 @@
 import { ESCENAS } from './escenas.js';
 import { crearEscenario } from './escenario.js';
 import { iniciarCarrusel } from './carrusel.js';
-import { iniciarVisor } from './visor.js';
 import { iniciarDemo } from './demo.js';
 import { iniciarPortada, iniciarBarraLocal, iniciarApariciones } from './pagina.js';
 
@@ -17,7 +16,6 @@ const escenarios = [...document.querySelectorAll('[data-escena]')].map((elemento
 const buscar = (nombre) => escenarios.find((escenario) => escenario.nombre === nombre);
 
 iniciarCarrusel(document.querySelector('[data-destacados]'), entorno);
-iniciarVisor(document.querySelector('[data-visor]'), buscar('diseno'));
 iniciarDemo(document.querySelector('[data-demo]'), buscar('demo'), entorno);
 iniciarBarraLocal(document.querySelector('[data-barra-local]'), document.querySelector('.portada'));
 iniciarApariciones(document.querySelectorAll('[data-aparece]'), entorno);

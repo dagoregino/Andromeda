@@ -1,6 +1,6 @@
 # Punto Lista: página de presentación
 
-Página del dispositivo, con un diseño de página de producto: fondo negro, titulares grandes, carrusel de destacados, visor de partes y una demostración.
+La segunda vista de la web, junto al mapa: fondo negro, titulares grandes, carrusel de destacados y una demostración. El mapa usa la misma barra, colores y letra (`../css/`).
 
 ## Verla
 

@@ -6,7 +6,6 @@ const TEXTOS = {
   reposo: 'Punto Lista',
   escuchando: 'Te escucho…',
   botones: '¿Qué necesitas?',
-  nube: 'Conectado a la nube',
   instrucciones: 'Así responde',
 };
 

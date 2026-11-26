@@ -56,16 +56,6 @@ function anillo(ctx, x, y, radio) {
   ctx.stroke();
 }
 
-function nube(ctx, x, y) {
-  ctx.fillStyle = COLOR.texto;
-  ctx.beginPath();
-  ctx.arc(x - 70, y + 20, 55, 0, Math.PI * 2);
-  ctx.arc(x, y - 20, 80, 0, Math.PI * 2);
-  ctx.arc(x + 80, y + 22, 53, 0, Math.PI * 2);
-  ctx.rect(x - 70, y + 20, 150, 55);
-  ctx.fill();
-}
-
 const centro = LIENZO.ancho / 2;
 
 const MODOS = {
@@ -97,10 +87,6 @@ const MODOS = {
       caja(ctx, MARGEN, y, LIENZO.ancho - MARGEN * 2, 108, 30, i === 0 ? COLOR.amarillo : COLOR.boton);
       escribir(ctx, opcion, MARGEN + 36, y + 68, { tamano: 42, color: i === 0 ? COLOR.fondoBajo : COLOR.texto });
     });
-  },
-  nube(ctx) {
-    nube(ctx, centro, 230);
-    escribir(ctx, 'Conectado a la nube', centro, 440, { tamano: 52, centrado: true });
   },
   instrucciones(ctx) {
     escribir(ctx, 'Así responde', MARGEN, 106, { tamano: 58, peso: 700 });
