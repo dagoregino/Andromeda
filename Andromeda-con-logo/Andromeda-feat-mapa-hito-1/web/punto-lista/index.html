@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>Punto Lista: la ciudad te escucha</title>
+<meta name="description" content="Prototipo de dispositivo con inteligencia artificial, micrófono, parlante y pantalla para orientar a cualquier persona en Barranquilla.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Punto Lista: la ciudad te escucha">
+<meta property="og:description" content="Pregunta y recibe la respuesta hablada y escrita. Prototipo del Bootcamp QUIJAM.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/navegacion.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/secciones.css">
+<link rel="stylesheet" href="css/adaptable.css">
+<script type="module" src="js/main.js"></script>
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="nav-global">
+  <div class="nav-global__fila">
+    <a class="nav-global__marca" href="../"><img src="../img/logo.svg" alt="" width="30" height="30"><span>Barranquilla Lista</span></a>
+    <nav class="nav-global__menu" aria-label="Principal">
+      <a href="../">Inicio</a>
+      <a href="../mapa/">Mapa</a>
+      <a href="./" aria-current="page">Punto Lista</a>
+      <a href="../cursos/">Cursos</a>
+    </nav>
+  </div>
+</header>
+
+<nav class="barra-local" aria-label="Punto Lista" data-barra-local>
+  <span class="barra-local__nombre">Punto Lista</span>
+  <div class="barra-local__acciones">
+    <a class="boton boton--borde boton--chico" href="#diseno">Explorar</a>
+    <a class="boton boton--chico" href="#probar">Probar</a>
+  </div>
+</nav>
+
+<main id="contenido" tabindex="-1">
+
+  <section class="portada" aria-labelledby="portada-titulo">
+    <p class="portada__fondo" aria-hidden="true">LISTA</p>
+    <div class="escena portada__escena" data-escena="hero" role="img" aria-label="Imagen conceptual de Punto Lista: un dispositivo azul con pantalla, parlante y un botón amarillo">
+      <canvas></canvas>
+      <div class="respaldo" aria-hidden="true"><span>Punto Lista</span></div>
+    </div>
+    <div class="ancho portada__pie">
+      <h1 id="portada-titulo"><span class="portada__nombre">Punto Lista</span> La ciudad te escucha.</h1>
+      <div class="pildora">
+        <p>Imagen conceptual<sup>2</sup></p>
+        <a class="boton" href="#probar">Probar</a>
+      </div>
+    </div>
+  </section>
+
+  <p class="ancho aviso-3d" role="status" data-aviso-3d hidden>No se pudo cargar el modelo 3D. Mostramos una figura sencilla; el resto de la página funciona igual.</p>
+
+  <section class="destacados seccion seccion--gris" aria-labelledby="destacados-titulo" data-destacados>
+    <div class="ancho"><h2 id="destacados-titulo" class="titulo" data-aparece>Lo más destacado.</h2></div>
+    <ul class="pista" data-pista tabindex="0" aria-label="Destacados de Punto Lista">
+      <li class="tarjeta">
+        <p>Pregunta hablando.<br>Escucha la respuesta.</p>
+        <div class="escena" data-escena="voz" aria-hidden="true"><canvas></canvas><div class="respaldo"><span></span></div></div>
+      </li>
+      <li class="tarjeta">
+        <p>La misma respuesta,<br>escrita en la pantalla.</p>
+        <div class="escena" data-escena="pantalla" aria-hidden="true"><canvas></canvas><div class="respaldo"><span></span></div></div>
+      </li>
+      <li class="tarjeta">
+        <p>Un botón para preguntar<br>sin tener que hablar.<sup>1</sup></p>
+        <div class="escena" data-escena="boton" aria-hidden="true"><canvas></canvas><div class="respaldo"><span></span></div></div>
+      </li>
+      <li class="tarjeta">
+        <p>Sin celular propio.<br>El punto usa internet.</p>
+        <div class="escena" data-escena="libre" aria-hidden="true"><canvas></canvas><div class="respaldo"><span></span></div></div>
+      </li>
+      <li class="tarjeta">
+        <p>Se comporta<br>como se le indica.</p>
+        <div class="escena" data-escena="instrucciones" aria-hidden="true"><canvas></canvas><div class="respaldo"><span></span></div></div>
+      </li>
+    </ul>
+    <div class="controles">
+      <div class="puntos" data-puntos></div>
+      <button type="button" class="pausa" data-pausa data-estado="pausado" aria-label="Reproducir el recorrido"><span aria-hidden="true"></span></button>
+    </div>
+  </section>
+
+  <section class="seccion manifiesto" aria-labelledby="manifiesto-titulo">
+    <div class="ancho ancho--texto" data-aparece>
+      <p class="antetitulo">Pilar fundamental</p>
+      <h2 id="manifiesto-titulo" class="titulo titulo--gigante">Para todas las personas.</h2>
+      <p class="entradilla">Proponemos un dispositivo con <strong>inteligencia artificial, micrófono, parlante y pantalla</strong>, donde <strong>cualquier persona</strong> pueda preguntar y recibir la respuesta <strong>hablada y escrita</strong>: cómo llegar, qué hay cerca y qué avisos hay, sin necesitar celular propio. El punto debe estar conectado a internet.</p>
+    </div>
+  </section>
+
+  <section class="seccion seccion--gris" id="diseno" aria-labelledby="diseno-titulo">
+    <div class="ancho">
+      <p class="antetitulo antetitulo--centro">Diseño</p>
+      <h2 id="diseno-titulo" class="titulo titulo--grande titulo--centro" data-aparece>Todo lo necesario<br>para conversar.</h2>
+      <p class="entradilla entradilla--centro">Micrófono, parlante, pantalla y un botón en un solo punto.<sup>1</sup></p>
+      <div class="escena diseno__escena" data-escena="diseno" role="img" aria-label="Imagen conceptual del dispositivo visto de medio lado">
+        <canvas></canvas>
+        <div class="respaldo" aria-hidden="true"><span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion demo" id="probar" aria-labelledby="demo-titulo" data-demo>
+    <div class="ancho">
+      <p class="antetitulo antetitulo--centro">Pruébalo</p>
+      <h2 id="demo-titulo" class="titulo titulo--grande titulo--centro" data-aparece>Pregunta. Escucha. Lee.</h2>
+      <p class="entradilla entradilla--centro">Elige una pregunta, sin necesidad de hablar. Las respuestas son ejemplos.<sup>3</sup></p>
+      <div class="escena demo__escena" data-escena="demo" aria-hidden="true">
+        <canvas></canvas>
+        <div class="respaldo"><span>Punto Lista</span></div>
+      </div>
+      <p class="demo__respuesta" aria-live="polite" data-respuesta>Aquí aparecerá la respuesta.</p>
+      <div class="demo__preguntas" role="group" aria-label="Preguntas de ejemplo" data-preguntas></div>
+      <p class="demo__voz">
+        <button type="button" class="boton boton--borde" aria-pressed="false" data-voz>Leer en voz alta</button>
+      </p>
+      <p class="demo__aviso" role="status" data-aviso-voz></p>
+    </div>
+  </section>
+
+  <section class="seccion seccion--gris" aria-labelledby="inclusion-titulo">
+    <div class="ancho">
+      <p class="antetitulo">Inclusión</p>
+      <h2 id="inclusion-titulo" class="titulo titulo--grande" data-aparece>Se escucha.<br>Se lee. Se toca.</h2>
+      <ul class="trio">
+        <li data-aparece>
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 19h8l11-9v28l-11-9H8z"/><path d="M33 17a10 10 0 0 1 0 14M37 11a18 18 0 0 1 0 26"/></svg>
+          <h3>Voz</h3>
+          <p>Para las personas ciegas o con baja visión: preguntan hablando y escuchan la respuesta.</p>
+        </li>
+        <li data-aparece>
+          <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="9" width="36" height="25" rx="5"/><path d="M13 18h22M13 25h14M17 41h14"/></svg>
+          <h3>Pantalla</h3>
+          <p>Para las personas sordas o con baja audición: leen la misma respuesta que se dice en voz alta.</p>
+        </li>
+        <li data-aparece>
+          <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="17"/><circle cx="24" cy="24" r="8"/></svg>
+          <h3>Botón</h3>
+          <p>Para quien no habla: la propuesta es elegir lo que necesita con el tacto.<sup>1</sup></p>
+        </li>
+      </ul>
+      <p class="nota" data-aparece>Todavía falta probarlo con personas con discapacidad. Esta versión aún no atiende a personas sordociegas, y quienes usan Lengua de Señas Colombiana pueden necesitar más que texto.</p>
+    </div>
+  </section>
+
+  <section class="seccion cierre" aria-labelledby="cierre-titulo">
+    <div class="ancho">
+      <div class="escena cierre__escena" data-escena="cierre" aria-hidden="true"><canvas></canvas><div class="respaldo"><span>Punto Lista</span></div></div>
+      <h2 id="cierre-titulo" class="titulo titulo--grande titulo--centro" data-aparece>La ciudad que te escucha<br>y te responde.</h2>
+      <p class="cierre__acciones">
+        <a class="boton" href="#probar">Probar la demostración</a>
+        <a class="boton boton--borde" href="../mapa/">Ver el mapa</a>
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <div class="ancho">
+    <ol>
+      <li>Propuesta del equipo Andromeda para el Bootcamp de Innovación QUIJAM. Las funciones para la ciudad aún no están configuradas en el dispositivo.</li>
+      <li>Las imágenes son conceptuales: representan una propuesta de diseño y no son fotografías del equipo.</li>
+      <li>Las respuestas de la demostración se escribieron como ejemplo. No son rutas, lugares ni avisos reales. La voz la genera tu navegador, no el dispositivo, y esta página no graba audio.</li>    </ol>
+    <p><a href="../index.html">Barranquilla Lista</a> · Escenario ficticio de prospectiva: Mundial 2034.</p>
+  </div>
+</footer>
+</body>
+</html>

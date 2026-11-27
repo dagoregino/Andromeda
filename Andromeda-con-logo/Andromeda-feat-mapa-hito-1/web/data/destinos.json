@@ -1,0 +1,18 @@
+{
+  "nota": "Ubicaciones aproximadas, tomadas de OpenStreetMap el 2026-11-26.",
+  "destinos": [
+    { "id": "metropolitano", "nombre": "Estadio Metropolitano Roberto Meléndez", "zona": "Metropolitana", "lat": 10.92695, "lng": -74.80051 },
+    { "id": "aeropuerto", "nombre": "Aeropuerto Internacional Ernesto Cortissoz", "zona": "Soledad", "lat": 10.88795, "lng": -74.7795 },
+    { "id": "malecon", "nombre": "Gran Malecón del Río (entrada)", "zona": "Norte - Centro Histórico", "lat": 11.02248, "lng": -74.79525 },
+    { "id": "ventana-al-mundo", "nombre": "Ventana al Mundo", "zona": "Avenida Circunvalar", "lat": 11.03316, "lng": -74.83143 },
+    { "id": "buenavista", "nombre": "Centro Comercial Buenavista", "zona": "Riomar", "lat": 11.01321, "lng": -74.82762 },
+    { "id": "catedral", "nombre": "Catedral Metropolitana María Reina", "zona": "Boston", "lat": 10.9885, "lng": -74.79057 },
+    { "id": "plaza-de-la-paz", "nombre": "Plaza de la Paz", "zona": "El Rosario", "lat": 10.98802, "lng": -74.78901 },
+    { "id": "museo-del-caribe", "nombre": "Museo del Caribe", "zona": "Barlovento", "lat": 10.98631, "lng": -74.77841 },
+    { "id": "zoologico", "nombre": "Zoológico de Barranquilla", "zona": "La Concepción", "lat": 11.01098, "lng": -74.798 },
+    { "id": "gran-bazar", "nombre": "Mercado Gran Bazar", "zona": "Barranquillita", "lat": 10.9782, "lng": -74.77279 },
+    { "id": "mallorquin", "nombre": "Ciénaga de Mallorquín, sendero del manglar", "zona": "La Playa", "lat": 11.03004, "lng": -74.85081 },
+    { "id": "joe-arroyo", "nombre": "Estación Joe Arroyo", "zona": "Estación de Transmetro", "lat": 10.99473, "lng": -74.80791 },
+    { "id": "portal-de-soledad", "nombre": "Portal de Soledad", "zona": "Estación de Transmetro", "lat": 10.90758, "lng": -74.80021 }
+  ]
+}
