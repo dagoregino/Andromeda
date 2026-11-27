@@ -52,8 +52,8 @@
   filter: drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff) drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff);
 }
 .recorte img, .recorte__foto { display: block; width: 100%; height: 100%; object-fit: cover; clip-path: var(--forma); }
-.recorte__foto { position: relative; background: center / cover no-repeat; filter: grayscale(1) contrast(1.35); }
-/* Puntos de media tinta sobre las fotos en blanco y negro. */
+.recorte__foto { position: relative; background: center / cover no-repeat; filter: contrast(1.35); }
+/* Puntos de media tinta sobre las fotos. */
 .recorte__foto::after { content: ""; position: absolute; inset: 0; mix-blend-mode: multiply; background: radial-gradient(circle, rgb(0 0 0 / .55) 0 1.1px, transparent 1.7px) 0 0 / 5px 5px; }
 
 .recorte--a { --g: -3deg; --forma: polygon(2% 6%, 30% 0, 62% 4%, 100% 0, 97% 48%, 100% 100%, 64% 95%, 32% 100%, 0 96%, 3% 50%); left: 14%; top: 18%; width: 72%; aspect-ratio: 1.6; }
