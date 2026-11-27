@@ -1,49 +1,78 @@
-/* Página de cursos con el mismo estilo de collage que la parte de abajo de la home
-   (ráfagas, números grandes, líneas finas, sin tarjetas). Se carga después de cursos.css y abajo.css.
-   El filtro y las clases que usa cursos.js no cambian: .curso, [hidden], data-edad y data-tema. */
+/* Página de cursos: portada en collage, filtros y una pared de afiches, uno por curso.
+   Cada tema tiene su color y su dibujo (img/cursos/). Se carga después de cursos.css y abajo.css.
+   cursos.js sigue usando .curso, [hidden], data-edad y data-tema. */
 
-.abajo .cursos--pagina { background: var(--fondo); padding-top: clamp(96px, 11vw, 150px); }
-.abajo .cursos--pagina h1 { font-family: var(--serif); font-size: clamp(40px, 6.4vw, 96px); font-weight: 400; line-height: .95; letter-spacing: -.01em; text-transform: uppercase; }
-.abajo .cursos--pagina h1::first-letter { color: var(--c-amarillo); font-size: 1.3em; }
-.cursos__encabezado { align-items: center; }
-.abajo .cursos__cabecera { gap: 20px; }
-.abajo .cursos--pagina .cursos__cabecera .entrada { max-width: 46ch; }
+/* Color de cada tema: --c es el fondo del afiche y --t la tinta que se lee encima. */
+.cursos--pagina [data-tema="calor"], .cursos--pagina .opcion:has([value="calor"]) { --c: var(--c-amarillo); --t: #141416; }
+.cursos--pagina [data-tema="arroyos"], .cursos--pagina .opcion:has([value="arroyos"]) { --c: #0066cc; --t: #fff; }
+.cursos--pagina [data-tema="movilidad"], .cursos--pagina .opcion:has([value="movilidad"]) { --c: #c8101a; --t: #fff; }
+.cursos--pagina [data-tema="datos"], .cursos--pagina .opcion:has([value="datos"]) { --c: #f1f3f9; --t: #102456; }
+.cursos--pagina [data-tema="barrio"], .cursos--pagina .opcion:has([value="barrio"]) { --c: #0b742f; --t: #fff; }
+.cursos--pagina [data-tema="participacion"], .cursos--pagina .opcion:has([value="participacion"]) { --c: #ff8a2a; --t: #141416; }
+.cursos--pagina [data-tema="calor"] { --dibujo: url("../img/cursos/calor.svg"); }
+.cursos--pagina [data-tema="arroyos"] { --dibujo: url("../img/cursos/arroyos.svg"); }
+.cursos--pagina [data-tema="movilidad"] { --dibujo: url("../img/cursos/movilidad.svg"); }
+.cursos--pagina [data-tema="datos"] { --dibujo: url("../img/cursos/datos.svg"); }
+.cursos--pagina [data-tema="barrio"] { --dibujo: url("../img/cursos/barrio.svg"); }
+.cursos--pagina [data-tema="participacion"] { --dibujo: url("../img/cursos/participacion.svg"); }
 
-/* ---------- Filtros: texto con subrayado, sin pastillas ---------- */
-.abajo .filtros { gap: 24px; margin: clamp(48px, 6vw, 80px) 0 0; padding-top: 28px; border-top: 1px solid var(--linea-fuerte); }
-.abajo .filtros__opciones { gap: 0 24px; }
-.abajo .opcion span { min-height: 44px; padding: 0 2px; border: 0; border-bottom: 2px solid transparent; border-radius: 0; font-size: 17px; font-weight: 500; color: var(--texto-suave); }
-.abajo .opcion input:hover + span { color: var(--texto); border-color: transparent; }
-.abajo .opcion input:checked + span { background: none; color: var(--c-amarillo); border-color: var(--c-amarillo); font-weight: 600; }
-.abajo .opcion input:focus-visible + span { outline: 3px solid var(--accion); outline-offset: 3px; }
+.abajo .cursos--pagina { background: var(--fondo); padding-top: clamp(72px, 8vw, 112px); }
 
-/* ---------- Lista de cursos: una fila por curso ---------- */
-.abajo .cursos__lista { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; margin-top: 28px; border-bottom: 1px solid var(--linea-fuerte); counter-reset: curso; }
+/* ---------- Portada ---------- */
+.cursos__encabezado { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(32px, 6vw, 88px); align-items: center; }
+.abajo .cursos__cabecera { gap: 22px; max-width: none; }
+.abajo .cursos--pagina h1 { font-family: var(--serif); font-size: clamp(42px, 7vw, 100px); font-weight: 400; line-height: .94; letter-spacing: -.015em; text-transform: uppercase; }
+.cursos--pagina h1 span { display: block; margin-top: .08em; color: var(--c-amarillo); font-size: .78em; }
+.abajo .cursos--pagina .cursos__cabecera .entrada { max-width: 48ch; font-size: clamp(17px, 1.5vw, 20px); color: var(--texto); }
+.cursos__aviso { max-width: 52ch; padding-left: 16px; border-left: 4px solid var(--c-amarillo); font-size: 15px; color: var(--texto-suave); }
+.cursos--pagina .boton--principal, .cursos--pagina .boton--principal:hover { border-color: var(--c-amarillo); background: var(--c-amarillo); color: var(--c-oscuro); }
+
+.collage { position: relative; isolation: isolate; aspect-ratio: 1 / 1; width: 100%; max-width: 520px; justify-self: center; }
+.collage > .rafaga { --t: 112%; left: -6%; top: -6%; transform: rotate(10deg); }
+.collage .recorte--e { left: 2%; top: 9%; width: 86%; aspect-ratio: 1.35; --g: -4deg; }
+.collage .recorte--d { left: auto; right: 1%; top: auto; bottom: 7%; width: 58%; aspect-ratio: 1.3; --g: 5deg; z-index: 2; }
+
+/* ---------- Filtros ---------- */
+.abajo .filtros { gap: 28px; margin: clamp(56px, 7vw, 96px) 0 0; padding: clamp(20px, 3vw, 36px); background: #0b1a42; scroll-margin-top: 12px; }
+.abajo .filtros[hidden] { display: none; }
+.cursos--pagina .filtros legend { margin-bottom: 12px; font: 400 26px/1.1 var(--serif); letter-spacing: 0; text-transform: none; color: var(--texto); }
+.abajo .filtros__opciones { gap: 10px; }
+.abajo .opcion span { gap: 10px; min-height: 46px; padding: 0 18px; border: 2px solid var(--linea); border-radius: 8px; font-size: 15px; font-weight: 600; color: var(--texto); }
+.abajo .opcion input:hover + span { border-color: var(--texto); }
+.abajo .opcion input:checked + span { border-color: var(--c, var(--c-amarillo)); background: var(--c, var(--c-amarillo)); color: var(--t, var(--c-oscuro)); }
+.abajo .opcion input:focus-visible + span { outline: 3px solid var(--texto); outline-offset: 3px; }
+/* Muestra de color junto a cada tema: sirve de leyenda para los afiches. */
+.abajo .opcion input[name="tema"]:not([value="todos"]) + span::before { content: ""; width: 14px; height: 14px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 2px rgb(255 255 255 / .7); }
+.filtros__nota { max-width: 62ch; }
+.filtros__pie { justify-content: space-between; padding-top: 16px; border-top: 1px solid var(--linea); }
+.cursos--pagina .cursos__cuenta { font-size: 16px; color: var(--texto); }
+.cursos--pagina .enlace-boton { color: var(--c-amarillo); }
+
+/* ---------- Afiches ---------- */
+.abajo .cursos__lista { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); margin-top: clamp(24px, 3vw, 40px); }
 .abajo .cursos__lista[hidden], .abajo .curso[hidden] { display: none; }
-.abajo .curso {
-  --marca: var(--c-amarillo);
-  counter-increment: curso;
-  display: grid; grid-template-columns: var(--nw) minmax(0, 1.5fr) minmax(0, 1fr);
-  grid-template-areas: "n t m" "n x p";
-  column-gap: clamp(16px, 3vw, 40px); row-gap: 10px; align-items: start;
-  padding: 28px 0; border: 0; border-top: 1px solid var(--linea-fuerte); border-radius: 0; background: none;
-}
-.abajo .curso[data-tema="arroyos"], .abajo .curso[data-tema="barrio"] { --marca: var(--c-verde); }
-.abajo .curso[data-tema="movilidad"], .abajo .curso[data-tema="participacion"] { --marca: var(--c-rojo); }
-.abajo .curso::before { grid-area: n; content: counter(curso, decimal-leading-zero); font: 400 clamp(34px, 4vw, 56px)/.95 var(--serif); color: transparent; -webkit-text-stroke: 1.5px var(--c-amarillo); transform: skewX(-8deg); transform-origin: left bottom; }
-.abajo .curso h2 { grid-area: t; font: 400 clamp(24px, 3vw, 40px)/1.02 var(--serif); letter-spacing: -.005em; text-transform: uppercase; }
-.abajo .curso__texto { grid-area: x; max-width: 52ch; font-size: 17px; }
-.abajo .curso__tema { grid-area: m; display: flex; align-items: center; gap: 10px; padding-top: 6px; }
-/* Estrella de cuatro puntas, la misma de la portada, con el color del tema. */
-.abajo .curso__tema::before { content: ""; flex: none; width: 22px; height: 22px; background: var(--marca); clip-path: polygon(50% 0, 53.4% 41.7%, 69.8% 30.2%, 58.3% 46.6%, 100% 50%, 58.3% 53.4%, 69.8% 69.8%, 53.4% 58.3%, 50% 100%, 46.6% 58.3%, 30.2% 69.8%, 41.7% 53.4%, 0 50%, 41.7% 46.6%, 30.2% 30.2%, 46.6% 41.7%); }
-.abajo .curso__pie { grid-area: p; gap: 0 8px; margin: 0; padding: 0; }
-.abajo .curso__edad { padding: 0; border: 0; border-radius: 0; font-size: 15px; font-weight: 500; }
-.abajo .curso__edad + .curso__edad::before { content: "·"; margin-right: 8px; color: var(--texto-suave); }
-.abajo .curso__estado { margin-left: auto; }
+.abajo .curso { position: relative; isolation: isolate; display: flex; flex-direction: column; gap: 14px; min-width: 0; padding: 24px; border: 0; border-radius: 6px; background: var(--c); color: var(--t); overflow: hidden; }
+/* Franja del dibujo: fondo oscuro con borde rasgado y la figura en el color del tema. */
+.abajo .curso::before { content: ""; order: -2; height: 168px; margin: -24px -24px 18px; background: #0b1a42; clip-path: polygon(0 0, 100% 0, 100% 90%, 84% 100%, 66% 91%, 45% 99%, 24% 90%, 9% 98%, 0 92%); }
+.abajo .curso::after { content: ""; position: absolute; top: 18px; right: 24px; width: 124px; height: 124px; background: var(--c); transform: rotate(-6deg); -webkit-mask: var(--dibujo) center / contain no-repeat; mask: var(--dibujo) center / contain no-repeat; }
+.abajo .curso__tema { position: absolute; z-index: 1; top: 24px; left: 24px; max-width: calc(100% - 184px); font-size: 15px; font-weight: 600; line-height: 1.3; letter-spacing: 0; text-transform: none; color: #fff; }
+.abajo .curso h2 { font: 400 clamp(27px, 2.5vw, 34px)/1.08 var(--serif); letter-spacing: 0; text-transform: none; overflow-wrap: break-word; }
+.abajo .curso h2::first-letter { color: inherit; font-size: inherit; }
+.abajo .curso__texto { font-size: 16px; line-height: 1.5; color: inherit; }
+.curso__texto a { font-weight: 600; }
+.abajo .curso a:focus-visible { outline: 3px solid currentColor; }
+.abajo .curso__pie { gap: 8px; margin-top: auto; padding-top: 10px; }
+.abajo .curso__edad { padding: 6px 10px; border: 0; border-radius: 4px; background: var(--t); color: var(--c); font-size: 13px; font-weight: 700; }
+.curso[data-edad~="ninos"] .curso__edad:first-child::after { content: " 6–12"; font-weight: 500; }
+.curso[data-edad^="jovenes"] .curso__edad:first-child::after, .curso[data-edad="ninos jovenes"] .curso__edad:nth-child(2)::after { content: " 13–17"; font-weight: 500; }
+.curso[data-edad~="adultos"] .curso__edad:nth-last-child(2)::after { content: " 18+"; font-weight: 500; }
+.abajo .curso__estado { margin-left: auto; color: inherit; }
 
-.abajo .cursos__vacio { padding: 28px 0; border: 0; border-top: 1px solid var(--linea-fuerte); border-radius: 0; }
-.abajo .cursos__cierre { margin-top: 40px; }
+.abajo .cursos__vacio { margin-top: 28px; padding: 32px; border: 2px dashed var(--linea-fuerte); border-radius: 6px; }
+.abajo .cursos__vacio[hidden] { display: none; }
+.abajo .cursos__cierre { margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--linea-fuerte); font-size: 18px; }
 
-@media (max-width: 800px) {
-  .abajo .curso { grid-template-columns: var(--nw) minmax(0, 1fr); grid-template-areas: "n m" "n t" "n x" "n p"; }
-}
+@media (max-width: 1020px) { .abajo .cursos__lista { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 800px) { .cursos__encabezado { grid-template-columns: minmax(0, 1fr); } .collage { max-width: 360px; margin-block: 8px; overflow: clip; } }
+@media (max-width: 660px) { .abajo .cursos__lista { grid-template-columns: minmax(0, 1fr); } .abajo .filtros__opciones { gap: 8px; } .abajo .opcion span { padding: 0 12px; } }
+@media print { .abajo .filtros, .collage { display: none; } .abajo .curso { break-inside: avoid; print-color-adjust: exact; -webkit-print-color-adjust: exact; } }
