@@ -1,6 +1,0 @@
-node_modules/
-.claude/
-out/
-# Los clips se regeneran con `npm run grabar`.
-public/clips/*.mp4
-public/voz/
