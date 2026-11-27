@@ -4,6 +4,7 @@ import { dentroDeZona } from './geo.js';
 import { buscarDestinos, coordenadaDe } from './destinos.js';
 import { crearBuscador, obtenerRecientes, guardarReciente, moverIndice } from './geocodificacion.js';
 import { dibujarLugares, dibujarSugerencias } from './listas.js';
+import { t } from './idioma.js';
 
 const MENSAJE_SIN_RESULTADOS = 'No encontramos ese lugar, prueba con otro nombre o toca el mapa.';
 
@@ -75,14 +76,14 @@ export function crearCampoBusqueda({ raiz, populares, alElegir, alFueraDeZona })
       sugerencias = resultados;
       indice = -1;
       pintarSugerencias();
-      decir(resultados.length === 0 && entrada.value.trim().length >= 3 ? MENSAJE_SIN_RESULTADOS : '');
+      decir(resultados.length === 0 && entrada.value.trim().length >= 3 ? t(MENSAJE_SIN_RESULTADOS) : '');
     },
-    alBuscar: () => decir('Buscando…'),
+    alBuscar: () => decir(t('Buscando…')),
     alError(mensaje) {
       sugerencias = [];
       indice = -1;
       pintarSugerencias();
-      decir(mensaje, true);
+      decir(t(mensaje), true);
     },
   });
 

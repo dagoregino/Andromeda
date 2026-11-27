@@ -1,5 +1,6 @@
 // Dibuja en un lienzo lo que muestra la pantalla del dispositivo.
 import { ajustarLineas } from './texto.js';
+import { t } from '../../js/idioma.js';
 
 export const LIENZO = Object.freeze({ ancho: 650, alto: 600 });
 
@@ -61,39 +62,39 @@ const centro = LIENZO.ancho / 2;
 const MODOS = {
   reposo(ctx) {
     anillo(ctx, centro, 150, 58);
-    escribir(ctx, 'Punto Lista', centro, 316, { tamano: 76, peso: 700, centrado: true });
-    escribir(ctx, 'Pulsa y pregunta', centro, 376, { tamano: 38, peso: 500, color: COLOR.suave, centrado: true });
+    escribir(ctx, 'Nova', centro, 316, { tamano: 76, peso: 700, centrado: true });
+    escribir(ctx, t('Pulsa y pregunta'), centro, 376, { tamano: 38, peso: 500, color: COLOR.suave, centrado: true });
     onda(ctx, 488, 80);
   },
   escuchando(ctx) {
     onda(ctx, 260, 250);
-    escribir(ctx, 'Te escucho…', centro, 490, { tamano: 58, centrado: true });
+    escribir(ctx, t('Te escucho…'), centro, 490, { tamano: 58, centrado: true });
   },
   respuesta(ctx, { titulo = '', texto = '' }) {
     caja(ctx, MARGEN, 40, 170, 54, 27, COLOR.amarillo);
-    escribir(ctx, 'Ejemplo', MARGEN + 85, 77, { tamano: 28, peso: 700, color: COLOR.fondoBajo, centrado: true });
-    const final = escribirParrafo(ctx, titulo, 156, { tamano: 32, peso: 500, color: COLOR.suave });
-    escribirParrafo(ctx, texto, final + 48, { tamano: 48 });
+    escribir(ctx, t('Ejemplo'), MARGEN + 85, 77, { tamano: 28, peso: 700, color: COLOR.fondoBajo, centrado: true });
+    const final = escribirParrafo(ctx, t(titulo), 156, { tamano: 32, peso: 500, color: COLOR.suave });
+    escribirParrafo(ctx, t(texto), final + 48, { tamano: 48 });
   },
   aviso(ctx, { texto = '' }) {
     caja(ctx, 0, 0, LIENZO.ancho, 130, 0, COLOR.rojo);
-    escribir(ctx, '⚠ Aviso de ejemplo', MARGEN, 84, { tamano: 44, peso: 700 });
-    escribirParrafo(ctx, texto, 214, { tamano: 46 });
+    escribir(ctx, t('⚠ Aviso de ejemplo'), MARGEN, 84, { tamano: 44, peso: 700 });
+    escribirParrafo(ctx, t(texto), 214, { tamano: 46 });
   },
   botones(ctx) {
-    escribir(ctx, '¿Qué necesitas?', MARGEN, 104, { tamano: 54, peso: 700 });
+    escribir(ctx, t('¿Qué necesitas?'), MARGEN, 104, { tamano: 54, peso: 700 });
     ['Cómo llegar', 'Qué hay cerca', 'Avisos'].forEach((opcion, i) => {
       const y = 162 + i * 134;
       caja(ctx, MARGEN, y, LIENZO.ancho - MARGEN * 2, 108, 30, i === 0 ? COLOR.amarillo : COLOR.boton);
-      escribir(ctx, opcion, MARGEN + 36, y + 68, { tamano: 42, color: i === 0 ? COLOR.fondoBajo : COLOR.texto });
+      escribir(ctx, t(opcion), MARGEN + 36, y + 68, { tamano: 42, color: i === 0 ? COLOR.fondoBajo : COLOR.texto });
     });
   },
   instrucciones(ctx) {
-    escribir(ctx, 'Así responde', MARGEN, 106, { tamano: 58, peso: 700 });
+    escribir(ctx, t('Así responde'), MARGEN, 106, { tamano: 58, peso: 700 });
     ['Lenguaje sencillo', 'Respuestas cortas', 'Si no sabe, lo dice'].forEach((linea, i) => {
       const y = 232 + i * 112;
       caja(ctx, MARGEN, y - 34, 26, 26, 13, COLOR.amarillo);
-      escribir(ctx, linea, MARGEN + 58, y - 6, { tamano: 44 });
+      escribir(ctx, t(linea), MARGEN + 58, y - 6, { tamano: 44 });
     });
   },
 };

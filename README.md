@@ -1,6 +1,6 @@
 # Andromeda
 
-**Barranquilla Lista**: propuestas para una ciudad que funcione para su gente, en un escenario ficticio de prospectiva donde el Mundial 2034 es un medio y no el fin. Prototipo del equipo para el Bootcamp QUIJAM.
+**BaqNova**: propuestas para una ciudad que funcione para su gente, en un escenario ficticio de prospectiva donde el Mundial 2034 es un medio y no el fin. Prototipo del equipo para el Bootcamp QUIJAM.
 
 La web tiene cuatro páginas:
 
@@ -8,7 +8,7 @@ La web tiene cuatro páginas:
 |---|---|
 | Inicio (la raíz) | `web/index.html` |
 | Mapa para moverse por la ciudad | `web/mapa/` |
-| Punto Lista, propuesta de dispositivo | `web/punto-lista/` |
+| Nova, propuesta de dispositivo | `web/nova/` |
 | Cursos propuestos | `web/cursos/` |
 
 | Carpeta | Contenido |

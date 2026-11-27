@@ -1,5 +1,6 @@
 // Geometría sobre coordenadas [latitud, longitud]. Sin DOM, para probarla con node --test.
 // Usa una proyección plana, suficiente para las distancias de una ciudad.
+import { DECIMAL } from './idioma.js';
 
 const RADIO_TIERRA_M = 6371000;
 const GRADOS_A_RAD = Math.PI / 180;
@@ -66,5 +67,5 @@ export const dentroDeZona = (punto) =>
 export function formatearDistancia(metros) {
   const redondeados = Math.max(REDONDEO_METROS, Math.round(metros / REDONDEO_METROS) * REDONDEO_METROS);
   if (redondeados < METROS_POR_KM) return `${redondeados} m`;
-  return `${(metros / METROS_POR_KM).toFixed(1).replace('.', ',')} km`;
+  return `${(metros / METROS_POR_KM).toFixed(1).replace('.', DECIMAL)} km`;
 }

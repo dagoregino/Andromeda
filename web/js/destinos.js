@@ -1,5 +1,6 @@
 // Lugares a los que se puede ir: validación y búsqueda. Sin DOM.
 import { esCoordenada } from './geo.js';
+import { t } from './idioma.js';
 
 const esTexto = (valor) => typeof valor === 'string' && valor.trim() !== '';
 
@@ -36,7 +37,9 @@ export const normalizar = (texto) =>
 export function buscarDestinos(destinos, texto) {
   const palabras = normalizar(texto).split(' ').filter(Boolean);
   return destinos.filter((destino) => {
-    const contenido = normalizar(`${destino.nombre} ${destino.zona ?? ''}`);
+    // Se busca por el nombre original y por el que se muestra en el idioma elegido.
+    const { nombre, zona = '' } = destino;
+    const contenido = normalizar(`${nombre} ${zona} ${t(nombre)} ${t(zona)}`);
     return palabras.every((palabra) => contenido.includes(palabra));
   });
 }

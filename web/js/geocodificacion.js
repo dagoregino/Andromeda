@@ -2,6 +2,7 @@
 // Búsqueda al escribir: Photon (busca por prefijo, sirve para autocompletar) y, si falla o no
 // encuentra nada, Nominatim. Búsqueda inversa (nombrar un punto del mapa): Nominatim.
 // Respeta el límite de 1 petición por segundo con debounce y AbortController.
+import { idioma } from './idioma.js';
 
 const BASE = 'https://nominatim.openstreetmap.org';
 const BASE_PHOTON = 'https://photon.komoot.io/api/';
@@ -103,7 +104,7 @@ async function buscarEnNominatim(texto, signal) {
 
   const respuesta = await fetch(`${BASE}/search?${params}`, {
     signal,
-    headers: { 'Accept-Language': 'es' },
+    headers: { 'Accept-Language': idioma },
   });
 
   if (!respuesta.ok) throw new Error(`Nominatim respondió ${respuesta.status}`);
@@ -149,7 +150,7 @@ export async function buscarDireccion(lat, lng, signal) {
 
   const respuesta = await fetch(`${BASE}/reverse?${params}`, {
     signal,
-    headers: { 'Accept-Language': 'es' },
+    headers: { 'Accept-Language': idioma },
   });
 
   if (!respuesta.ok) throw new Error(`Nominatim respondió ${respuesta.status}`);
@@ -209,7 +210,7 @@ export function crearBuscador({ alResultado, alBuscar, alError }) {
 
 // --- Recientes en localStorage ---
 
-const CLAVE_RECIENTES = 'barranquilla-lista-recientes';
+const CLAVE_RECIENTES = 'baqnova-recientes';
 const MAX_RECIENTES = 5;
 
 /** Devuelve las últimas búsquedas guardadas. */

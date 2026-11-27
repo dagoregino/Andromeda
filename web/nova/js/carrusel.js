@@ -1,4 +1,5 @@
 // Carrusel de destacados: avanza solo, se puede pausar y responde al dedo y al teclado.
+import { t } from '../../js/idioma.js';
 import { indiceMasCercano, indiceSiguiente } from './indices.js';
 
 const ESPERA = 5000;
@@ -19,7 +20,7 @@ export function iniciarCarrusel(raiz, { movimiento }) {
     const boton = document.createElement('button');
     boton.type = 'button';
     boton.className = 'punto';
-    boton.setAttribute('aria-label', `Ver destacado ${i + 1} de ${tarjetas.length}`);
+    boton.setAttribute('aria-label', t('Ver destacado {numero} de {total}', { numero: i + 1, total: tarjetas.length }));
     boton.addEventListener('click', () => irA(i));
     puntos.append(boton);
     return boton;
@@ -33,7 +34,7 @@ export function iniciarCarrusel(raiz, { movimiento }) {
     clearTimeout(reloj);
     const corriendo = activo && visible;
     raiz.classList.toggle('destacados--andando', corriendo);
-    pausa.setAttribute('aria-label', activo ? 'Pausar el recorrido' : 'Reproducir el recorrido');
+    pausa.setAttribute('aria-label', t(activo ? 'Pausar el recorrido' : 'Reproducir el recorrido'));
     pausa.dataset.estado = activo ? 'andando' : 'pausado';
     if (corriendo) reloj = setTimeout(() => irA(indiceSiguiente(indice, tarjetas.length)), ESPERA);
   }

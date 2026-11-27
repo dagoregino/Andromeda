@@ -1,6 +1,7 @@
 // Clima de Barranquilla para la línea «Antes de salir». Sin DOM, para probarlo con node --test.
 // Fuente: Open-Meteo (https://open-meteo.com), licencia CC BY 4.0. El uso gratuito es solo no comercial.
 // Es un pronóstico para toda la ciudad, no para un barrio. Si algo falla, no se muestra nada.
+import { t } from './idioma.js';
 
 /** Centro aproximado de Barranquilla. El pronóstico es el de esa zona, no el del destino. */
 export const PUNTO_CLIMA = Object.freeze([10.97, -74.8]);
@@ -68,7 +69,7 @@ export function formatearHora(texto) {
   const [, horas, minutos] = FORMATO_HORA.exec(texto) ?? [];
   if (horas === undefined) return '';
   const hora = Number(horas);
-  const sufijo = hora < 12 ? 'a. m.' : 'p. m.';
+  const sufijo = t(hora < 12 ? 'a. m.' : 'p. m.');
   return `${hora % 12 || 12}:${minutos} ${sufijo}`;
 }
 
@@ -101,10 +102,10 @@ export function resumenClima(datos, ahora = Date.now()) {
 export function textosClima(resumen) {
   return Object.freeze({
     temperatura: `${resumen.temperatura} °C`,
-    sensacion: `Sensación de ${resumen.sensacion} °C`,
+    sensacion: t('Sensación de {grados} °C', { grados: resumen.sensacion }),
     lluvia: resumen.lloviendo
-      ? 'Está lloviendo'
-      : `Lluvia en las próximas horas: ${resumen.lluviaProbabilidad} %`,
+      ? t('Está lloviendo')
+      : t('Lluvia en las próximas horas: {probabilidad} %', { probabilidad: resumen.lluviaProbabilidad }),
   });
 }
 
@@ -113,15 +114,15 @@ export function consejosClima(resumen) {
   const consejos = [];
   const calor = nivelCalor(resumen.sensacion);
   if (calor === NIVEL_CALOR.PELIGROSO) {
-    consejos.push({ tipo: 'calor-peligroso', texto: 'Calor muy fuerte. Evita caminar al sol: elige la ruta con menos caminata, busca sombra y toma agua.' });
+    consejos.push({ tipo: 'calor-peligroso', texto: t('Calor muy fuerte. Evita caminar al sol: elige la ruta con menos caminata, busca sombra y toma agua.') });
   } else if (calor === NIVEL_CALOR.FUERTE) {
-    consejos.push({ tipo: 'calor', texto: 'Hace calor. Elige la ruta con menos caminata, busca sombra y toma agua.' });
+    consejos.push({ tipo: 'calor', texto: t('Hace calor. Elige la ruta con menos caminata, busca sombra y toma agua.') });
   }
   const lluvia = nivelLluvia(resumen);
   if (lluvia === NIVEL_LLUVIA.PROBABLE) {
-    consejos.push({ tipo: 'lluvia', texto: 'Es probable que llueva. Los arroyos pueden crecer: no los cruces a pie. Lleva paraguas.' });
+    consejos.push({ tipo: 'lluvia', texto: t('Es probable que llueva. Los arroyos pueden crecer: no los cruces a pie. Lleva paraguas.') });
   } else if (lluvia === NIVEL_LLUVIA.POSIBLE) {
-    consejos.push({ tipo: 'lluvia', texto: 'Puede llover. Lleva paraguas.' });
+    consejos.push({ tipo: 'lluvia', texto: t('Puede llover. Lleva paraguas.') });
   }
   return consejos;
 }

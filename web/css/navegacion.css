@@ -1,4 +1,4 @@
-/* Barra de navegación compartida por Inicio, Mapa, Punto Lista y Cursos.
+/* Barra de navegación compartida por Inicio, Mapa, Nova y Cursos.
    Es el mismo bloque en las cuatro páginas. No depende de paleta.css: lleva sus propios valores
    para verse igual aunque la página tenga otra hoja de estilos.
    Fondo negro (se distingue del azul de la página) y franja de tres colores abajo. */
@@ -45,3 +45,23 @@
 }
 @media (max-width: 360px) { .nav-global__menu a { padding: 0 7px; font-size: 12px; } }
 @media (prefers-reduced-motion: reduce) { .nav-global__menu a { transition: none; } }
+
+/* Botón para cambiar de idioma: lo agrega js/idioma-pagina.js y se nombra en el idioma al que lleva. */
+.nav-global__idioma {
+  display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px;
+  margin-left: 8px; padding: 0 14px; border: 1px solid rgb(245 245 247 / .55); border-radius: 99px;
+  background: none; color: #f5f5f7; font: 600 13px/1 inherit; font-family: inherit; cursor: pointer;
+}
+.nav-global__idioma:hover { background: rgb(255 255 255 / .12); }
+.nav-global__idioma:focus-visible { outline: 3px solid #2997ff; outline-offset: 2px; }
+.nav-global__corto { display: none; }
+/* En teléfonos se ve «EN» o «ES»; el nombre completo sigue para lectores de pantalla. */
+@media (max-width: 700px) {
+  .nav-global__largo { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .nav-global__corto { display: inline; }
+  .nav-global__idioma { margin-left: 2px; padding: 0 8px; font-size: 12px; }
+}
+@media (max-width: 440px) {
+  .nav-global__fila { width: calc(100% - 16px); gap: 4px; }
+  .nav-global__menu a { padding: 0 5px; font-size: 12px; }
+}

@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
-<title>Punto Lista: la ciudad te escucha</title>
+<title>Nova: la ciudad te escucha</title>
 <meta name="description" content="Prototipo de dispositivo con inteligencia artificial, micrófono, parlante y pantalla para orientar a cualquier persona en Barranquilla.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Punto Lista: la ciudad te escucha">
+<meta property="og:title" content="Nova: la ciudad te escucha">
 <meta property="og:description" content="Pregunta y recibe la respuesta hablada y escrita. Prototipo del Bootcamp QUIJAM.">
 <meta name="theme-color" content="#000000">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
@@ -20,24 +20,25 @@
 <link rel="stylesheet" href="css/secciones.css">
 <link rel="stylesheet" href="css/adaptable.css">
 <script type="module" src="js/main.js"></script>
+<script type="module" src="../js/idioma-pagina.js"></script>
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
 
 <header class="nav-global">
   <div class="nav-global__fila">
-    <a class="nav-global__marca" href="../"><img src="../img/logo.svg" alt="" width="30" height="30"><span>Barranquilla Lista</span></a>
+    <a class="nav-global__marca" href="../"><img src="../img/logo.svg" alt="" width="30" height="30"><span>BaqNova</span></a>
     <nav class="nav-global__menu" aria-label="Principal">
       <a href="../">Inicio</a>
       <a href="../mapa/">Mapa</a>
-      <a href="./" aria-current="page">Punto Lista</a>
+      <a href="./" aria-current="page">Nova</a>
       <a href="../cursos/">Cursos</a>
     </nav>
   </div>
 </header>
 
-<nav class="barra-local" aria-label="Punto Lista" data-barra-local>
-  <span class="barra-local__nombre">Punto Lista</span>
+<nav class="barra-local" aria-label="Nova" data-barra-local>
+  <span class="barra-local__nombre">Nova</span>
   <div class="barra-local__acciones">
     <a class="boton boton--borde boton--chico" href="#diseno">Explorar</a>
     <a class="boton boton--chico" href="#probar">Probar</a>
@@ -47,13 +48,13 @@
 <main id="contenido" tabindex="-1">
 
   <section class="portada" aria-labelledby="portada-titulo">
-    <p class="portada__fondo" aria-hidden="true">LISTA</p>
-    <div class="escena portada__escena" data-escena="hero" role="img" aria-label="Imagen conceptual de Punto Lista: un dispositivo azul con pantalla, parlante y un botón amarillo">
+    <p class="portada__fondo" aria-hidden="true">NOVA</p>
+    <div class="escena portada__escena" data-escena="hero" role="img" aria-label="Imagen conceptual de Nova: un dispositivo azul con pantalla, parlante y un botón amarillo">
       <canvas></canvas>
-      <div class="respaldo" aria-hidden="true"><span>Punto Lista</span></div>
+      <div class="respaldo" aria-hidden="true"><span>Nova</span></div>
     </div>
     <div class="ancho portada__pie">
-      <h1 id="portada-titulo"><span class="portada__nombre">Punto Lista</span> La ciudad te escucha.</h1>
+      <h1 id="portada-titulo"><span class="portada__nombre">Nova</span> La ciudad te escucha.</h1>
       <div class="pildora">
         <p>Imagen conceptual<sup>2</sup></p>
         <a class="boton" href="#probar">Probar</a>
@@ -65,7 +66,7 @@
 
   <section class="destacados seccion seccion--gris" aria-labelledby="destacados-titulo" data-destacados>
     <div class="ancho"><h2 id="destacados-titulo" class="titulo" data-aparece>Lo más destacado.</h2></div>
-    <ul class="pista" data-pista tabindex="0" aria-label="Destacados de Punto Lista">
+    <ul class="pista" data-pista tabindex="0" aria-label="Destacados de Nova">
       <li class="tarjeta">
         <p>Pregunta hablando.<br>Escucha la respuesta.</p>
         <div class="escena" data-escena="voz" aria-hidden="true"><canvas></canvas><div class="respaldo"><span></span></div></div>
@@ -121,7 +122,7 @@
       <p class="entradilla entradilla--centro">Este es el diseño de nuestro primer prototipo.</p>
       <div class="escena prototipo__escena" data-prototipo role="img" aria-label="Modelo 3D del prototipo: una carcasa azul con letras amarillas que gira y se abre para mostrar su interior">
         <canvas></canvas>
-        <div class="respaldo" aria-hidden="true"><span>Punto Lista</span></div>
+        <div class="respaldo" aria-hidden="true"><span>Nova</span></div>
       </div>
       <div class="prototipo__pie">
         <button type="button" class="pausa" data-pausa-giro data-estado="pausado" aria-label="Girar el prototipo" hidden><span aria-hidden="true"></span></button>
@@ -137,7 +138,7 @@
       <p class="entradilla entradilla--centro">Elige una pregunta, sin necesidad de hablar. Las respuestas son ejemplos.<sup>3</sup></p>
       <div class="escena demo__escena" data-escena="demo" aria-hidden="true">
         <canvas></canvas>
-        <div class="respaldo"><span>Punto Lista</span></div>
+        <div class="respaldo"><span>Nova</span></div>
       </div>
       <p class="demo__respuesta" aria-live="polite" data-respuesta>Aquí aparecerá la respuesta.</p>
       <div class="demo__preguntas" role="group" aria-label="Preguntas de ejemplo" data-preguntas></div>
@@ -175,7 +176,7 @@
 
   <section class="seccion cierre" aria-labelledby="cierre-titulo">
     <div class="ancho">
-      <div class="escena cierre__escena" data-escena="cierre" aria-hidden="true"><canvas></canvas><div class="respaldo"><span>Punto Lista</span></div></div>
+      <div class="escena cierre__escena" data-escena="cierre" aria-hidden="true"><canvas></canvas><div class="respaldo"><span>Nova</span></div></div>
       <h2 id="cierre-titulo" class="titulo titulo--grande titulo--centro" data-aparece>La ciudad que te escucha<br>y te responde.</h2>
       <p class="cierre__acciones">
         <a class="boton" href="#probar">Probar la demostración</a>
@@ -191,7 +192,7 @@
       <li>Propuesta del equipo Andromeda para el Bootcamp de Innovación QUIJAM. Las funciones para la ciudad aún no están configuradas en el dispositivo.</li>
       <li>Las imágenes son conceptuales: representan una propuesta de diseño y no son fotografías del equipo.</li>
       <li>Las respuestas de la demostración se escribieron como ejemplo. No son rutas, lugares ni avisos reales. La voz la genera tu navegador, no el dispositivo, y esta página no graba audio.</li>    </ol>
-    <p><a href="../index.html">Barranquilla Lista</a></p>
+    <p><a href="../index.html">BaqNova</a></p>
   </div>
 </footer>
 </body>

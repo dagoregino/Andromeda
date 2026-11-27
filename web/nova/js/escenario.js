@@ -1,9 +1,10 @@
 // Un escenario es un hueco de la página donde se ve el dispositivo.
 // Funciona sin 3D: en ese caso actualiza la figura de respaldo hecha con CSS.
 import { interpolarPose, suavizar } from './pose.js';
+import { t } from '../../js/idioma.js';
 
 const TEXTOS = {
-  reposo: 'Punto Lista',
+  reposo: 'Nova',
   escuchando: 'Te escucho…',
   botones: '¿Qué necesitas?',
   instrucciones: 'Así responde',
@@ -18,7 +19,7 @@ export function crearEscenario(elemento, inicial, { movimiento }) {
   let cerca = false;
 
   function pintar() {
-    if (respaldo) respaldo.textContent = actual.pantalla.texto ?? TEXTOS[actual.pantalla.tipo] ?? TEXTOS.reposo;
+    if (respaldo) respaldo.textContent = t(actual.pantalla.texto ?? TEXTOS[actual.pantalla.tipo] ?? TEXTOS.reposo);
     if (estudio && cerca && estudio.pintar(lienzo, actual)) elemento.classList.add('escena--lista');
   }
 

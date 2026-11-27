@@ -1,6 +1,7 @@
 // Lógica de los recorridos de cursos, sin DOM, para probarla con node --test.
 // No guarda ni envía nada: recibe la respuesta y dice si está bien.
 import { separar } from './cursos-filtro.js';
+import { t } from './idioma.js';
 
 /** Objetivos del programa, según «sprint 1/README.md». */
 export const OBJETIVOS = Object.freeze({
@@ -22,15 +23,19 @@ const EDADES = Object.freeze({
 });
 
 // Palabras que no ubican ni explican nada por sí solas.
-const PALABRAS_VAGAS = new Set(['aquí', 'aqui', 'ahí', 'ahi', 'allí', 'alli', 'allá', 'alla', 'acá', 'aca', 'por']);
+const PALABRAS_VAGAS = new Set([
+  'aquí', 'aqui', 'ahí', 'ahi', 'allí', 'alli', 'allá', 'alla', 'acá', 'aca', 'por',
+  'here', 'there', 'over', 'somewhere',
+]);
 
 /** «Jóvenes (13 a 17 años) y adultos (18 o más)» a partir de "jovenes adultos". */
 export const textoPublico = (edad) =>
   separar(edad)
     .map((clave) => EDADES[clave])
     .filter(Boolean)
+    .map((nombre) => t(nombre))
     .map((nombre, i) => (i === 0 ? nombre : nombre.charAt(0).toLowerCase() + nombre.slice(1)))
-    .join(' y ');
+    .join(` ${t('y')} `);
 
 /** Cuenta frases. El punto de una cifra como 100.000 no parte la frase. */
 export const contarFrases = (texto) =>
@@ -46,11 +51,11 @@ export const textosDelPaso = (curso, paso, acierto = true) => {
 
 export const limitar = (indice, total) => Math.min(Math.max(indice, 0), total - 1);
 
-export const textoPaso = (indice, total) => `Paso ${indice + 1} de ${total}`;
+export const textoPaso = (indice, total) => t('Paso {paso} de {total}', { paso: indice + 1, total });
 
 export const textoSiguiente = (indice, total) => {
-  if (indice === 0) return 'Empezar';
-  return indice === total - 1 ? 'Volver a los cursos' : 'Siguiente';
+  if (indice === 0) return t('Empezar');
+  return t(indice === total - 1 ? 'Volver a los cursos' : 'Siguiente');
 };
 
 /** Copia de la lista con el elemento de `posicion` movido un lugar (`delta` es -1 o 1). */
@@ -65,7 +70,8 @@ export const mover = (lista, posicion, delta) => {
 
 /** Lee una cantidad en pesos: «$ 40.000», «40 000 pesos». NaN si no es solo una cantidad. */
 export const leerCantidad = (texto) => {
-  const limpio = String(texto).replace(/pesos/i, '').replace(/,00\b/, '').replace(/[\s$.]/g, '');
+  // En inglés los miles se separan con coma: «40,000».
+  const limpio = String(texto).replace(/pesos/i, '').replace(/,00\b/, '').replace(/,(?=\d{3}\b)/g, '').replace(/[\s$.]/g, '');
   return /^\d+$/.test(limpio) ? Number(limpio) : Number.NaN;
 };
 
@@ -88,6 +94,17 @@ const REVISIONES = Object.freeze({
   calculo: (curso, paso, respuesta) => leerCantidad(respuesta) === paso.resultado,
   respuesta: (curso, paso, respuesta) => paso.campos.every((campo, i) => campoCompleto(campo, respuesta[i])),
 });
+
+/** El curso con los textos de otro idioma. Lo que no son textos (respuestas, orden, mínimos) se conserva. */
+export const combinarCurso = (curso, traduccion) => {
+  if (!traduccion) return curso;
+  const pasos = curso.pasos.map((paso, i) => {
+    const otro = traduccion.pasos[i] ?? {};
+    const campos = paso.campos?.map((campo, j) => ({ ...campo, ...otro.campos?.[j] }));
+    return { ...paso, ...otro, ...(campos ? { campos } : {}) };
+  });
+  return { ...curso, ...traduccion, pasos };
+};
 
 /** ¿La respuesta a la actividad está bien? */
 export const evaluar = (curso, paso, respuesta) => REVISIONES[paso.clase](curso, paso, respuesta);

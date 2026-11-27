@@ -1,4 +1,4 @@
-# Web de Barranquilla Lista
+# Web de BaqNova
 
 Cuatro páginas:
 
@@ -6,12 +6,12 @@ Cuatro páginas:
 |---|---|
 | `/` (`index.html`) | Inicio: la ciudad que se propone y las herramientas |
 | `mapa/` | El mapa para moverse por la ciudad |
-| `punto-lista/` | La propuesta del dispositivo ([documentación](punto-lista/README.md)) |
+| `nova/` | La propuesta del dispositivo ([documentación](nova/README.md)) |
 | `cursos/` | Cursos propuestos, con filtros por edad y tema |
 
 ## Inicio
 
-El mensaje principal es la ciudad: **Barranquilla para su gente**. El Mundial 2034 se menciona como un medio, no como el fin. Se lee así: portada, **De dónde partimos**, **Qué proponemos**, **Un medio, no el fin**, **La ruta**, **Lo que queda**, **Lo que ya puedes ver**, cursos, **Preguntas frecuentes** y **Participa**. No carga scripts, Leaflet ni datos del mapa.
+El mensaje principal es la ciudad: **Barranquilla para su gente**. El Mundial 2034 se menciona como un medio, no como el fin. Se lee así: portada, **De dónde partimos**, **Qué proponemos**, **Un medio, no el fin**, **La ruta**, **Lo que queda**, **Lo que ya puedes ver**, cursos, **Preguntas frecuentes** y **Participa**. Solo carga el script del cambio de idioma: ni Leaflet ni datos del mapa.
 
 El estilo es de collage editorial (`css/inicio.css` y `css/abajo.css`, con los colores de `css/paleta.css`). Las transiciones están en `css/movimiento.css`: se apagan si se pide reducir el movimiento y las ligadas al desplazamiento solo funcionan en navegadores con `animation-timeline`.
 
@@ -51,6 +51,20 @@ python -m http.server 4173
 ```
 
 Luego abre <http://localhost:4173> para el inicio o <http://localhost:4173/mapa/> para el mapa. Necesita un servidor: abrir el archivo con doble clic no carga los datos. La ubicación del navegador solo funciona en `localhost` o con HTTPS.
+
+## Idiomas
+
+La web está en **español** e **inglés**. El botón de la barra de arriba cambia de idioma y la elección se recuerda en el navegador (`localStorage`). Si no se ha elegido, un navegador en español ve español y cualquier otro ve inglés. También se puede enlazar con `?lang=en` o `?lang=es`, útil para un código QR para turistas.
+
+Los textos se escriben en español, en el HTML o dentro de `t('…')` en los scripts, y su inglés va en `js/en/`:
+
+| Archivo | Traduce |
+|---|---|
+| `js/en/inicio.js`, `js/en/mapa.js`, `js/en/cursos.js`, `js/en/nova.js` | Cada página, sus mensajes y los datos que muestra (la clave es el texto en español) |
+| `js/en/cursos-detalle.js` | El contenido de los 14 cursos |
+| `js/idioma.js` | Elige el idioma y traduce; `js/idioma-pagina.js` traduce la página y pone el botón |
+
+Al cambiar o agregar un texto, agrega su traducción: `npm test` falla si algo de las páginas, los scripts o los datos queda sin inglés. Los nombres propios que no cambian se anotan en `IGUALES`, en `js/en/textos.js`. Los nombres que devuelve la búsqueda de lugares llegan como están en OpenStreetMap. Las traducciones no las ha revisado una persona de habla inglesa.
 
 ## Estructura
 

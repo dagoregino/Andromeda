@@ -1,7 +1,9 @@
 // Cada curso se hace en una ventana, un paso a la vez. Al cerrarla el recorrido se descarta:
 // no se guarda progreso. Sin JavaScript no se crean los botones y los afiches se leen igual.
 import { DETALLES } from './cursos-detalle.js';
-import { limitar, textoPaso, textoSiguiente } from './cursos-recorrido.js';
+import { DETALLES_EN } from './en/cursos-detalle.js';
+import { idioma, t } from './idioma.js';
+import { limitar, textoPaso, textoSiguiente, combinarCurso } from './cursos-recorrido.js';
 import { crearPaso } from './cursos-pasosVista.js';
 import { crear, crearBoton } from './cursos-dom.js';
 
@@ -38,7 +40,7 @@ if (lista && ventana && typeof ventana.showModal === 'function') {
     const { tema, edad } = tarjeta.dataset;
     ventana.dataset.tema = tema;
     parte('ventana-tema').textContent = tarjeta.querySelector('.curso__tema').textContent;
-    parte('ventana-titulo').textContent = titulo;
+    parte('ventana-titulo').textContent = t(titulo);
     const pasos = curso.pasos.map((paso, indice) => crearPaso({ curso, paso, indice, tema, edad }));
     contenedor.replaceChildren(...pasos.map(({ nodo }) => nodo));
     barra.replaceChildren(...pasos.map(() => crear('span')));
@@ -49,10 +51,11 @@ if (lista && ventana && typeof ventana.showModal === 'function') {
 
   for (const tarjeta of lista.querySelectorAll('.curso')) {
     const titulo = tarjeta.querySelector('h2').textContent.trim();
-    const curso = DETALLES[titulo];
-    if (!curso) continue;
-    const boton = crearBoton('curso__abrir', 'Abrir curso');
-    boton.setAttribute('aria-label', `Abrir curso: ${titulo}`);
+    if (!DETALLES[titulo]) continue;
+    // El título en español es la clave; este archivo corre antes de que se traduzca la página.
+    const curso = idioma === 'es' ? DETALLES[titulo] : combinarCurso(DETALLES[titulo], DETALLES_EN[titulo]);
+    const boton = crearBoton('curso__abrir', t('Abrir curso'));
+    boton.setAttribute('aria-label', t('Abrir curso: {titulo}', { titulo: t(titulo) }));
     boton.addEventListener('click', () => abrir(tarjeta, titulo, curso, boton));
     tarjeta.append(boton);
   }

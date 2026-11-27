@@ -1,5 +1,6 @@
 // Lógica del filtro de cursos, sin DOM, para probarla con node --test.
 // Cada curso declara sus edades y su tema en data-edad (varias, separadas por espacio) y data-tema.
+import { t } from './idioma.js';
 
 export const TODOS = 'todos';
 
@@ -18,7 +19,7 @@ export const coincide = (curso, edad = TODOS, tema = TODOS) => {
 
 /** Texto del contador que se anuncia a los lectores de pantalla. */
 export const textoCuenta = (visibles, total) => {
-  if (visibles === 0) return 'Ningún curso coincide con estos filtros.';
-  if (visibles === total) return `Mostrando los ${total} cursos.`;
-  return `Mostrando ${visibles} de ${total} ${total === 1 ? 'curso' : 'cursos'}.`;
+  if (visibles === 0) return t('Ningún curso coincide con estos filtros.');
+  if (visibles === total) return t('Mostrando los {total} cursos.', { total });
+  return t('Mostrando {visibles} de {total} {nombre}.', { visibles, total, nombre: t(total === 1 ? 'curso' : 'cursos') });
 };

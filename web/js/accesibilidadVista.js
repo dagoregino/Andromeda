@@ -3,6 +3,7 @@
 import {
   veredicto, etiquetaVeredicto, etiquetaCriterio, criteriosVisibles, criteriosPorBloque, formatearFecha,
 } from './accesibilidad.js';
+import { t } from './idioma.js';
 
 const TEXTOS = Object.freeze({
   detalle: Object.freeze({ abrir: 'Ver detalle', cerrar: 'Ocultar detalle' }),
@@ -20,35 +21,35 @@ function filaDe({ nombre, estado, nota }) {
   const fila = crear('li', 'acceso__fila');
   fila.dataset.estado = estado;
   const titular = crear('p');
-  titular.append(`${nombre}: `, crear('strong', '', etiquetaCriterio(estado)));
-  fila.append(titular, crear('p', 'ayuda', nota));
+  titular.append(`${t(nombre)}: `, crear('strong', '', t(etiquetaCriterio(estado))));
+  fila.append(titular, crear('p', 'ayuda', t(nota)));
   return fila;
 }
 
 function grupoDe({ nombre, criterios, medidas }) {
   const lista = crear('ul');
   lista.append(
-    ...criterios.map((c) => crear('li', '', `${c.nombre}: ${etiquetaCriterio(c.estado)}`)),
-    ...medidas.map((m) => crear('li', '', `${m.nombre}: ${m.texto}`)),
+    ...criterios.map((c) => crear('li', '', `${t(c.nombre)}: ${t(etiquetaCriterio(c.estado))}`)),
+    ...medidas.map((m) => crear('li', '', `${t(m.nombre)}: ${t(m.texto)}`)),
   );
   const grupo = crear('div', 'acceso__grupo');
-  grupo.append(crear('h3', '', nombre), lista);
+  grupo.append(crear('h3', '', t(nombre)), lista);
   return grupo;
 }
 
 /** De dónde sale la información: el informe citado o la visita del equipo. La dirección ya viene validada. */
 function origenDe(fuente) {
-  if (!fuente) return [crear('p', 'ayuda', 'Revisión hecha por el equipo Andromeda.')];
+  if (!fuente) return [crear('p', 'ayuda', t('Revisión hecha por el equipo Andromeda.'))];
   const enlace = crear('a', '', fuente.nombre);
   enlace.href = fuente.url;
-  const cita = crear('p', 'ayuda', 'Fuente: ');
+  const cita = crear('p', 'ayuda', t('Fuente: '));
   cita.append(enlace);
-  return [cita, crear('p', 'ayuda', 'La fuente no indica cuándo se revisó el lugar.')];
+  return [cita, crear('p', 'ayuda', t('La fuente no indica cuándo se revisó el lugar.'))];
 }
 
 function plegar(boton, abierto, textos) {
   boton.setAttribute('aria-expanded', String(abierto));
-  boton.querySelector('[data-texto]').textContent = abierto ? textos.cerrar : textos.abrir;
+  boton.querySelector('[data-texto]').textContent = t(abierto ? textos.cerrar : textos.abrir);
   document.getElementById(boton.getAttribute('aria-controls')).hidden = !abierto;
 }
 
@@ -57,11 +58,11 @@ function conectar(boton, textos) {
 }
 
 function llenar(parte, lugar) {
-  parte('veredicto').textContent = etiquetaVeredicto(veredicto(lugar));
+  parte('veredicto').textContent = t(etiquetaVeredicto(veredicto(lugar)));
   // Con una fuente externa solo se conoce el día en que se consultó, no el de la visita.
   parte('fecha').textContent = lugar.fuente
-    ? `Consultado: ${formatearFecha(lugar.fuente.consultado)}`
-    : `Revisión: ${formatearFecha(lugar.fecha)}`;
+    ? t('Consultado: {fecha}', { fecha: formatearFecha(lugar.fuente.consultado) })
+    : t('Revisión: {fecha}', { fecha: formatearFecha(lugar.fecha) });
   parte('origen').replaceChildren(...origenDe(lugar.fuente));
   parte('filas').replaceChildren(...criteriosVisibles(lugar).map(filaDe));
   parte('criterios').replaceChildren(...criteriosPorBloque(lugar).map(grupoDe));

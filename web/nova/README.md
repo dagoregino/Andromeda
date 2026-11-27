@@ -1,4 +1,4 @@
-# Punto Lista: página de presentación
+# Nova: página de presentación
 
 La segunda vista de la web, junto al mapa: fondo negro, titulares grandes, carrusel de destacados y una demostración. El mapa usa la misma barra, colores y letra (`../css/`).
 
@@ -10,12 +10,12 @@ Desde la raíz del repositorio:
 python -m http.server 4180 --directory web
 ```
 
-Luego abre <http://localhost:4180/punto-lista/>.
+Luego abre <http://localhost:4180/nova/>.
 
 ## Pruebas
 
 ```powershell
-node --test web/punto-lista/tests/*.test.mjs
+node --test web/nova/tests/*.test.mjs
 ```
 
 ## Qué cambiar

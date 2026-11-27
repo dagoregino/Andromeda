@@ -2,6 +2,7 @@
 // Nada de lo que se marca o escribe sale de la página ni se guarda.
 import { evaluar, mover } from './cursos-recorrido.js';
 import { crear, crearBoton } from './cursos-dom.js';
+import { t } from './idioma.js';
 
 const alPulsarEnter = (campo, accion) => campo.addEventListener('keydown', (evento) => {
   if (evento.key !== 'Enter') return;
@@ -46,7 +47,7 @@ function marcar({ curso, idConsigna, responder, limpiar }) {
     nodo.append(etiqueta);
     return casilla;
   });
-  const comprobar = crearBoton('ventana__boton ventana__boton--principal', 'Comprobar', () => {
+  const comprobar = crearBoton('ventana__boton ventana__boton--principal', t('Comprobar'), () => {
     responder(casillas.flatMap((casilla, i) => (casilla.checked ? [i] : [])));
   });
   const reiniciar = () => casillas.forEach((casilla) => { casilla.checked = false; });
@@ -65,8 +66,8 @@ function orden({ curso, paso, idConsigna, responder, limpiar }) {
     const fila = crear('li');
     const botones = crear('span', 'actividad__mover');
     const crearMover = (nombre, delta) => {
-      const boton = crearBoton('ventana__boton', nombre, () => cambiar(elemento, delta));
-      boton.setAttribute('aria-label', `${nombre}: ${texto}`);
+      const boton = crearBoton('ventana__boton', t(nombre), () => cambiar(elemento, delta));
+      boton.setAttribute('aria-label', `${t(nombre)}: ${texto}`);
       return boton;
     };
     const subir = crearMover('Subir', -1);
@@ -92,10 +93,12 @@ function orden({ curso, paso, idConsigna, responder, limpiar }) {
     const { subir, bajar } = filas[elemento];
     const [elegido, otro] = delta < 0 ? [subir, bajar] : [bajar, subir];
     (elegido.disabled ? otro : elegido).focus();
-    aviso.textContent = `${curso.opciones[elemento]}: posición ${actual.indexOf(elemento) + 1} de ${actual.length}.`;
+    aviso.textContent = t('{elemento}: posición {posicion} de {total}.', {
+      elemento: curso.opciones[elemento], posicion: actual.indexOf(elemento) + 1, total: actual.length,
+    });
   }
 
-  const comprobar = crearBoton('ventana__boton ventana__boton--principal', 'Comprobar orden', () => responder(actual));
+  const comprobar = crearBoton('ventana__boton ventana__boton--principal', t('Comprobar orden'), () => responder(actual));
   const reiniciar = () => {
     actual = [...paso.inicio];
     aviso.textContent = '';
@@ -112,14 +115,14 @@ function escritos({ campos, textoBoton, responder, limpiar, id }) {
     const entrada = crear('input');
     Object.assign(entrada, { type: 'text', id: `${id}-campo-${i}`, autocomplete: 'off', maxLength: 160 });
     if (campo.modo) entrada.inputMode = campo.modo;
-    if (campo.ejemplo) entrada.placeholder = `Por ejemplo: ${campo.ejemplo}`;
+    if (campo.ejemplo) entrada.placeholder = t('Por ejemplo: {ejemplo}', { ejemplo: campo.ejemplo });
     entrada.addEventListener('input', limpiar);
     etiqueta.append(entrada);
     return { etiqueta, entrada };
   });
   const enviar = () => responder(entradas.map(({ entrada }) => entrada.value));
   entradas.forEach(({ entrada }) => alPulsarEnter(entrada, enviar));
-  const boton = crearBoton('ventana__boton ventana__boton--principal', textoBoton, enviar);
+  const boton = crearBoton('ventana__boton ventana__boton--principal', t(textoBoton), enviar);
   return {
     nodos: [...entradas.map(({ etiqueta }) => etiqueta), boton],
     reiniciar: () => {},
@@ -149,7 +152,7 @@ export function crearActividad(curso, paso, id) {
 
   const resultado = crear('div', 'actividad__resultado');
   resultado.setAttribute('role', 'status');
-  const reintentar = crearBoton('ventana__boton actividad__reintentar', 'Intentar otra vez', () => {
+  const reintentar = crearBoton('ventana__boton actividad__reintentar', t('Intentar otra vez'), () => {
     limpiar();
     control.reiniciar();
     control.foco().focus();
@@ -166,7 +169,7 @@ export function crearActividad(curso, paso, id) {
     const bien = evaluar(curso, paso, respuesta);
     resultado.dataset.estado = bien ? 'bien' : 'mal';
     resultado.replaceChildren(
-      crear('strong', '', bien ? 'Correcto' : 'Todavía no'),
+      crear('strong', '', t(bien ? 'Correcto' : 'Todavía no')),
       crear('p', '', bien ? curso.explicacion : paso.pista),
     );
     reintentar.hidden = false;

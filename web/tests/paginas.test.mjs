@@ -11,7 +11,7 @@ const texto = (html) => html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim(
 const contar = (html, patron) => (html.match(patron) ?? []).length;
 const atributos = (html, nombre) => [...html.matchAll(new RegExp(`\\s${nombre}="([^"]*)"`, 'g'))].map((m) => m[1]);
 
-const PAGINAS = ['index.html', 'mapa/index.html', 'punto-lista/index.html', 'cursos/index.html'];
+const PAGINAS = ['index.html', 'mapa/index.html', 'nova/index.html', 'cursos/index.html'];
 const home = sinComentarios(leer('index.html'));
 
 // Bloque de la home que empieza en la sección con ese id de título.
@@ -21,9 +21,10 @@ function seccion(idTitulo) {
   return bloque[0];
 }
 
-test('la home no carga scripts, Leaflet ni datos del mapa', () => {
-  assert.equal(contar(home, /<script/g), 0);
-  assert.doesNotMatch(home, /leaflet|data\/|js\/|<canvas/i);
+test('la home solo carga el cambio de idioma: ni Leaflet ni datos del mapa', () => {
+  assert.equal(contar(home, /<script/g), 1);
+  assert.match(home, /<script type="module" src="js\/idioma-pagina\.js"><\/script>/);
+  assert.doesNotMatch(home.replace('js/idioma-pagina.js', ''), /leaflet|data\/|js\/|<canvas/i);
 });
 
 test('la home cuenta la ciudad en general: ni solo moverse ni solo el Mundial', () => {
@@ -110,7 +111,7 @@ test('la barra de arriba enlaza las cuatro páginas y marca la actual', () => {
   const cabecera = home.match(/<header[\s\S]*?<\/header>/)?.[0] ?? '';
   const enlaces = atributos(cabecera, 'href');
 
-  assert.deepEqual(['./', 'mapa/', 'punto-lista/', 'cursos/'].filter((d) => !enlaces.includes(d)), []);
+  assert.deepEqual(['./', 'mapa/', 'nova/', 'cursos/'].filter((d) => !enlaces.includes(d)), []);
   assert.match(cabecera, /href="\.\/" aria-current="page"/);
 });
 
@@ -133,6 +134,25 @@ test('los bloques de la parte de abajo recortan sin crear desplazamiento', () =>
     assert.match(regla, /overflow: clip/);
     assert.doesNotMatch(regla, /overflow: hidden/);
   }
+});
+
+test('el proyecto se llama BaqNova y no queda su nombre anterior', () => {
+  const archivos = [...PAGINAS, 'css/abajo.css', 'package.json', 'js/idioma.js', 'js/geocodificacion.js',
+    'js/cursos-detalle.js', 'js/en/textos.js', 'js/en/inicio.js', 'js/en/mapa.js', 'js/en/cursos.js', 'js/en/cursos-detalle.js'];
+
+  // «Barranquilla lista», con minúscula, es una frase y no el nombre.
+  for (const ruta of archivos) assert.doesNotMatch(leer(ruta), /Barranquilla[ -]Lista|BARRANQUILLA LISTA|barranquilla-lista/, ruta);
+  for (const pagina of ['index.html', 'mapa/index.html', 'cursos/index.html', 'nova/index.html']) {
+    assert.match(leer(pagina), /<span>BaqNova<\/span>/, pagina);
+  }
+});
+
+test('el dispositivo se llama Nova y vive en nova/', () => {
+  const archivos = [...PAGINAS, 'nova/js/escenario.js', 'nova/js/pantalla.js', 'js/en/textos.js', 'js/en/inicio.js', 'js/en/nova.js'];
+
+  for (const ruta of archivos) assert.doesNotMatch(leer(ruta), /Punto Lista|punto-lista|PUNTO_LISTA|\bLISTA\b/, ruta);
+  for (const pagina of PAGINAS) assert.match(leer(pagina), />Nova<\/a>/, pagina);
+  assert.ok(!existsSync(fileURLToPath(new URL('punto-lista/', raiz))), 'queda la carpeta anterior');
 });
 
 test('ningún enlace local apunta a un archivo o ancla que no exista', () => {

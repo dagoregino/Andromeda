@@ -10,6 +10,7 @@ import { urlClima, validarClima, resumenClima } from './clima.js';
 import { crearVistaClima } from './climaVista.js';
 import { buscarDireccion } from './geocodificacion.js';
 import { crearCampoBusqueda } from './campoBusqueda.js';
+import { t } from './idioma.js';
 
 const ESPERA_UBICACION_MS = 10000;
 const ESPERA_CLIMA_MS = 8000;
@@ -58,7 +59,7 @@ function cambiar(parcial) {
   pintar();
 }
 
-const avisar = (mensaje, esError = false) => cambiar({ mensaje, esError });
+const avisar = (mensaje, esError = false) => cambiar({ mensaje: t(mensaje), esError });
 
 const opcionesActuales = () =>
   estado.origen && estado.destino ? buscarRutas(datos.rutas, estado.origen.punto, estado.destino.punto) : [];
@@ -70,8 +71,8 @@ function pintarPasos() {
   $('[data-origen-pedir]').hidden = !destino || Boolean(origen);
   $('[data-origen]').hidden = !origen;
   $('[data-viaje]').hidden = !(origen && destino);
-  $('[data-destino-nombre]').textContent = destino?.nombre ?? '';
-  $('[data-origen-nombre]').textContent = origen?.nombre ?? '';
+  $('[data-destino-nombre]').textContent = t(destino?.nombre ?? '');
+  $('[data-origen-nombre]').textContent = t(origen?.nombre ?? '');
 }
 
 function pintarViaje(opciones) {
@@ -79,7 +80,7 @@ function pintarViaje(opciones) {
   if (!origen || !destino) return;
   $('[data-distancia]').textContent = formatearDistancia(distanciaMetros(origen.punto, destino.punto));
   const boton = $('[data-ver-rutas]');
-  boton.textContent = rutasVisibles ? 'Ocultar rutas de bus' : 'Ver rutas de bus';
+  boton.textContent = t(rutasVisibles ? 'Ocultar rutas de bus' : 'Ver rutas de bus');
   boton.setAttribute('aria-expanded', String(rutasVisibles));
   $('#rutas').hidden = !rutasVisibles;
   $('[data-sin-rutas]').hidden = opciones.length > 0;
@@ -107,11 +108,11 @@ function pintarCuantas(total) {
   const resumen = $('[data-cuantas]');
   resumen.hidden = total === 0;
   resumen.textContent = hayMas && !estado.todasLasOpciones
-    ? `Las ${OPCIONES_INICIALES} más convenientes de ${total} rutas.`
-    : `${total} ${total === 1 ? 'ruta te sirve' : 'rutas te sirven'}.`;
+    ? t('Las {primeras} más convenientes de {total} rutas.', { primeras: OPCIONES_INICIALES, total })
+    : t(total === 1 ? '{total} ruta te sirve.' : '{total} rutas te sirven.', { total });
   const boton = $('[data-mas-rutas]');
   boton.hidden = !hayMas;
-  boton.textContent = estado.todasLasOpciones ? 'Ver menos' : `Ver las ${total}`;
+  boton.textContent = estado.todasLasOpciones ? t('Ver menos') : t('Ver las {total}', { total });
 }
 
 function pintar() {
@@ -138,7 +139,7 @@ function contenidoDelMapa(opciones) {
 }
 
 function pintarModo() {
-  $('#titulo').textContent = TITULOS[estado.modo];
+  $('#titulo').textContent = t(TITULOS[estado.modo]);
   document.querySelectorAll('[data-modo]').forEach((boton) => {
     boton.setAttribute('aria-pressed', String(boton.dataset.modo === estado.modo));
   });
@@ -153,8 +154,8 @@ function pintarCatalogo() {
   const deLaEmpresa = datos.rutas.filter((ruta) => !empresa || ruta.operador === empresa);
   const encontradas = filtrarCatalogo(deLaEmpresa, $('#buscar-ruta').value);
   $('[data-total-rutas]').textContent = encontradas.length
-    ? `${encontradas.length} de ${datos.rutas.length} recorridos. Toca uno para verlo en el mapa.`
-    : 'Ninguna ruta coincide con la búsqueda.';
+    ? t('{cuantas} de {total} recorridos. Toca uno para verlo en el mapa.', { cuantas: encontradas.length, total: datos.rutas.length })
+    : t('Ninguna ruta coincide con la búsqueda.');
   dibujarCatalogo($('[data-catalogo]'), encontradas, {
     idElegida: estado.rutaVista, lugares: datos.destinos, alElegir: verRuta,
   });
@@ -184,7 +185,7 @@ function nombrarPunto(clave, punto, campo) {
     if (estado[clave]?.punto !== punto) return;
     const nombre = info.nombre || NOMBRE_PUNTO_MARCADO;
     estado = Object.freeze({ ...estado, [clave]: { ...estado[clave], nombre, zona: info.zona || '' } });
-    campo.poner(nombre);
+    campo.poner(t(nombre));
     pintar();
   }).catch(() => { /* sin conexión: el punto se queda con el nombre genérico */ });
 }
@@ -225,7 +226,7 @@ function recibirUbicacion({ coords }) {
 function fallarUbicacion({ code }) {
   $('[data-ubicacion]').disabled = false;
   const motivo = code === PERMISO_DENEGADO ? 'No diste permiso para usar tu ubicación.' : 'No pudimos obtener tu ubicación.';
-  avisar(`${motivo} Elige un lugar o toca el mapa.`, true);
+  avisar(`${t(motivo)} ${t('Elige un lugar o toca el mapa.')}`, true);
 }
 
 function pedirUbicacion() {
@@ -320,12 +321,12 @@ async function arrancar() {
   try {
     datos = await cargarDatos();
   } catch (error) {
-    const detalle = error instanceof Error ? error.message : 'Error desconocido.';
+    const detalle = error instanceof Error ? error.message : t('Error desconocido.');
     $('[data-buscador]').hidden = true;
     $('[data-origen-pedir]').hidden = true;
     $('.pestanas').hidden = true;
     const texto = $('[data-estado]');
-    texto.textContent = `No se pudieron cargar los lugares y las rutas. ${detalle} Si abriste el archivo directamente, usa un servidor local.`;
+    texto.textContent = t('No se pudieron cargar los lugares y las rutas. {detalle} Si abriste el archivo directamente, usa un servidor local.', { detalle });
     texto.classList.add('es-error');
     return;
   }

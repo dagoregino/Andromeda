@@ -1,4 +1,5 @@
 // Dibujo del mapa con Leaflet. Recibe el viaje ya calculado y lo pinta; no decide nada.
+import { t } from './idioma.js';
 
 const CENTRO = [10.975, -74.8];
 const ZOOM_INICIAL = 12;
@@ -51,9 +52,10 @@ function capasDeLaRuta(L, ruta) {
     etiqueta.textContent = nombre;
     return L.circleMarker([lat, lng], { radius: 6, className: 'parada' }).bindTooltip(etiqueta);
   });
-  const extremos = [marcador(L, ruta.recorrido[0], 'I', 'pin--origen', `Inicio de la ruta ${ruta.codigo}`)];
+  const { codigo } = ruta;
+  const extremos = [marcador(L, ruta.recorrido[0], t('I'), 'pin--origen', t('Inicio de la ruta {codigo}', { codigo }))];
   if (!ruta.circular) {
-    extremos.push(marcador(L, ruta.recorrido.at(-1), 'F', 'pin--destino', `Final de la ruta ${ruta.codigo}`));
+    extremos.push(marcador(L, ruta.recorrido.at(-1), t('F'), 'pin--destino', t('Final de la ruta {codigo}', { codigo })));
   }
   return [linea('linea-borde'), linea('linea-bus'), ...paradas, ...extremos];
 }
@@ -90,8 +92,8 @@ export function crearMapa(idContenedor, { alTocar, alFallar }) {
       if (opcion && origen && destino) {
         capasDelBus(L, origen.punto, destino.punto, opcion).forEach((capa) => capas.addLayer(capa));
       }
-      if (origen) capas.addLayer(marcador(L, origen.punto, 'A', 'pin--origen', `Salida: ${origen.nombre}`));
-      if (destino) capas.addLayer(marcador(L, destino.punto, 'B', 'pin--destino', `Destino: ${destino.nombre}`));
+      if (origen) capas.addLayer(marcador(L, origen.punto, 'A', 'pin--origen', t('Salida: {nombre}', { nombre: t(origen.nombre) })));
+      if (destino) capas.addLayer(marcador(L, destino.punto, 'B', 'pin--destino', t('Destino: {nombre}', { nombre: t(destino.nombre) })));
       const extremos = [origen, destino].filter(Boolean).map((lugar) => lugar.punto);
       encuadrar(mapa, [...extremos, ...(opcion?.tramoBus ?? []), ...(ruta?.recorrido ?? [])]);
     },

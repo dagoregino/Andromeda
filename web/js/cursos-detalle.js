@@ -131,7 +131,7 @@ export const DETALLES = {
     explicacion: "Con el destino y la salida claros se puede elegir la ruta y la parada.",
     pasos: [
       PORTADA,
-      idea("Destino y salida", "Un viaje empieza por saber a dónde vas y desde dónde sales. En Barranquilla puedes buscar un destino como el Gran Malecón en el mapa de Barranquilla Lista."),
+      idea("Destino y salida", "Un viaje empieza por saber a dónde vas y desde dónde sales. En Barranquilla puedes buscar un destino como el Gran Malecón en el mapa de BaqNova."),
       idea("Ruta y parada", "Después se mira qué ruta pasa cerca de la salida y del destino. Antes de subir, confirma el sentido del recorrido y piensa dónde bajarte."),
       actividad("orden", { inicio: [2, 3, 1, 0], pista: "Antes de buscar una ruta necesitas saber de dónde a dónde vas." }),
       cierre("Primero destino y salida", "Luego la ruta", "Confirmar antes de subir"),

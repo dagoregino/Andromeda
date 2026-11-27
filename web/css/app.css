@@ -1,5 +1,5 @@
 /* Una sola pantalla: panel a la izquierda y mapa al lado. En móvil, el mapa arriba y el panel debajo.
-   Los botones, las tarjetas y la letra siguen el mismo estilo de Punto Lista. */
+   Los botones, las tarjetas y la letra siguen el mismo estilo de Nova. */
 *, *::before, *::after { box-sizing: border-box; }
 [hidden] { display: none !important; }
 

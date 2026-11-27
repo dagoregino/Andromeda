@@ -1,6 +1,6 @@
 # Sprint 1: Comprender y diseñar
 
-## Barranquilla Lista: primero para su gente
+## BaqNova: primero para su gente
 
 **Bootcamp de Innovación QUIJAM** · Fecha de corte: 26 de noviembre de 2026
 **Entregable:** diagnóstico, problema central y arquitectura inicial
@@ -140,7 +140,7 @@ La inclusión no es un componente aparte: **atraviesa las siete propuestas**.
 4. **Prioridad** para los barrios con mayores carencias.
 5. **Canales para todos**, con o sin internet.
 
-### Pilar fundamental: Punto Lista
+### Pilar fundamental: Nova
 
 **La ciudad que te escucha y te responde.**
 
@@ -169,7 +169,7 @@ Está pensado para habitantes y visitantes de todas las edades. La inclusión vi
 
 **Transformación común:** una ciudad que funcione como sistema, reciba al mundo y mejore la vida de sus habitantes.
 
-El programa **Barranquilla Lista** reúne siete componentes organizados en tres niveles que trabajan juntos: la **acción** transforma la vida en la calle, la **conexión** avisa y coordina, y la **base** sostiene el programa a largo plazo.
+El programa **BaqNova** reúne siete componentes organizados en tres niveles que trabajan juntos: la **acción** transforma la vida en la calle, la **conexión** avisa y coordina, y la **base** sostiene el programa a largo plazo.
 
 ### Nivel 1: Acción
 

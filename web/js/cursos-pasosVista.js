@@ -3,6 +3,7 @@
 import { OBJETIVOS, NOTA_EJERCICIO, textoPublico } from './cursos-recorrido.js';
 import { crearActividad } from './cursos-actividadVista.js';
 import { crear } from './cursos-dom.js';
+import { t } from './idioma.js';
 
 // Ráfaga de abajo.css que acompaña a cada tema.
 const RAFAGAS = Object.freeze({
@@ -24,16 +25,16 @@ function collage(tema, contenido) {
 /** Párrafo con una etiqueta destacada: «Te llevas: …». */
 function destacado(etiqueta, texto) {
   const parrafo = crear('p', 'recorrido__texto');
-  parrafo.append(crear('strong', '', `${etiqueta}: `), texto);
+  parrafo.append(crear('strong', '', `${t(etiqueta)}: `), texto);
   return parrafo;
 }
 
 function portada({ curso, tema, edad }) {
   const datos = crear('dl', 'recorrido__recorte');
   const filas = [
-    ['Para', textoPublico(edad)],
-    ['Duración', `Unos ${curso.minutos} minutos`],
-    [`Aporta al objetivo ${curso.objetivo}`, OBJETIVOS[curso.objetivo]],
+    [t('Para'), textoPublico(edad)],
+    [t('Duración'), t('Unos {minutos} minutos', { minutos: curso.minutos })],
+    [t('Aporta al objetivo {objetivo}', { objetivo: curso.objetivo }), t(OBJETIVOS[curso.objetivo])],
   ];
   for (const [nombre, valor] of filas) {
     const fila = crear('div');
@@ -43,14 +44,14 @@ function portada({ curso, tema, edad }) {
   return [
     collage(tema, datos),
     destacado('Te llevas', curso.llevas),
-    crear('p', 'recorrido__nota', NOTA_EJERCICIO),
+    crear('p', 'recorrido__nota', t(NOTA_EJERCICIO)),
     decorar('franja'),
   ];
 }
 
 function cierre({ curso, paso, tema }) {
   const ideas = crear('ul', 'recorrido__ideas');
-  ideas.setAttribute('aria-label', 'Tres ideas para llevar');
+  ideas.setAttribute('aria-label', t('Tres ideas para llevar'));
   ideas.append(...paso.ideas.map((texto) => crear('li', '', texto)));
   return [
     collage(tema, ideas),
@@ -72,7 +73,8 @@ export function crearPaso({ curso, paso, indice, tema, edad }) {
   const id = `paso-${indice}`;
   const nodo = crear('section', 'recorrido__paso');
   nodo.dataset.tipo = paso.tipo;
-  const titulo = crear('h3', '', PASOS[paso.tipo].titulo(paso));
+  // El título de una idea ya viene en el idioma del curso: t() lo deja igual.
+  const titulo = crear('h3', '', t(PASOS[paso.tipo].titulo(paso)));
   titulo.id = `${id}-titulo`;
   titulo.tabIndex = -1;
   titulo.setAttribute('aria-describedby', 'ventana-paso');

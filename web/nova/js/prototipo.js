@@ -1,5 +1,6 @@
 // Sección del prototipo: gira despacio y abre la tapa al pasar por el centro de la ventana.
 // La malla se descarga solo cuando la sección está cerca.
+import { t } from '../../js/idioma.js';
 import { leerMalla } from './malla.js';
 import { apertura } from './apertura.js';
 import { ENCUADRE, crearPrototipo } from './prototipo-modelo.js';
@@ -37,7 +38,7 @@ export function iniciarPrototipo(seccion, { movimiento }) {
 
   function marcarBoton() {
     boton.dataset.estado = girando ? 'andando' : 'pausado';
-    boton.setAttribute('aria-label', girando ? 'Pausar el giro del prototipo' : 'Girar el prototipo');
+    boton.setAttribute('aria-label', t(girando ? 'Pausar el giro del prototipo' : 'Girar el prototipo'));
   }
 
   function avanzar(ahora) {
@@ -85,7 +86,7 @@ export function iniciarPrototipo(seccion, { movimiento }) {
       actualizar();
     } catch (error) {
       console.warn('No se pudo mostrar el prototipo:', error);
-      hueco.querySelector('.respaldo span').textContent = 'No se pudo cargar el modelo';
+      hueco.querySelector('.respaldo span').textContent = t('No se pudo cargar el modelo');
       desconectar();
     }
   }

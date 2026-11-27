@@ -1,5 +1,6 @@
 // Accesibilidad física de los destinos: criterios, validación y veredicto. Sin DOM.
 import { esCoordenada } from './geo.js';
+import { t, DECIMAL } from './idioma.js';
 
 const ETIQUETAS_CRITERIO = Object.freeze({
   si: 'Se puede', parcial: 'Con ayuda', no: 'No se puede', sinDato: 'Sin información', noAplica: 'No aplica',
@@ -109,7 +110,7 @@ export function criteriosVisibles(lugar) {
 }
 
 const textoDeMetros = (valor) =>
-  Number.isFinite(valor) ? `${String(valor).replace('.', ',')} m` : ETIQUETAS_CRITERIO.sinDato;
+  Number.isFinite(valor) ? `${String(valor).replace('.', DECIMAL)} m` : ETIQUETAS_CRITERIO.sinDato;
 
 /** Todos los criterios agrupados por bloque, con sus medidas ya escritas. */
 export function criteriosPorBloque(lugar) {
@@ -142,9 +143,9 @@ function esFechaIso(valor) {
 }
 
 export function formatearFecha(iso) {
-  if (!esFechaIso(iso)) return 'sin fecha';
+  if (!esFechaIso(iso)) return t('sin fecha');
   const [anio, mes, dia] = iso.split('-').map(Number);
-  return `${dia} ${MESES[mes - 1]} ${anio}`;
+  return `${dia} ${t(MESES[mes - 1])} ${anio}`;
 }
 
 // Sin barra inicial, protocolo, subida de carpeta, códigos % ni espacios o caracteres de control que los disimulen.
