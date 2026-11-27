@@ -3,12 +3,12 @@
    cursos.js sigue usando .curso, [hidden], data-edad y data-tema. */
 
 /* Color de cada tema: --c es el fondo del afiche y --t la tinta que se lee encima. */
-.cursos--pagina [data-tema="calor"], .cursos--pagina .opcion:has([value="calor"]) { --c: var(--c-amarillo); --t: #141416; }
-.cursos--pagina [data-tema="arroyos"], .cursos--pagina .opcion:has([value="arroyos"]) { --c: #0066cc; --t: #fff; }
-.cursos--pagina [data-tema="movilidad"], .cursos--pagina .opcion:has([value="movilidad"]) { --c: #c8101a; --t: #fff; }
-.cursos--pagina [data-tema="datos"], .cursos--pagina .opcion:has([value="datos"]) { --c: #f1f3f9; --t: #102456; }
-.cursos--pagina [data-tema="barrio"], .cursos--pagina .opcion:has([value="barrio"]) { --c: #0b742f; --t: #fff; }
-.cursos--pagina [data-tema="participacion"], .cursos--pagina .opcion:has([value="participacion"]) { --c: #ff8a2a; --t: #141416; }
+.ventana[data-tema="calor"], .cursos--pagina [data-tema="calor"], .cursos--pagina .opcion:has([value="calor"]) { --c: var(--c-amarillo); --t: #141416; }
+.ventana[data-tema="arroyos"], .cursos--pagina [data-tema="arroyos"], .cursos--pagina .opcion:has([value="arroyos"]) { --c: #0066cc; --t: #fff; }
+.ventana[data-tema="movilidad"], .cursos--pagina [data-tema="movilidad"], .cursos--pagina .opcion:has([value="movilidad"]) { --c: #c8101a; --t: #fff; }
+.ventana[data-tema="datos"], .cursos--pagina [data-tema="datos"], .cursos--pagina .opcion:has([value="datos"]) { --c: #f1f3f9; --t: #102456; }
+.ventana[data-tema="barrio"], .cursos--pagina [data-tema="barrio"], .cursos--pagina .opcion:has([value="barrio"]) { --c: #0b742f; --t: #fff; }
+.ventana[data-tema="participacion"], .cursos--pagina [data-tema="participacion"], .cursos--pagina .opcion:has([value="participacion"]) { --c: #ff8a2a; --t: #141416; }
 .cursos--pagina [data-tema="calor"] { --dibujo: url("../img/cursos/calor.svg"); }
 .cursos--pagina [data-tema="arroyos"] { --dibujo: url("../img/cursos/arroyos.svg"); }
 .cursos--pagina [data-tema="movilidad"] { --dibujo: url("../img/cursos/movilidad.svg"); }
@@ -71,6 +71,40 @@
 .abajo .cursos__vacio { margin-top: 28px; padding: 32px; border: 2px dashed var(--linea-fuerte); border-radius: 6px; }
 .abajo .cursos__vacio[hidden] { display: none; }
 .abajo .cursos__cierre { margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--linea-fuerte); font-size: 18px; }
+
+/* ---------- Abrir un curso: todo el afiche responde al clic ---------- */
+.abajo .curso__abrir { align-self: stretch; min-height: 46px; margin-top: 4px; border: 2px solid currentColor; border-radius: 8px; background: none; color: inherit; font: 700 15px/1 var(--fuente); cursor: pointer; }
+.curso__abrir::after { content: ""; position: absolute; inset: 0; z-index: 2; }
+.curso__texto a { position: relative; z-index: 3; }
+.abajo .curso:has(.curso__abrir) { transition: transform .18s; }
+.abajo .curso:has(.curso__abrir):hover { transform: translateY(-6px); }
+.abajo .curso:hover .curso__abrir, .abajo .curso__abrir:focus-visible { background: var(--t); color: var(--c); }
+.abajo .curso:has(.curso__abrir:focus-visible) { outline: 3px solid var(--texto); outline-offset: 4px; }
+
+/* ---------- Ventana del curso ---------- */
+.ventana { width: min(640px, 100% - 24px); max-height: min(88vh, 860px); max-height: min(88dvh, 860px); padding: 0; border: 0; border-radius: 10px; background: #0b1a42; color: var(--texto); overflow-y: auto; overscroll-behavior: contain; }
+.ventana::backdrop { background: rgb(3 8 24 / .78); }
+.ventana__cabeza { display: grid; gap: 12px; padding: 24px clamp(20px, 5vw, 36px) 28px; background: var(--c); color: var(--t); }
+.ventana__cabeza p:first-of-type { font-weight: 600; }
+.ventana h2 { font: 400 clamp(30px, 6vw, 44px)/1.06 var(--serif); text-transform: none; }
+.ventana h2::first-letter { color: inherit; font-size: inherit; }
+.ventana__cerrar { justify-self: end; min-height: 44px; padding: 0 18px; border: 2px solid currentColor; border-radius: 8px; background: none; color: inherit; font: 700 14px/1 var(--fuente); cursor: pointer; }
+.ventana__cuerpo { display: grid; gap: 14px; padding: 28px clamp(20px, 5vw, 36px) 32px; }
+.ventana h3 { margin-top: 10px; font: 400 24px/1.2 var(--serif); color: var(--c-amarillo); }
+.ventana h3:first-child { margin-top: 0; }
+.ventana ol { display: grid; gap: 10px; padding-left: 22px; list-style: decimal; }
+.ventana__opciones { display: grid; gap: 10px; }
+.ventana__opcion { min-height: 50px; padding: 12px 16px; border: 2px solid var(--linea-fuerte); border-radius: 8px; background: none; color: inherit; font: 500 16px/1.35 var(--fuente); text-align: left; cursor: pointer; }
+.ventana__opcion:hover { border-color: var(--texto); }
+.ventana__opcion[data-resultado="bien"] { border-color: #5ee08a; background: #0b5c27; }
+.ventana__opcion[data-resultado="bien"]::before { content: "✓ "; }
+.ventana__opcion[data-resultado="mal"] { border-color: #ff8a90; background: #7d1118; }
+.ventana__opcion[data-resultado="mal"]::before { content: "✕ "; }
+.ventana__respuesta { min-height: 1.5em; font-weight: 600; }
+.ventana__nota { padding-top: 14px; border-top: 1px solid var(--linea); font-size: 14px; color: var(--texto-suave); }
+.ventana button:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
+html:has(.ventana[open]) { overflow: hidden; }
+@media (prefers-reduced-motion: reduce) { .abajo .curso:has(.curso__abrir) { transition: none; } .abajo .curso:has(.curso__abrir):hover { transform: none; } }
 
 @media (max-width: 1020px) { .abajo .cursos__lista { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 800px) { .cursos__encabezado { grid-template-columns: minmax(0, 1fr); } .collage { max-width: 360px; margin-block: 8px; overflow: clip; } }

@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="../css/cursos-pagina.css">
 <link rel="stylesheet" href="../css/navegacion.css">
 <script type="module" src="../js/cursos.js"></script>
+<script type="module" src="../js/cursos-ventana.js"></script>
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -185,6 +186,26 @@
     </div>
   </section>
   </div>
+
+  <dialog class="ventana" id="curso-ventana" aria-labelledby="ventana-titulo">
+    <div class="ventana__contenido">
+      <div class="ventana__cabeza">
+        <button class="ventana__cerrar" id="ventana-cerrar" type="button">Cerrar</button>
+        <p id="ventana-tema"></p>
+        <h2 id="ventana-titulo"></h2>
+        <p id="ventana-texto"></p>
+      </div>
+      <div class="ventana__cuerpo">
+        <h3>Qué harías en el curso</h3>
+        <ol id="ventana-actividades"></ol>
+        <h3>Pruébalo</h3>
+        <p id="ventana-pregunta"></p>
+        <div class="ventana__opciones" id="ventana-opciones"></div>
+        <p class="ventana__respuesta" id="ventana-respuesta" role="status"></p>
+        <p class="ventana__nota">Contenido de ejemplo. Este curso es una propuesta y todavía no tiene inscripciones.</p>
+      </div>
+    </div>
+  </dialog>
 
 </main>
 
