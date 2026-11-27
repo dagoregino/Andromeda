@@ -14,5 +14,5 @@ La web tiene cuatro páginas:
 | Carpeta | Contenido |
 |---|---|
 | [`web/`](web/README.md) | La web |
-| [`investigacion/`](investigacion/README.md) | Investigación sobre ciudades sede y diagnóstico de Barranquilla |
-| [`sprint 1/`](sprint%201/README.md) | Entregable del Sprint 1 |
+| [`programa/`](programa/README.md) | Objetivos, programa a 2034, indicadores y ruta |
+| [`investigacion/`](investigacion/README.md) | Resumen y anexos sobre ciudades sede y diagnóstico de Barranquilla |

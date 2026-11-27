@@ -3,7 +3,7 @@
 import { separar } from './cursos-filtro.js';
 import { t } from './idioma.js';
 
-/** Objetivos del programa, según «sprint 1/README.md». */
+/** Objetivos del programa, según «programa/README.md». */
 export const OBJETIVOS = Object.freeze({
   A: 'Ciudad fresca y verde',
   B: 'Ciudad que no se detiene',

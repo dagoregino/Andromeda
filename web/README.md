@@ -29,7 +29,7 @@ Reglas para editarlo (varias las revisa `tests/paginas.test.mjs`):
 | Transmetro: de 29,5 a 13,6 millones de validaciones | [Gabriel Olier](https://gabrielolier.substack.com/p/repensar-la-movilidad-de-barranquilla), análisis independiente | 11 de octubre de 2026 |
 | Arroyos: 14.200 toneladas de residuos | Alcaldía, en [El Tiempo](https://www.eltiempo.com/colombia/barranquilla/la-impresionante-cantidad-de-basura-que-termina-en-los-arroyos-de-barranquilla-14-200-toneladas-retiradas-en-2026-y-50-canales-intervenidos-3594947) | 20 de octubre de 2026 |
 
-Las tres cifras se contrastaron en la página original el 2026-11-26. Los seis frentes resumen el [Sprint 1](../sprint%201/README.md); la ruta, la [hoja de ruta propuesta](../investigacion/08-barranquilla-preguntas-clave.md); y las tres preguntas, la [conclusión](../investigacion/10-conclusion.md).
+Las tres cifras se contrastaron en la página original el 2026-11-26. Los seis frentes resumen el [programa](../programa/README.md); la ruta, la [hoja de ruta propuesta](../investigacion/08-barranquilla-preguntas-clave.md); y las tres preguntas, la [conclusión](../investigacion/10-conclusion.md).
 
 **Participa** y **Contacto** llevan a las [incidencias del repositorio](https://github.com/dagoregino/Andromeda/issues). Escribir pide una cuenta de GitHub.
 

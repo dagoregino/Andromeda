@@ -1,7 +1,7 @@
 // Recorrido de cada curso: son ejercicios educativos de ejemplo, parte de una propuesta.
 // La clave es el mismo título del <h2> en cursos/index.html.
 //
-// Cada curso: objetivo (A a G del Sprint 1), minutos (8 como máximo), llevas, evidencia esperada,
+// Cada curso: objetivo (A a G del programa), minutos (8 como máximo), llevas, evidencia esperada,
 // actividades (la acción para el barrio), la comprobación (pregunta, opciones, correcta, explicacion)
 // y sus pasos: portada, ideas, actividad y cierre. Ningún paso pasa de tres frases.
 //
