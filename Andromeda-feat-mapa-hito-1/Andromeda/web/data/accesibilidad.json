@@ -1,0 +1,120 @@
+{
+  "nota": "Cada lugar cita su fuente. Solo se anota lo que dice el informe detallado; el resto queda como sinDato. No es una certificación oficial.",
+  "actualizado": "2026-11-26",
+  "lugares": [
+    {
+      "destinoId": "metropolitano",
+      "ejemplo": false,
+      "fuente": { "nombre": "TUR4all", "url": "https://www.tur4all.com/resources/estadio-metropolitano-roberto-melendez", "consultado": "2026-11-26" },
+      "bloques": {
+        "llegada": { "andenContinuo": "si", "vado": "sinDato", "cruceSemaforo": "sinDato", "iluminacion": "sinDato", "sombra": "sinDato" },
+        "ingreso": { "puertaAccesible": "si", "anchoMetros": null, "sinEscalon": "si", "rampa": "si", "timbre": "sinDato" },
+        "dentro": { "rutaAccesible": "si", "anchoMetros": null, "pisoFirme": "sinDato", "sinObstaculos": "sinDato", "ascensor": "si" },
+        "servicios": { "bano": "si", "informacion": "sinDato", "asientos": "sinDato", "agua": "sinDato", "sombra": "sinDato" },
+        "comunicacion": { "pictogramas": "sinDato", "braille": "sinDato", "lenguajeClaro": "sinDato", "audio": "sinDato", "lenguaSenas": "sinDato" },
+        "emergencia": { "evacuacion": "sinDato", "alarmaVisual": "sinDato", "puntoEncuentro": "sinDato" }
+      },
+      "notas": {
+        "llegada": "Aceras sin obstáculos y con piso antideslizante.",
+        "ingreso": "Entrada principal con rampa que se usa sin ayuda. Paso de 78 cm o más.",
+        "dentro": "Se recorre en silla de ruedas. Ascensor con botones en braille.",
+        "bano": "Baño adaptado, con barras de apoyo y espacio de giro."
+      }
+    },
+    {
+      "destinoId": "malecon",
+      "ejemplo": false,
+      "fuente": { "nombre": "TUR4all", "url": "https://www.tur4all.com/resources/gran-malecon-de-barranquilla", "consultado": "2026-11-26" },
+      "bloques": {
+        "llegada": { "andenContinuo": "si", "vado": "sinDato", "cruceSemaforo": "sinDato", "iluminacion": "sinDato", "sombra": "sinDato" },
+        "ingreso": { "puertaAccesible": "sinDato", "anchoMetros": null, "sinEscalon": "si", "rampa": "sinDato", "timbre": "sinDato" },
+        "dentro": { "rutaAccesible": "si", "anchoMetros": null, "pisoFirme": "si", "sinObstaculos": "sinDato", "ascensor": "sinDato" },
+        "servicios": { "bano": "sinDato", "informacion": "sinDato", "asientos": "si", "agua": "sinDato", "sombra": "si" },
+        "comunicacion": { "pictogramas": "sinDato", "braille": "sinDato", "lenguajeClaro": "sinDato", "audio": "sinDato", "lenguaSenas": "sinDato" },
+        "emergencia": { "evacuacion": "sinDato", "alarmaVisual": "sinDato", "puntoEncuentro": "sinDato" }
+      },
+      "notas": {
+        "llegada": "Aceras sin obstáculos y con piso antideslizante.",
+        "ingreso": "Entrada sin desniveles.",
+        "dentro": "Se recorre en silla de ruedas. Piso antideslizante.",
+        "bano": "El informe no habla del baño."
+      }
+    },
+    {
+      "destinoId": "zoologico",
+      "ejemplo": false,
+      "fuente": { "nombre": "TUR4all", "url": "https://www.tur4all.com/resources/zoologico-de-barranquilla", "consultado": "2026-11-26" },
+      "bloques": {
+        "llegada": { "andenContinuo": "si", "vado": "sinDato", "cruceSemaforo": "sinDato", "iluminacion": "sinDato", "sombra": "sinDato" },
+        "ingreso": { "puertaAccesible": "si", "anchoMetros": null, "sinEscalon": "si", "rampa": "sinDato", "timbre": "sinDato" },
+        "dentro": { "rutaAccesible": "si", "anchoMetros": null, "pisoFirme": "si", "sinObstaculos": "sinDato", "ascensor": "sinDato" },
+        "servicios": { "bano": "si", "informacion": "sinDato", "asientos": "sinDato", "agua": "sinDato", "sombra": "si" },
+        "comunicacion": { "pictogramas": "sinDato", "braille": "sinDato", "lenguajeClaro": "sinDato", "audio": "sinDato", "lenguaSenas": "sinDato" },
+        "emergencia": { "evacuacion": "sinDato", "alarmaVisual": "sinDato", "puntoEncuentro": "sinDato" }
+      },
+      "notas": {
+        "llegada": "Aceras de adoquín, sin obstáculos.",
+        "ingreso": "Entrada principal sin desniveles. Paso de 78 cm o más.",
+        "dentro": "Se recorre en silla de ruedas. Hay una silla manual de apoyo.",
+        "bano": "Baño adaptado, con barras de apoyo y espacio de giro."
+      }
+    },
+    {
+      "destinoId": "joe-arroyo",
+      "ejemplo": false,
+      "fuente": { "nombre": "TUR4all", "url": "https://www.tur4all.com/resources/estacion-joe-arroyo-de-transmetro", "consultado": "2026-11-26" },
+      "bloques": {
+        "llegada": { "andenContinuo": "si", "vado": "sinDato", "cruceSemaforo": "sinDato", "iluminacion": "sinDato", "sombra": "sinDato" },
+        "ingreso": { "puertaAccesible": "si", "anchoMetros": null, "sinEscalon": "si", "rampa": "sinDato", "timbre": "sinDato" },
+        "dentro": { "rutaAccesible": "si", "anchoMetros": null, "pisoFirme": "sinDato", "sinObstaculos": "sinDato", "ascensor": "sinDato" },
+        "servicios": { "bano": "parcial", "informacion": "si", "asientos": "sinDato", "agua": "sinDato", "sombra": "sinDato" },
+        "comunicacion": { "pictogramas": "sinDato", "braille": "sinDato", "lenguajeClaro": "sinDato", "audio": "sinDato", "lenguaSenas": "sinDato" },
+        "emergencia": { "evacuacion": "sinDato", "alarmaVisual": "sinDato", "puntoEncuentro": "sinDato" }
+      },
+      "notas": {
+        "llegada": "Aceras de adoquín, sin obstáculos.",
+        "ingreso": "Entrada sin desniveles. Paso de 78 cm o más.",
+        "dentro": "Se recorre en silla de ruedas.",
+        "bano": "Baño adaptado, pero sin espacio de giro de 150 cm."
+      }
+    },
+    {
+      "destinoId": "ventana-al-mundo",
+      "ejemplo": false,
+      "fuente": { "nombre": "TUR4all", "url": "https://www.tur4all.com/resources/ventana-al-mundo", "consultado": "2026-11-26" },
+      "bloques": {
+        "llegada": { "andenContinuo": "sinDato", "vado": "sinDato", "cruceSemaforo": "sinDato", "iluminacion": "sinDato", "sombra": "sinDato" },
+        "ingreso": { "puertaAccesible": "sinDato", "anchoMetros": null, "sinEscalon": "si", "rampa": "sinDato", "timbre": "sinDato" },
+        "dentro": { "rutaAccesible": "si", "anchoMetros": null, "pisoFirme": "si", "sinObstaculos": "sinDato", "ascensor": "sinDato" },
+        "servicios": { "bano": "sinDato", "informacion": "sinDato", "asientos": "si", "agua": "sinDato", "sombra": "sinDato" },
+        "comunicacion": { "pictogramas": "sinDato", "braille": "sinDato", "lenguajeClaro": "sinDato", "audio": "sinDato", "lenguaSenas": "sinDato" },
+        "emergencia": { "evacuacion": "sinDato", "alarmaVisual": "sinDato", "puntoEncuentro": "sinDato" }
+      },
+      "notas": {
+        "llegada": "El informe no describe la llegada.",
+        "ingreso": "Entrada sin desniveles.",
+        "dentro": "Al aire libre, se recorre en silla de ruedas.",
+        "bano": "El informe no habla del baño."
+      }
+    },
+    {
+      "destinoId": "mallorquin",
+      "ejemplo": false,
+      "fuente": { "nombre": "TUR4all", "url": "https://www.tur4all.com/resources/ecoparque-cienaga-de-mallorquin", "consultado": "2026-11-26" },
+      "bloques": {
+        "llegada": { "andenContinuo": "si", "vado": "sinDato", "cruceSemaforo": "sinDato", "iluminacion": "sinDato", "sombra": "sinDato" },
+        "ingreso": { "puertaAccesible": "si", "anchoMetros": null, "sinEscalon": "si", "rampa": "sinDato", "timbre": "sinDato" },
+        "dentro": { "rutaAccesible": "si", "anchoMetros": null, "pisoFirme": "si", "sinObstaculos": "sinDato", "ascensor": "sinDato" },
+        "servicios": { "bano": "si", "informacion": "si", "asientos": "sinDato", "agua": "sinDato", "sombra": "si" },
+        "comunicacion": { "pictogramas": "sinDato", "braille": "sinDato", "lenguajeClaro": "sinDato", "audio": "sinDato", "lenguaSenas": "sinDato" },
+        "emergencia": { "evacuacion": "sinDato", "alarmaVisual": "sinDato", "puntoEncuentro": "sinDato" }
+      },
+      "notas": {
+        "llegada": "Aceras sin obstáculos y con piso antideslizante.",
+        "ingreso": "Entrada principal sin desniveles. Paso de 78 cm o más.",
+        "dentro": "Se recorre en silla de ruedas. Falta mejorar la señalización.",
+        "bano": "Baño adaptado, con barras de apoyo y espacio de giro."
+      }
+    }
+  ]
+}

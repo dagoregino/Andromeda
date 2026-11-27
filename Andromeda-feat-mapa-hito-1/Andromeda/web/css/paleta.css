@@ -1,0 +1,26 @@
+/* Colores y letra del mapa, iguales a los de Punto Lista: azul marino y grises,
+   azul para la acción y amarillo para resaltar. El rojo señala problemas y el verde soluciones;
+   los dos solo en detalles, nunca en texto. */
+:root {
+  --c-azul: #0071e3;
+  --c-verde: #0c8436;
+  --c-amarillo: #fcc605;
+  --c-rojo: #f01622;
+  --c-blanco: #ffffff;
+  --c-oscuro: #1d1d1f;
+
+  --fondo: #102456;
+  --superficie: #1a3573;
+  --superficie-encima: #28478f;
+  --texto: #f5f5f7;
+  --texto-suave: #b8c1da;
+  --enlace: #2997ff;
+  --accion: var(--c-azul);
+  --accion-texto: var(--c-blanco);
+  --linea: rgb(255 255 255 / .14);
+  --linea-fuerte: rgb(255 255 255 / .38);
+
+  --fuente: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", system-ui, sans-serif;
+
+  color-scheme: dark;
+}

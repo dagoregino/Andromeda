@@ -1,0 +1,157 @@
+/* Parte de abajo de la página de inicio (todo lo que va después de la portada).
+   Inspirada en un collage editorial: recortes en blanco y negro con borde blanco, ráfagas
+   de color detrás, cintas de texto pequeñas en los bordes y números grandes en lugar de tarjetas.
+   Usa los mismos colores de paleta.css (azul marino, amarillo, rojo, verde y negro).
+   No hay cajas ni paneles: el contenido va directo sobre el fondo, separado por líneas finas.
+   Todo está bajo .abajo para no afectar a las demás páginas. */
+
+.abajo { position: relative; overflow: hidden; --nw: 84px; --fuente-num: var(--serif); }
+
+/* ---------- Tramos: un fondo por bloque, con cintas arriba y abajo ---------- */
+.abajo .tramo { position: relative; isolation: isolate; overflow: hidden; padding-block: clamp(88px, 11vw, 160px); }
+.abajo .tramo::before {
+  content: "BARRANQUILLA LISTA   •   MUNDIAL 2034   •   MUÉVETE POR BARRANQUILLA   •   BARRANQUILLA LISTA   •   MUNDIAL 2034   •   MUÉVETE POR BARRANQUILLA";
+  content: "BARRANQUILLA LISTA   •   MUNDIAL 2034   •   MUÉVETE POR BARRANQUILLA   •   BARRANQUILLA LISTA   •   MUNDIAL 2034   •   MUÉVETE POR BARRANQUILLA" / "";
+  position: absolute; top: 24px; left: var(--margen); right: var(--margen); z-index: 3; pointer-events: none;
+  overflow: hidden; white-space: pre;
+  font: 600 10.5px/1 var(--fuente); letter-spacing: .2em; text-transform: uppercase; color: var(--texto-suave); opacity: .75;
+}
+
+.como { background: var(--fondo); }
+.usar { background: #0b1a42; }
+.cifras-a { background: #17306d; }
+.preguntas { background: var(--fondo); }
+.mundial { background: #0b1a42; }
+.abajo .cursos { background: var(--superficie); }
+.abajo .participa { background: var(--c-amarillo); color: var(--c-oscuro); }
+.abajo .participa::before { color: var(--c-oscuro); opacity: .7; }
+
+/* ---------- Títulos ---------- */
+.abajo h2 { font-family: var(--serif); font-size: clamp(40px, 6.4vw, 96px); font-weight: 400; line-height: .95; letter-spacing: -.01em; text-transform: uppercase; }
+.abajo h2::first-letter { color: var(--c-amarillo); font-size: 1.3em; }
+.abajo .participa h2::first-letter { color: inherit; }
+.abajo h2 + .entrada { margin-top: 20px; }
+
+/* ---------- Ráfagas ---------- */
+.rafaga { position: absolute; z-index: -1; width: var(--t, 380px); aspect-ratio: 1; background: center / contain no-repeat; pointer-events: none; }
+.como > .rafaga { --t: clamp(240px, 32vw, 460px); left: calc(var(--t) / -1.9); bottom: calc(var(--t) / -2.2); transform: rotate(-8deg); }
+.cifras-a > .rafaga { --t: clamp(200px, 28vw, 400px); right: calc(var(--t) / -4); top: 24px; transform: rotate(14deg); }
+.participa > .rafaga { --t: clamp(300px, 40vw, 560px); right: calc(var(--t) / -4); top: 50%; transform: translateY(-50%) rotate(10deg); }
+
+/* ---------- Escenas: ráfaga + recortes con borde blanco ---------- */
+.escena { position: relative; isolation: isolate; min-height: clamp(300px, 38vw, 520px); }
+.escena--corta { min-height: clamp(260px, 30vw, 400px); }
+.escena--alta { min-height: clamp(380px, 46vw, 640px); }
+.escena > .rafaga { --t: min(118%, 600px); left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(var(--g, 10deg)); }
+.escena--corta > .rafaga { --t: min(104%, 480px); }
+
+.recorte {
+  position: absolute; z-index: 1; transform: rotate(var(--g, 0deg));
+  filter: drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff) drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff);
+}
+.recorte img, .recorte__foto { display: block; width: 100%; height: 100%; object-fit: cover; clip-path: var(--forma); }
+.recorte__foto { position: relative; background: center / cover no-repeat; filter: grayscale(1) contrast(1.35); }
+/* Puntos de media tinta sobre las fotos en blanco y negro. */
+.recorte__foto::after { content: ""; position: absolute; inset: 0; mix-blend-mode: multiply; background: radial-gradient(circle, rgb(0 0 0 / .55) 0 1.1px, transparent 1.7px) 0 0 / 5px 5px; }
+
+.recorte--a { --g: -3deg; --forma: polygon(2% 6%, 30% 0, 62% 4%, 100% 0, 97% 48%, 100% 100%, 64% 95%, 32% 100%, 0 96%, 3% 50%); left: 0; top: 7%; width: 76%; aspect-ratio: 1.35; }
+.recorte--b { --g: 5deg; --forma: polygon(6% 0, 100% 5%, 94% 52%, 100% 100%, 40% 94%, 0 100%, 5% 48%); right: 0; bottom: 2%; width: 36%; aspect-ratio: .84; z-index: 2; }
+.recorte--c { --g: 3deg; --forma: polygon(0 8%, 34% 0, 58% 6%, 100% 0, 96% 44%, 100% 100%, 60% 93%, 30% 100%, 4% 94%, 8% 50%); left: 11%; top: 6%; width: 78%; aspect-ratio: .86; }
+.recorte--d { --g: -3deg; --forma: polygon(4% 6%, 40% 0, 70% 7%, 100% 0, 95% 50%, 100% 96%, 62% 100%, 30% 93%, 0 100%, 5% 46%); left: 4%; top: 22%; width: 92%; aspect-ratio: 1.5; }
+.recorte--e { --g: 3deg; --forma: polygon(0 10%, 30% 2%, 66% 8%, 100% 0, 94% 52%, 100% 100%, 58% 94%, 26% 100%, 6% 90%); left: 9%; top: 8%; width: 82%; aspect-ratio: 1.25; }
+
+.recorte--c .recorte__foto { background-image: url("../img/destinos/ventana-al-mundo.jpg"); }
+.recorte--d .recorte__foto { background-image: url("../img/destinos/metropolitano.jpg"); }
+.recorte--e .recorte__foto { background-image: url("../img/destinos/malecon.jpg"); }
+.como .recorte--a img { object-position: 8% 55%; }
+
+/* ---------- Así funciona ---------- */
+.abajo .pasos { display: grid; gap: 0; margin-top: 36px; }
+.abajo .paso { grid-template-columns: var(--nw) minmax(0, 1fr); column-gap: 8px; padding-block: 18px; border-top: 1px solid var(--linea-fuerte); }
+.abajo .paso:last-child { border-bottom: 1px solid var(--linea-fuerte); }
+.abajo .paso__num { display: block; width: auto; height: auto; border-radius: 0; background: none; font: 400 clamp(52px, 5.6vw, 76px)/.95 var(--serif); color: var(--c-amarillo); transform: skewX(-8deg); }
+.abajo .paso h3 { align-self: end; font-size: clamp(20px, 2vw, 26px); }
+
+/* ---------- Lo que puedes usar ---------- */
+.abajo .productos { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(56px, 8vw, 112px); margin-top: clamp(40px, 6vw, 80px); }
+.abajo .producto { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(32px, 6vw, 96px); padding: 0; border-radius: 0; background: none; }
+.abajo .producto:nth-child(even) .escena { order: 2; }
+.producto__texto { display: grid; gap: 14px; justify-items: start; }
+.abajo .producto h3 { font-family: var(--serif); font-size: clamp(32px, 4.2vw, 60px); font-weight: 400; line-height: 1; letter-spacing: -.01em; text-transform: uppercase; }
+.abajo .producto p { max-width: 40ch; font-size: clamp(16px, 1.5vw, 20px); }
+.abajo .producto p:last-child { margin-top: 8px; padding-top: 0; }
+.numero { display: block; font: 400 clamp(72px, 9vw, 132px)/.85 var(--serif); color: transparent; -webkit-text-stroke: 2px var(--c-amarillo); transform: skewX(-8deg); transform-origin: left bottom; }
+.usar .recorte--a { left: 14%; top: 18%; width: 72%; aspect-ratio: 1.6; }
+.dispositivo { position: absolute; z-index: 1; left: 50%; top: 50%; height: 88%; width: auto; transform: translate(-50%, -50%) rotate(6deg); overflow: visible; }
+
+/* ---------- Por qué importa ---------- */
+.abajo .cifras { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; margin-top: clamp(36px, 5vw, 64px); counter-reset: cifra; }
+.abajo .cifras li { display: grid; grid-template-columns: var(--nw) minmax(0, 1.5fr) minmax(0, 1fr); align-items: baseline; gap: 8px clamp(16px, 3vw, 40px); padding: 28px 0; border-radius: 0; background: none; border-top: 1px solid var(--linea-fuerte); counter-increment: cifra; }
+.abajo .cifras li:last-child { border-bottom: 1px solid var(--linea-fuerte); }
+.abajo .cifras li:nth-child(2) { margin-left: clamp(0px, 7vw, 112px); }
+.abajo .cifras li::before { content: counter(cifra, decimal-leading-zero); font: 400 clamp(28px, 3vw, 40px)/1 var(--serif); color: transparent; -webkit-text-stroke: 1.5px var(--c-amarillo); transform: skewX(-8deg); }
+.abajo .cifras strong { font: 400 clamp(36px, 6vw, 88px)/.95 var(--serif); letter-spacing: -.01em; color: var(--c-amarillo); }
+.abajo .cifras span { max-width: 32ch; font-size: clamp(16px, 1.5vw, 20px); }
+.abajo .cifras__pie { margin-top: 28px; }
+
+/* ---------- Preguntas ---------- */
+.abajo .fila--faq { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); align-items: start; }
+.abajo .faq { display: block; max-width: none; margin: clamp(32px, 4vw, 52px) 0 0; counter-reset: pregunta; }
+.abajo .faq details { border: 0; border-top: 1px solid var(--linea-fuerte); border-radius: 0; background: none; counter-increment: pregunta; }
+.abajo .faq details:last-child { border-bottom: 1px solid var(--linea-fuerte); }
+.abajo .faq details[open] { border-top-color: var(--c-amarillo); }
+.abajo .faq summary { justify-content: flex-start; gap: 20px; min-height: 76px; padding: 16px 0; border-radius: 0; font-size: clamp(18px, 1.8vw, 22px); }
+.abajo .faq summary::before { content: counter(pregunta, decimal-leading-zero); flex: none; width: calc(var(--nw) - 20px); font: 400 clamp(30px, 3vw, 40px)/1 var(--serif); color: transparent; -webkit-text-stroke: 1.5px var(--c-amarillo); transform: skewX(-8deg); }
+.abajo .faq details[open] summary::before { color: var(--c-amarillo); -webkit-text-stroke: 0; }
+.abajo .faq summary::after { margin-left: auto; }
+.abajo .faq details p { max-width: 62ch; padding: 0 0 22px var(--nw); }
+
+/* ---------- Barranquilla 2034 ---------- */
+.abajo .mundial .fila { grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); }
+.abajo .mundial h2 { font-size: clamp(44px, 6.6vw, 100px); }
+.mundial__año { display: block; color: transparent; -webkit-text-stroke: 2px var(--c-amarillo); }
+.mundial .entrada, .abajo .cursos .entrada { color: var(--texto-suave); }
+.mundial .fila > div:first-child { display: grid; justify-items: start; gap: 24px; }
+.mundial h2 + .entrada { margin-top: 0; }
+
+/* ---------- Cursos ---------- */
+.abajo .cursos__cabecera { display: grid; justify-items: start; gap: 24px; max-width: 62ch; margin-bottom: 0; }
+.abajo .cursos__cabecera .entrada { margin-top: 0; }
+
+/* Lista de temas de los cursos: texto grande con número y flecha, sin cajas. */
+.temas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(32px, 6vw, 96px); margin-top: clamp(40px, 6vw, 72px); border-bottom: 1px solid var(--linea-fuerte); counter-reset: tema; }
+.temas li { counter-increment: tema; border-top: 1px solid var(--linea-fuerte); }
+.temas a { display: flex; align-items: center; gap: 20px; min-height: 76px; padding: 14px 0; font: 400 clamp(22px, 2.6vw, 34px)/1.05 var(--serif); letter-spacing: -.005em; text-transform: uppercase; text-decoration: none; transition: color .18s; }
+.temas a::before { content: counter(tema, decimal-leading-zero); flex: none; width: calc(var(--nw) - 20px); font: 400 clamp(26px, 2.6vw, 34px)/1 var(--serif); color: transparent; -webkit-text-stroke: 1.5px var(--c-amarillo); transform: skewX(-8deg); }
+.temas a::after { content: "→"; margin-left: auto; font-family: var(--fuente); color: var(--c-amarillo); transition: transform .18s; }
+.temas a:hover { color: var(--c-amarillo); }
+.temas a:hover::after { transform: translateX(6px); }
+.temas a:hover::before { color: var(--c-amarillo); -webkit-text-stroke: 0; }
+
+/* ---------- Participa ---------- */
+.abajo .participa h2 { font-size: clamp(64px, 13vw, 200px); line-height: .88; }
+.abajo .participa .boton--principal, .abajo .participa .boton--principal:hover { border-color: #000; background: #000; color: var(--c-amarillo); }
+
+/* ---------- Móvil y tableta ---------- */
+@media (max-width: 800px) {
+  .abajo { --nw: 64px; }
+  .abajo .producto, .abajo .fila--faq, .abajo .mundial .fila { grid-template-columns: minmax(0, 1fr); }
+  .cifras-a > .rafaga { top: 56px; }
+  .abajo .producto:nth-child(even) .escena { order: 0; }
+  .temas { grid-template-columns: minmax(0, 1fr); }
+  .abajo .cifras li { grid-template-columns: var(--nw) minmax(0, 1fr); }
+  .abajo .cifras li span { grid-column: 2; }
+  .abajo .cifras li:nth-child(2) { margin-left: 0; }
+  .escena, .escena--corta { min-height: 300px; }
+  .escena--alta { min-height: 400px; }
+  .abajo .tramo::before { font-size: 9px; letter-spacing: .12em; }
+  .abajo .participa > .rafaga { --t: 280px; top: auto; bottom: -110px; right: -90px; transform: rotate(10deg); }
+}
+
+/* ---------- Ráfagas (formas) ---------- */
+.rafaga--negra { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-62 -62 124 124'><polygon points='11.4,-59.5 10.0,-23.7 31.9,-45.7 20.8,-19.5 43.2,-26.1 28.9,-10.0 48.0,-6.0 30.3,2.6 49.0,14.9 24.6,13.5 42.9,37.2 15.3,20.2 25.9,55.3 5.5,23.6 1.2,60.9 -4.8,25.0 -21.9,52.0 -16.1,23.2 -37.2,34.8 -26.1,15.7 -45.7,15.8 -30.3,3.8 -50.5,-4.3 -27.2,-8.2 -49.2,-27.1 -19.4,-16.8 -36.7,-48.4 -10.3,-21.9 -13.9,-59.6 -0.5,-25.2' fill='none' stroke='%23fff' stroke-width='.9' stroke-linejoin='round'/><polygon points='0.0,-55.0 4.9,-22.9 20.6,-46.3 15.3,-21.0 34.1,-30.7 24.1,-13.9 41.9,-13.6 27.5,-2.9 46.3,4.9 24.3,7.9 44.7,25.8 17.1,15.4 32.6,44.9 8.9,20.1 11.5,54.1 0.0,23.2 -10.7,50.2 -10.4,23.4 -27.2,37.5 -20.6,18.5 -38.1,22.0 -26.4,8.6 -45.8,4.8 -25.7,-2.7 -48.5,-15.8 -20.2,-11.6 -41.0,-37.0 -12.9,-17.8 -22.6,-50.8 -4.8,-22.4' fill='%23000'/><path d='M-60 -22 L-48 -18 M58 30 L46 27 M8 -61 L10 -50' stroke='%23fff' stroke-width='.9' fill='none'/></svg>"); }
+.rafaga--amarilla { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-62 -62 124 124'><polygon points='11.4,-59.5 10.0,-23.7 31.9,-45.7 20.8,-19.5 43.2,-26.1 28.9,-10.0 48.0,-6.0 30.3,2.6 49.0,14.9 24.6,13.5 42.9,37.2 15.3,20.2 25.9,55.3 5.5,23.6 1.2,60.9 -4.8,25.0 -21.9,52.0 -16.1,23.2 -37.2,34.8 -26.1,15.7 -45.7,15.8 -30.3,3.8 -50.5,-4.3 -27.2,-8.2 -49.2,-27.1 -19.4,-16.8 -36.7,-48.4 -10.3,-21.9 -13.9,-59.6 -0.5,-25.2' fill='none' stroke='%23fff' stroke-width='.9' stroke-linejoin='round'/><polygon points='0.0,-55.0 4.9,-22.9 20.6,-46.3 15.3,-21.0 34.1,-30.7 24.1,-13.9 41.9,-13.6 27.5,-2.9 46.3,4.9 24.3,7.9 44.7,25.8 17.1,15.4 32.6,44.9 8.9,20.1 11.5,54.1 0.0,23.2 -10.7,50.2 -10.4,23.4 -27.2,37.5 -20.6,18.5 -38.1,22.0 -26.4,8.6 -45.8,4.8 -25.7,-2.7 -48.5,-15.8 -20.2,-11.6 -41.0,-37.0 -12.9,-17.8 -22.6,-50.8 -4.8,-22.4' fill='%23fcc605'/><path d='M-60 -22 L-48 -18 M58 30 L46 27 M8 -61 L10 -50' stroke='%23fff' stroke-width='.9' fill='none'/></svg>"); }
+.rafaga--roja { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-62 -62 124 124'><polygon points='11.4,-59.5 10.0,-23.7 31.9,-45.7 20.8,-19.5 43.2,-26.1 28.9,-10.0 48.0,-6.0 30.3,2.6 49.0,14.9 24.6,13.5 42.9,37.2 15.3,20.2 25.9,55.3 5.5,23.6 1.2,60.9 -4.8,25.0 -21.9,52.0 -16.1,23.2 -37.2,34.8 -26.1,15.7 -45.7,15.8 -30.3,3.8 -50.5,-4.3 -27.2,-8.2 -49.2,-27.1 -19.4,-16.8 -36.7,-48.4 -10.3,-21.9 -13.9,-59.6 -0.5,-25.2' fill='none' stroke='%23fff' stroke-width='.9' stroke-linejoin='round'/><polygon points='0.0,-55.0 4.9,-22.9 20.6,-46.3 15.3,-21.0 34.1,-30.7 24.1,-13.9 41.9,-13.6 27.5,-2.9 46.3,4.9 24.3,7.9 44.7,25.8 17.1,15.4 32.6,44.9 8.9,20.1 11.5,54.1 0.0,23.2 -10.7,50.2 -10.4,23.4 -27.2,37.5 -20.6,18.5 -38.1,22.0 -26.4,8.6 -45.8,4.8 -25.7,-2.7 -48.5,-15.8 -20.2,-11.6 -41.0,-37.0 -12.9,-17.8 -22.6,-50.8 -4.8,-22.4' fill='%23f01622'/><path d='M-60 -22 L-48 -18 M58 30 L46 27 M8 -61 L10 -50' stroke='%23fff' stroke-width='.9' fill='none'/></svg>"); }
+.rafaga--verde { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-62 -62 124 124'><polygon points='11.4,-59.5 10.0,-23.7 31.9,-45.7 20.8,-19.5 43.2,-26.1 28.9,-10.0 48.0,-6.0 30.3,2.6 49.0,14.9 24.6,13.5 42.9,37.2 15.3,20.2 25.9,55.3 5.5,23.6 1.2,60.9 -4.8,25.0 -21.9,52.0 -16.1,23.2 -37.2,34.8 -26.1,15.7 -45.7,15.8 -30.3,3.8 -50.5,-4.3 -27.2,-8.2 -49.2,-27.1 -19.4,-16.8 -36.7,-48.4 -10.3,-21.9 -13.9,-59.6 -0.5,-25.2' fill='none' stroke='%23fff' stroke-width='.9' stroke-linejoin='round'/><polygon points='0.0,-55.0 4.9,-22.9 20.6,-46.3 15.3,-21.0 34.1,-30.7 24.1,-13.9 41.9,-13.6 27.5,-2.9 46.3,4.9 24.3,7.9 44.7,25.8 17.1,15.4 32.6,44.9 8.9,20.1 11.5,54.1 0.0,23.2 -10.7,50.2 -10.4,23.4 -27.2,37.5 -20.6,18.5 -38.1,22.0 -26.4,8.6 -45.8,4.8 -25.7,-2.7 -48.5,-15.8 -20.2,-11.6 -41.0,-37.0 -12.9,-17.8 -22.6,-50.8 -4.8,-22.4' fill='%230c8436'/><path d='M-60 -22 L-48 -18 M58 30 L46 27 M8 -61 L10 -50' stroke='%23fff' stroke-width='.9' fill='none'/></svg>"); }
+
+@media (prefers-reduced-motion: reduce) { .temas a, .temas a::after { transition: none; } .temas a:hover::after { transform: none; } }
