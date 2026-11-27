@@ -1,6 +1,43 @@
 # Web de Barranquilla Lista
 
-Un mapa para moverse por Barranquilla, con dos vistas:
+Cuatro páginas:
+
+| Dirección | Qué muestra |
+|---|---|
+| `/` (`index.html`) | Inicio: la ciudad que se propone y las herramientas |
+| `mapa/` | El mapa para moverse por la ciudad |
+| `punto-lista/` | La propuesta del dispositivo ([documentación](punto-lista/README.md)) |
+| `cursos/` | Cursos propuestos, con filtros por edad y tema |
+
+## Inicio
+
+El mensaje principal es la ciudad: **Barranquilla para su gente**. El Mundial 2034 se menciona como un medio, no como el fin. Se lee así: portada, **De dónde partimos**, **Qué proponemos**, **Un medio, no el fin**, **La ruta**, **Lo que queda**, **Lo que ya puedes ver**, cursos, **Preguntas frecuentes** y **Participa**. No carga scripts, Leaflet ni datos del mapa.
+
+El estilo es de collage editorial (`css/inicio.css` y `css/abajo.css`, con los colores de `css/paleta.css`). Las transiciones están en `css/movimiento.css`: se apagan si se pide reducir el movimiento y las ligadas al desplazamiento solo funcionan en navegadores con `animation-timeline`.
+
+Reglas para editarlo (varias las revisa `tests/paginas.test.mjs`):
+
+- El titular y el título de la pestaña hablan de la ciudad, no del Mundial.
+- Es un escenario ficticio: la portada debe decirlo.
+- Máximo tres datos, cada uno con fuente y fecha. Si no está verificado por un tercero, una línea lo dice.
+- Máximo cinco hitos y tres viñetas por hito. Lo que no está aprobado se marca como **Propuesta**.
+- Quien llega a las rutas desde el inicio ve que son de ejemplo.
+
+| Dato en pantalla | Fuente | Fecha |
+|---|---|---|
+| Calor: más de 5 °C de diferencia de superficie | [Banco Mundial](https://documents1.worldbank.org/curated/en/099101025093541356/pdf/P504085-aceef324-8f97-478b-b4cd-6624ef954e6a.pdf), que cita un análisis de Barranquilla | 2025 |
+| Transmetro: de 29,5 a 13,6 millones de validaciones | [Gabriel Olier](https://gabrielolier.substack.com/p/repensar-la-movilidad-de-barranquilla), análisis independiente | 11 de octubre de 2026 |
+| Arroyos: 14.200 toneladas de residuos | Alcaldía, en [El Tiempo](https://www.eltiempo.com/colombia/barranquilla/la-impresionante-cantidad-de-basura-que-termina-en-los-arroyos-de-barranquilla-14-200-toneladas-retiradas-en-2026-y-50-canales-intervenidos-3594947) | 20 de octubre de 2026 |
+
+Las tres cifras se contrastaron en la página original el 2026-11-26. Los seis frentes resumen el [Sprint 1](../sprint%201/README.md); la ruta, la [hoja de ruta propuesta](../investigacion/08-barranquilla-preguntas-clave.md); y las tres preguntas, la [conclusión](../investigacion/10-conclusion.md).
+
+**Participa** y **Contacto** llevan a las [incidencias del repositorio](https://github.com/dagoregino/Andromeda/issues). Escribir pide una cuenta de GitHub.
+
+Las fotos de `img/destinos/` no tienen registrada su fuente ni su licencia: hay que anotarlas o cambiarlas antes de publicar.
+
+## Mapa
+
+Tiene dos vistas:
 
 - **Cómo llegar:** se elige un destino y el punto de salida, y se consultan las rutas de bus de ejemplo que sirven, sin transbordos.
 - **Todas las rutas:** se filtra por empresa, código o nombre y se ve el recorrido completo, los lugares conocidos cerca y las paradas cuando se conocen.
@@ -13,13 +50,14 @@ Desde la carpeta `web`:
 python -m http.server 4173
 ```
 
-Luego abre <http://localhost:4173>. Necesita un servidor: abrir el archivo con doble clic no carga los datos. La ubicación del navegador solo funciona en `localhost` o con HTTPS.
+Luego abre <http://localhost:4173> para el inicio o <http://localhost:4173/mapa/> para el mapa. Necesita un servidor: abrir el archivo con doble clic no carga los datos. La ubicación del navegador solo funciona en `localhost` o con HTTPS.
 
 ## Estructura
 
 | Ruta | Contenido |
 |---|---|
-| `index.html`, `css/inicio.css`, `img/portada.svg` | Página de inicio |
+| `index.html`, `css/inicio.css`, `css/abajo.css`, `css/movimiento.css` | Inicio |
+| `cursos/`, `css/cursos.css`, `js/cursos.js` | Cursos propuestos |
 | `img/logo.svg`, `favicon.svg` | Logo provisional (patacón en amarillo; el original está en `img/patacon-negro.svg`) |
 | `mapa/index.html` | La aplicación del mapa |
 | `js/app.js` | Interacción y estado del viaje |

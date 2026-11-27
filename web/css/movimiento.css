@@ -1,0 +1,45 @@
+/* Transiciones del inicio. Solo corren si la persona no pide reducir el movimiento; sin ellas
+   todo se ve quieto y completo. Se mueven con translate, scale y opacity para no deshacer los
+   giros que ya usan las fotos y los recortes. */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+
+  .boton, .temas a, .temas a::after, .abajo .faq summary::after {
+    transition: background-color .25s ease, color .25s ease, border-color .25s ease, scale .15s ease, translate .2s ease, transform .2s ease;
+  }
+  .boton:active { scale: .95; }
+  .temas a:hover::after { translate: 6px 0; }
+
+  /* Entrada de la portada: el titular, el texto y las fotos suben uno tras otro. */
+  .portada h1 { animation: subir .8s cubic-bezier(.2, .7, .2, 1) backwards; }
+  .portada__datos > * { animation: subir .8s .12s cubic-bezier(.2, .7, .2, 1) backwards; }
+  .portada__datos > :nth-child(2) { animation-delay: .2s; }
+  .foto { animation: subir .9s .28s cubic-bezier(.2, .7, .2, 1) backwards; }
+  .foto:nth-child(2) { animation-delay: .38s; }
+  .foto:nth-child(3) { animation-delay: .48s; }
+  .estrella { animation: girar 1.4s .2s cubic-bezier(.2, .7, .2, 1) backwards; }
+
+  /* Efectos ligados al desplazamiento. Sin soporte, todo se ve quieto y completo. */
+  @supports (animation-timeline: view()) {
+    .avance { position: absolute; inset: auto 0 -3px; height: 3px; background: var(--c-amarillo); transform-origin: left; animation: llenar-ancho linear both; animation-timeline: scroll(root); }
+
+    .aparece, .dato, .frente { animation: aparecer linear both; animation-timeline: view(); animation-range: entry 0% entry 60%; }
+    /* Las etapas solo cambian de opacidad para que sus puntos no se salgan de la línea. */
+    .hito { animation: asomar linear both; animation-timeline: view(); animation-range: entry 0% entry 50%; }
+
+    /* Las dos barras comparten un reloj: así guardan su proporción mientras crecen. */
+    .grafico { view-timeline-name: --grafico; }
+    .grafico__barra { animation: crecer linear both; animation-timeline: --grafico; animation-range: entry 0% entry 100%; }
+
+    .linea { view-timeline-name: --linea; }
+    .linea::after { transform-origin: top; animation: llenar-alto linear both; animation-timeline: --linea; animation-range: cover 20% cover 75%; }
+  }
+}
+
+@keyframes subir { from { opacity: 0; translate: 0 1.5rem; } }
+@keyframes girar { from { opacity: 0; rotate: -90deg; scale: .4; } }
+@keyframes aparecer { from { opacity: .15; translate: 0 2.5rem; } to { opacity: 1; translate: 0 0; } }
+@keyframes asomar { from { opacity: .15; } }
+@keyframes llenar-ancho { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes llenar-alto { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes crecer { from { transform: scaleX(0); } }
