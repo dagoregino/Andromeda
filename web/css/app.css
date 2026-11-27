@@ -22,7 +22,7 @@ a { color: inherit; text-underline-offset: 3px; }
 
 /* Barra: marca a la izquierda y las dos vistas a la derecha, alineadas con las de Punto Lista. */
 .barra { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: var(--ancho); height: var(--barra); margin-inline: auto; }
-.barra__marca { font-size: 15px; font-weight: 600; white-space: nowrap; }
+.barra__marca { display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; font-weight: 600; white-space: nowrap; text-decoration: none; }
 .barra__nav { display: flex; gap: 8px; }
 .barra__enlace { display: inline-flex; align-items: center; min-height: 44px; padding: 0 8px; color: rgb(245 245 247 / .8); font-size: 13px; white-space: nowrap; text-decoration: none; transition: color var(--transicion); }
 .barra__enlace:hover, .barra__enlace[aria-current="page"] { color: var(--c-blanco); }

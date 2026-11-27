@@ -3,135 +3,188 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://tile.openstreetmap.org; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
-<title>Barranquilla Lista: mapa para moverte por la ciudad</title>
-<meta name="description" content="Elige a dónde vas en Barranquilla, indica desde dónde sales y consulta qué rutas de bus de ejemplo te sirven.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>Barranquilla 2034: lo que cambia antes del Mundial</title>
+<meta name="description" content="Una propuesta para preparar la ciudad para el Mundial 2034 y para después. Escenario ficticio de prospectiva.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Barranquilla Lista: mapa para moverte por la ciudad">
-<meta property="og:description" content="Elige tu destino y consulta cómo llegar. Prototipo del Bootcamp QUIJAM.">
-<meta property="og:image" content="share.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Barranquilla 2034: lo que cambia antes del Mundial">
+<meta property="og:description" content="Una propuesta de ciudad para antes y después del evento. Escenario ficticio de prospectiva.">
 <meta name="theme-color" content="#000000">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
 <link rel="stylesheet" href="css/paleta.css">
-<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/inicio.css">
 </head>
 <body>
-<a class="saltar" href="#panel">Saltar al buscador</a>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
 
 <header class="barra">
-  <span class="barra__marca">Barranquilla Lista</span>
-  <nav class="barra__nav" aria-label="Principal">
-    <a class="barra__enlace" href="./" aria-current="page">Mapa</a>
-    <a class="barra__enlace" href="punto-lista/">Punto Lista</a>
-  </nav>
+  <div class="barra__fila ancho">
+    <p class="barra__marca">Barranquilla Lista</p>
+    <nav class="barra__nav" aria-label="Principal">
+      <a href="mapa.html">Mapa</a>
+      <a href="punto-lista/">Punto Lista</a>
+      <a href="https://github.com/dagoregino/Andromeda/issues">Contacto</a>
+    </nav>
+  </div>
+  <div class="barra__avance" aria-hidden="true"></div>
 </header>
 
-<main class="app">
-  <div class="mapa">
-    <div class="mapa__lienzo" id="mapa" role="region" aria-label="Mapa de Barranquilla"></div>
-    <p class="mapa__error" data-error-mapa hidden>El mapa no cargó. Puedes elegir los lugares en las listas.</p>
-  </div>
-
-  <section class="panel" id="panel" tabindex="-1" aria-labelledby="titulo">
-    <div class="pestanas" role="group" aria-label="Qué quieres consultar">
-      <button class="pestana" type="button" data-modo="viaje" aria-pressed="true">Cómo llegar</button>
-      <button class="pestana" type="button" data-modo="rutas" aria-pressed="false">Todas las rutas</button>
+<main id="contenido" tabindex="-1">
+  <section class="portada" aria-labelledby="titulo">
+    <p class="portada__fondo" aria-hidden="true">2034</p>
+    <div class="portada__cuerpo ancho">
+      <h1 id="titulo"><span class="portada__año">Barranquilla 2034:</span> lo que cambia antes del Mundial.</h1>
+      <p class="portada__subtitulo">Una propuesta para preparar la ciudad para el evento y para todo lo que viene después.</p>
+      <p class="portada__acciones">
+        <a class="boton boton--principal" href="#ruta">Ver la ruta</a>
+        <a class="boton boton--borde" href="#participa">Participa</a>
+      </p>
+      <nav class="regla" aria-label="Etapas de la ruta">
+        <ol>
+          <li><a href="#hito-2026">2026</a></li>
+          <li><a href="#hito-2028">2028</a></li>
+          <li><a href="#hito-2031">2031</a></li>
+          <li><a href="#hito-2034">2034</a></li>
+          <li><a href="#hito-despues">Después</a></li>
+        </ol>
+      </nav>
+      <p class="portada__nota">Escenario ficticio de prospectiva. En la realidad, la sede del Mundial 2034 es Arabia Saudita.</p>
     </div>
-    <h1 id="titulo">¿A dónde vas?</h1>
-    <p class="aviso"><strong>Rutas de ejemplo.</strong> No están verificadas con las empresas de bus. Confirma antes de salir.</p>
-    <p class="estado" role="status" aria-live="polite" data-estado>Cargando lugares y rutas…</p>
+  </section>
 
-    <div class="vista" data-vista="viaje">
-      <div class="bloque" data-buscador>
-        <label for="buscar">Destino</label>
-        <input id="buscar" type="search" placeholder="Busca un lugar" autocomplete="off" disabled>
-        <p class="ayuda">También puedes tocar un punto del mapa.</p>
-        <ul class="lugares" data-lugares></ul>
-        <p class="ayuda" data-sin-lugares hidden>No encontramos ese lugar. Márcalo tocando el mapa.</p>
-      </div>
-
-      <div class="elegido" data-destino hidden>
-        <p><span>Destino</span> <strong data-destino-nombre></strong></p>
-        <button class="boton boton--texto" type="button" data-cambiar-destino>Cambiar destino</button>
-      </div>
-
-      <div class="bloque" data-origen-pedir hidden>
-        <h2 id="titulo-origen" tabindex="-1">¿Desde dónde sales?</h2>
-        <button class="boton" type="button" data-ubicacion>Usar mi ubicación</button>
-        <label for="origen">O elige un lugar</label>
-        <select id="origen"><option value="">Elige un lugar</option></select>
-        <button class="boton" type="button" data-usar-lugar disabled>Salir desde ese lugar</button>
-        <p class="ayuda">También puedes tocar el mapa. Tu ubicación se usa solo en este navegador y no se guarda; el mapa se descarga de OpenStreetMap según la zona que muestra.</p>
-      </div>
-
-      <div class="elegido" data-origen hidden>
-        <p><span>Salida</span> <strong data-origen-nombre></strong></p>
-        <button class="boton boton--texto" type="button" data-cambiar-origen>Cambiar salida</button>
-      </div>
-
-      <div class="bloque" data-viaje hidden>
-        <dl class="datos">
-          <div><dt>Distancia en línea recta</dt><dd data-distancia></dd></div>
-        </dl>
-        <!-- Accesibilidad: solo aparece si data/accesibilidad.json tiene datos reales del destino (ejemplo: false),
-             tomados de una fuente citada o de una visita del equipo. -->
-        <section class="acceso" data-acceso aria-labelledby="acceso-titulo" hidden>
-          <h2 class="solo-lector" id="acceso-titulo">Accesibilidad del destino</h2>
-          <div class="acceso__linea">
-            <svg class="acceso__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <circle cx="12" cy="4" r="2.2" />
-              <path d="M4.5 8.2 12 9.6l7.5-1.4M12 9.6v5.2L8.6 21.3M12 14.8l3.4 6.5" />
-            </svg>
-            <p class="acceso__resumen">
-              <strong data-acceso-veredicto></strong>
-              <span class="acceso__fecha" data-acceso-fecha></span>
-            </p>
-            <button class="boton acceso__boton" type="button" data-acceso-ver-detalle aria-expanded="false" aria-controls="acceso-detalle"><span data-texto>Ver detalle</span><span class="solo-lector"> de accesibilidad</span></button>
+  <!-- Cifras tomadas de investigacion/07-barranquilla-diagnostico.md y contrastadas en la página original
+       el 2026-11-26. Si cambia una cifra, cambian también su fuente, su fecha y su advertencia. -->
+  <section class="seccion seccion--clara" aria-labelledby="partida-titulo">
+    <div class="ancho">
+      <h2 class="aparece" id="partida-titulo">De dónde partimos</h2>
+      <ul class="datos">
+        <li class="dato">
+          <svg class="icono" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle cx="24" cy="24" r="9"/><path d="M24 4v6M24 38v6M4 24h6M38 24h6M10 10l4 4M34 34l4 4M38 10l-4 4M14 34l-4 4"/></svg>
+          <h3>Calor</h3>
+          <p class="dato__cifra">Más de 5 °C</p>
+          <div class="dato__texto">
+            <p>de diferencia en la temperatura de superficie entre los barrios más pobres y las zonas más ricas.</p>
+            <p class="dato__fuente">Fuente: <a href="https://documents1.worldbank.org/curated/en/099101025093541356/pdf/P504085-aceef324-8f97-478b-b4cd-6624ef954e6a.pdf">Banco Mundial</a>, 2025.</p>
           </div>
-          <div class="acceso__detalle" id="acceso-detalle" hidden>
-            <ul class="acceso__filas" data-acceso-filas></ul>
-            <button class="boton acceso__boton" type="button" data-acceso-ver-todos aria-expanded="false" aria-controls="acceso-criterios"><span data-texto>Ver todos los criterios</span></button>
-            <div class="acceso__criterios" id="acceso-criterios" data-acceso-criterios hidden></div>
-            <div data-acceso-origen></div>
-            <p class="ayuda">No es una certificación oficial.</p>
+          <svg class="dato__arte" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><circle cx="200" cy="200" r="40"/><circle cx="200" cy="200" r="80"/><circle cx="200" cy="200" r="120"/><circle cx="200" cy="200" r="160"/></svg>
+        </li>
+        <li class="dato">
+          <svg class="icono" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="9" y="6" width="30" height="31" rx="7"/><path d="M9 23h30M15 37v5M33 37v5"/><circle cx="16" cy="30" r="1.5"/><circle cx="32" cy="30" r="1.5"/></svg>
+          <h3>Transporte</h3>
+          <p class="dato__cifra">De 29,5 a 13,6 millones</p>
+          <div class="dato__texto">
+            <p>de pasajes registrados en Transmetro, entre 2019 y 2025.</p>
+            <p class="dato__fuente">Fuente: <a href="https://gabrielolier.substack.com/p/repensar-la-movilidad-de-barranquilla">Gabriel Olier</a>, 11 de octubre de 2026.</p>
+            <p class="dato__aviso">Análisis independiente, sin contrastar con un informe oficial.</p>
           </div>
-        </section>
-        <button class="boton boton--principal" type="button" data-ver-rutas aria-expanded="false" aria-controls="rutas">Ver rutas de bus</button>
-        <div id="rutas" hidden>
-          <p class="ayuda" data-cuantas hidden></p>
-          <ul class="rutas" data-rutas></ul>
-          <button class="boton" type="button" data-mas-rutas hidden></button>
-          <p data-sin-rutas hidden>Ninguna de las rutas de ejemplo te sirve para este viaje sin transbordos. Puede que haya otras rutas, o que caminar sea más corto.</p>
-          <p class="ayuda" data-nota-caminata hidden>Los tramos a pie son líneas rectas aproximadas: no indican por dónde cruzar ni si el camino es accesible.</p>
-        </div>
-      </div>
+          <!-- Barras a escala: 13,6 / 29,5 = 46,1 %. El ancho está en inicio.css.
+               Repiten las cifras del texto, por eso se ocultan a los lectores de pantalla. -->
+          <div class="grafico" aria-hidden="true">
+            <div><span>2019</span><span class="grafico__pista"><span class="grafico__barra"></span></span><span>29,5</span></div>
+            <div><span>2025</span><span class="grafico__pista"><span class="grafico__barra"></span></span><span>13,6</span></div>
+          </div>
+        </li>
+        <li class="dato">
+          <svg class="icono" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M5 14q5-6 10 0t10 0 10 0 8 0M5 25q5-6 10 0t10 0 10 0 8 0M5 36q5-6 10 0t10 0 10 0 8 0"/></svg>
+          <h3>Arroyos</h3>
+          <p class="dato__cifra">14.200 toneladas</p>
+          <div class="dato__texto">
+            <p>de residuos retiradas de arroyos, caños y drenajes en lo corrido de 2026.</p>
+            <p class="dato__fuente">Fuente: Alcaldía, citada por <a href="https://www.eltiempo.com/colombia/barranquilla/la-impresionante-cantidad-de-basura-que-termina-en-los-arroyos-de-barranquilla-14-200-toneladas-retiradas-en-2026-y-50-canales-intervenidos-3594947">El Tiempo</a>, 20 de octubre de 2026.</p>
+            <p class="dato__aviso">Balance parcial, sin verificación independiente.</p>
+          </div>
+          <svg class="dato__arte" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><path d="M0 50q25-30 50 0t50 0 50 0 50 0M0 90q25-30 50 0t50 0 50 0 50 0M0 130q25-30 50 0t50 0 50 0 50 0M0 170q25-30 50 0t50 0 50 0 50 0"/></svg>
+        </li>
+      </ul>
     </div>
+  </section>
 
-    <div class="vista" data-vista="rutas" hidden>
-      <div class="bloque">
-        <label for="empresa">Empresa</label>
-        <select id="empresa"><option value="">Todas las empresas</option></select>
-        <label for="buscar-ruta">Buscar por código o nombre</label>
-        <input id="buscar-ruta" type="search" placeholder="Por ejemplo: B1 o C4" autocomplete="off">
-        <p class="ayuda" role="status" data-total-rutas></p>
+  <!-- Hitos resumidos de investigacion/08-barranquilla-preguntas-clave.md. Todo es propuesta del equipo,
+       no un plan aprobado. Las fechas de elecciones salen del calendario citado en ese documento. -->
+  <section class="seccion ruta" id="ruta" aria-labelledby="ruta-titulo">
+    <div class="ancho ruta__rejilla">
+      <div class="ruta__intro">
+        <h2 id="ruta-titulo">La ruta</h2>
+        <p class="entrada">Una hoja de ruta para la ciudad. No es un plan aprobado y depende de acuerdos y presupuesto.</p>
       </div>
-      <ul class="rutas" data-catalogo></ul>
+      <ol class="linea">
+        <li class="hito" id="hito-2026">
+          <h3><span class="hito__periodo">2026–2027</span> <span class="hito__nombre">Medir y decidir</span></h3>
+          <p class="hito__estado">Propuesta</p>
+          <ul>
+            <li>Medir calor, arroyos y transporte.</li>
+            <li>Revisar el estadio y las sedes.</li>
+            <li>Crear una entidad de legado.</li>
+          </ul>
+        </li>
+        <li class="hito" id="hito-2028">
+          <h3><span class="hito__periodo">2028–2030</span> <span class="hito__nombre">Obras para cada día</span></h3>
+          <p class="hito__estado">Propuesta</p>
+          <ul>
+            <li>Sombra primero en sur y occidente.</li>
+            <li>Drenar arroyos e integrar buses.</li>
+            <li>En 2030, confirmar o dejar la sede.</li>
+          </ul>
+        </li>
+        <li class="hito" id="hito-2031">
+          <h3><span class="hito__periodo">2031–2033</span> <span class="hito__nombre">Completar y ensayar</span></h3>
+          <p class="hito__estado">Propuesta</p>
+          <ul>
+            <li>Acuerdos que superen las elecciones.</li>
+            <li>Respaldo de energía en salud.</li>
+            <li>Ensayar desde 2032, si hay sede.</li>
+          </ul>
+        </li>
+        <li class="hito" id="hito-2034">
+          <h3><span class="hito__periodo">2034</span> <span class="hito__nombre">El año del Mundial</span></h3>
+          <p class="hito__estado">Propuesta</p>
+          <ul>
+            <li>Plan de transporte, salud y agua.</li>
+            <li>Ventas acordadas con vendedores.</li>
+            <li>Zona de aficionados en el sur.</li>
+          </ul>
+        </li>
+        <li class="hito" id="hito-despues">
+          <h3><span class="hito__periodo">Después de 2034</span> <span class="hito__nombre">Lo que continúa</span></h3>
+          <p class="hito__estado">Propuesta</p>
+          <ul>
+            <li>Retirar montajes y rendir cuentas.</li>
+            <li>Mantener sombra, drenaje y buses.</li>
+            <li>Sedes abiertas al deporte de barrio.</li>
+          </ul>
+        </li>
+      </ol>
     </div>
+  </section>
 
-    <footer class="creditos">
-      <p>Mapa y rutas de Transmetro: © colaboradores de <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, licencia ODbL. Consultadas el <span data-consultado-osm>2026-11-26</span>.</p>
-      <p>Rutas de buses tradicionales: recorridos publicados por el <a href="https://www.ambq.gov.co/transporte/transporte-publico-colectivo/">Área Metropolitana de Barranquilla (AMB)</a>, consultados el <span data-consultado-amb>2026-11-26</span> y usados sin fines comerciales.</p>
-      <p>Prototipo del equipo Andromeda para el Bootcamp QUIJAM. <a href="https://github.com/dagoregino/Andromeda/tree/main/investigacion">Ver la investigación</a>.</p>
-    </footer>
+  <section class="seccion seccion--clara" aria-labelledby="legado-titulo">
+    <div class="ancho legado__rejilla">
+      <div class="aparece">
+        <h2 id="legado-titulo">Lo que queda</h2>
+        <p class="entrada">Proponemos que esto siga cuando termine el Mundial.</p>
+      </div>
+      <ul class="legado">
+        <li class="aparece"><svg class="icono" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><ellipse cx="24" cy="11" rx="15" ry="6"/><path d="M9 11v26c0 3 7 6 15 6s15-3 15-6V11M9 24c0 3 7 6 15 6s15-3 15-6"/></svg><span><strong>Datos abiertos</strong> para todos.</span></li>
+        <li class="aparece"><svg class="icono" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M6 11l12-5 12 5 12-5v31l-12 5-12-5-12 5zM18 6v31M30 11v31"/></svg><span><strong>Un mapa público</strong> de la ciudad.</span></li>
+        <li class="aparece"><svg class="icono" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M8 9h32v24H22l-9 8v-8H8zM16 21h16"/></svg><span><strong>Puntos de atención</strong> sin celular propio.</span></li>
+        <li class="aparece"><svg class="icono" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M5 17 24 6l19 11zM10 22v15M19 22v15M29 22v15M38 22v15M5 42h38"/></svg><span><strong>Una entidad de legado</strong> tras 2034.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="seccion participa" id="participa" aria-labelledby="participa-titulo">
+    <div class="ancho aparece">
+      <h2 id="participa-titulo">Participa</h2>
+      <p class="entrada">¿Qué le falta a esta ruta? <a class="boton boton--principal" href="https://github.com/dagoregino/Andromeda/issues/new">Escríbelo en GitHub</a> <span>(pide una cuenta).</span></p>
+    </div>
   </section>
 </main>
 
-<script src="vendor/leaflet/leaflet.js"></script>
-<script type="module" src="js/app.js"></script>
+<footer class="pie">
+  <p class="ancho">Prototipo del equipo Andromeda para el Bootcamp de Innovación QUIJAM.</p>
+</footer>
 </body>
 </html>
