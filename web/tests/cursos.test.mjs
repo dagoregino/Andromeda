@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { TODOS, separar, coincide, textoCuenta } from '../js/cursos-filtro.js';
+import { DETALLES } from '../js/cursos-detalle.js';
 
 test('separar parte las claves por espacios y tolera vacíos', () => {
   assert.deepEqual(separar('ninos  jovenes'), ['ninos', 'jovenes']);
@@ -50,4 +51,15 @@ test('cada tarjeta de la página de cursos usa edades y temas que existen en los
   }
   for (const e of edades) assert.ok(tarjetas.some(([, ed]) => separar(ed).includes(e)), `sin cursos de edad ${e}`);
   for (const t of temas) assert.ok(tarjetas.some(([, , tm]) => tm === t), `sin cursos de tema ${t}`);
+});
+
+test('cada curso de la página tiene actividades y una pregunta con respuesta válida', () => {
+  const html = readFileSync(new URL('../cursos/index.html', import.meta.url), 'utf8');
+  const lista = html.slice(html.indexOf('id="lista-cursos"'), html.indexOf('id="cursos-vacio"'));
+  const titulos = [...lista.matchAll(/<h2>([^<]+)<\/h2>/g)].map((m) => m[1]);
+  assert.deepEqual(Object.keys(DETALLES).sort(), titulos.sort());
+  for (const d of Object.values(DETALLES)) {
+    assert.ok(d.actividades.length > 0 && d.pregunta && d.explicacion);
+    assert.ok(d.opciones[d.correcta], 'respuesta correcta fuera de rango');
+  }
 });

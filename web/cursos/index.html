@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="../css/cursos-pagina.css">
 <link rel="stylesheet" href="../css/navegacion.css">
 <script type="module" src="../js/cursos.js"></script>
+<script type="module" src="../js/cursos-ventana.js"></script>
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -46,16 +47,18 @@
   <div class="abajo">
   <section class="tramo cursos cursos--pagina" aria-labelledby="cursos-titulo">
     <div class="ancho">
-      <div class="fila cursos__encabezado">
-      <div class="cursos__cabecera">
-        <h1 id="cursos-titulo">Escuela de ciudad: Generación 2034</h1>
-        <p class="entrada">Cursos cortos y gratuitos para que niños, jóvenes y adultos conozcan los problemas de Barranquilla y sepan qué hacer. Empezarían en 2027 y seguirían después de 2034.</p>
-        <p class="entrada">Son ejemplos de lo que proponemos. Todavía no hay inscripciones, docentes ni sedes confirmadas.</p>
-      </div>
-      <div class="escena escena--corta" aria-hidden="true">
-        <span class="rafaga rafaga--amarilla"></span>
-        <div class="recorte recorte--e"><span class="recorte__foto"></span></div>
-      </div>
+      <div class="cursos__encabezado">
+        <div class="cursos__cabecera">
+          <h1 id="cursos-titulo">Escuela de ciudad: <span>Generación 2034</span></h1>
+          <p class="entrada">Cursos cortos y gratuitos para que niños, jóvenes y adultos conozcan los problemas de Barranquilla y sepan qué hacer. Empezarían en 2027 y seguirían después de 2034.</p>
+          <p class="cursos__aviso">Son ejemplos de lo que proponemos. Todavía no hay inscripciones, docentes ni sedes confirmadas.</p>
+          <p><a class="boton boton--principal" href="#filtros-cursos">Buscar un curso</a></p>
+        </div>
+        <div class="collage" aria-hidden="true">
+          <span class="rafaga rafaga--amarilla"></span>
+          <div class="recorte recorte--e"><span class="recorte__foto"></span></div>
+          <div class="recorte recorte--d"><span class="recorte__foto"></span></div>
+        </div>
       </div>
 
       <form class="filtros" id="filtros-cursos" aria-label="Filtrar cursos" hidden>
@@ -183,6 +186,26 @@
     </div>
   </section>
   </div>
+
+  <dialog class="ventana" id="curso-ventana" aria-labelledby="ventana-titulo">
+    <div class="ventana__contenido">
+      <div class="ventana__cabeza">
+        <button class="ventana__cerrar" id="ventana-cerrar" type="button">Cerrar</button>
+        <p id="ventana-tema"></p>
+        <h2 id="ventana-titulo"></h2>
+        <p id="ventana-texto"></p>
+      </div>
+      <div class="ventana__cuerpo">
+        <h3>Qué harías en el curso</h3>
+        <ol id="ventana-actividades"></ol>
+        <h3>Pruébalo</h3>
+        <p id="ventana-pregunta"></p>
+        <div class="ventana__opciones" id="ventana-opciones"></div>
+        <p class="ventana__respuesta" id="ventana-respuesta" role="status"></p>
+        <p class="ventana__nota">Contenido de ejemplo. Este curso es una propuesta y todavía no tiene inscripciones.</p>
+      </div>
+    </div>
+  </dialog>
 
 </main>
 

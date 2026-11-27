@@ -57,7 +57,9 @@ Luego abre <http://localhost:4173> para el inicio o <http://localhost:4173/mapa/
 | Ruta | Contenido |
 |---|---|
 | `index.html`, `css/inicio.css`, `css/abajo.css`, `css/movimiento.css` | Inicio |
-| `cursos/`, `css/cursos.css`, `js/cursos.js` | Cursos propuestos |
+| `cursos/`, `css/cursos.css`, `css/cursos-pagina.css`, `img/cursos/` | Cursos propuestos: un afiche por curso |
+| `js/cursos.js`, `js/cursos-filtro.js` | Filtros de cursos (lógica con pruebas y vista) |
+| `js/cursos-ventana.js`, `js/cursos-detalle.js` | Ventana de cada curso y su contenido de ejemplo. La clave de cada curso es el título de su `<h2>` |
 | `img/logo.svg`, `favicon.svg` | Logo provisional (patacón en amarillo; el original está en `img/patacon-negro.svg`) |
 | `mapa/index.html` | La aplicación del mapa |
 | `js/app.js` | Interacción y estado del viaje |
