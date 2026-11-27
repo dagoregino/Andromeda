@@ -58,7 +58,7 @@ const lugarDeAcceso = (acceso) => acceso.nombre ?? 'un punto aproximado del reco
 function advertenciasDe(ruta) {
   const textos = [];
   if (ruta.sentidoVerificado === false) textos.push('El sentido de viaje no está confirmado: pregunta antes de subir.');
-  textos.push(`Dato de ejemplo con fecha ${ruta.editado}.`);
+  textos.push(`Dato con fecha ${ruta.editado}.`);
   return textos.map((texto) => crear('p', 'ruta__nota', texto));
 }
 

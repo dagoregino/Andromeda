@@ -40,7 +40,6 @@
 .curso__texto { color: var(--texto-suave); }
 .curso__pie { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: auto 0 0; padding: 12px 0 0; list-style: none; }
 .curso__edad { padding: 4px 12px; border: 1px solid var(--linea-fuerte); border-radius: 99px; font-size: 13px; }
-.curso__estado { margin-left: auto; font-size: 13px; font-weight: 600; color: var(--c-amarillo); }
 
 .cursos__vacio { display: grid; justify-items: start; gap: 8px; padding: 28px; border: 1px dashed var(--linea-fuerte); border-radius: 16px; }
 .cursos__cierre { margin-top: 32px; color: var(--texto-suave); }

@@ -24,7 +24,7 @@
 .abajo .cursos--pagina h1 { font-family: var(--serif); font-size: clamp(42px, 7vw, 100px); font-weight: 400; line-height: .94; letter-spacing: -.015em; text-transform: uppercase; }
 .cursos--pagina h1 span { display: block; margin-top: .08em; color: var(--c-amarillo); font-size: .78em; }
 .abajo .cursos--pagina .cursos__cabecera .entrada { max-width: 48ch; font-size: clamp(17px, 1.5vw, 20px); color: var(--texto); }
-.cursos__aviso { max-width: 52ch; padding-left: 16px; border-left: 4px solid var(--c-amarillo); font-size: 15px; color: var(--texto-suave); }
+.cursos__nota { max-width: 52ch; padding-left: 16px; border-left: 4px solid var(--c-amarillo); font-size: 15px; color: var(--texto-suave); }
 .cursos--pagina .boton--principal, .cursos--pagina .boton--principal:hover { border-color: var(--c-amarillo); background: var(--c-amarillo); color: var(--c-oscuro); }
 
 .collage { position: relative; isolation: isolate; aspect-ratio: 1 / 1; width: 100%; max-width: 520px; justify-self: center; }
@@ -65,8 +65,7 @@
 .abajo .curso__edad { padding: 6px 10px; border: 0; border-radius: 4px; background: var(--t); color: var(--c); font-size: 13px; font-weight: 700; }
 .curso[data-edad~="ninos"] .curso__edad:first-child::after { content: " 6–12"; font-weight: 500; }
 .curso[data-edad^="jovenes"] .curso__edad:first-child::after, .curso[data-edad="ninos jovenes"] .curso__edad:nth-child(2)::after { content: " 13–17"; font-weight: 500; }
-.curso[data-edad~="adultos"] .curso__edad:nth-last-child(2)::after { content: " 18+"; font-weight: 500; }
-.abajo .curso__estado { margin-left: auto; color: inherit; }
+.curso[data-edad~="adultos"] .curso__edad:last-child::after { content: " 18+"; font-weight: 500; }
 
 .abajo .cursos__vacio { margin-top: 28px; padding: 32px; border: 2px dashed var(--linea-fuerte); border-radius: 6px; }
 .abajo .cursos__vacio[hidden] { display: none; }
@@ -81,18 +80,56 @@
 .abajo .curso:hover .curso__abrir, .abajo .curso__abrir:focus-visible { background: var(--t); color: var(--c); }
 .abajo .curso:has(.curso__abrir:focus-visible) { outline: 3px solid var(--texto); outline-offset: 4px; }
 
-/* ---------- Ventana del curso ---------- */
-.ventana { width: min(640px, 100% - 24px); max-height: min(88vh, 860px); max-height: min(88dvh, 860px); padding: 0; border: 0; border-radius: 10px; background: #0b1a42; color: var(--texto); overflow-y: auto; overscroll-behavior: contain; }
+/* ---------- Ventana del curso: encabezado, avance, un paso y botones ---------- */
+.ventana { width: min(640px, 100% - 24px); height: min(90vh, 760px); height: min(90dvh, 760px); max-height: none; padding: 0; border: 0; border-radius: 10px; background: #0b1a42; color: var(--texto); overflow: hidden; }
+.ventana[open] { display: flex; flex-direction: column; }
 .ventana::backdrop { background: rgb(3 8 24 / .78); }
-.ventana__cabeza { display: grid; gap: 12px; padding: 24px clamp(20px, 5vw, 36px) 28px; background: var(--c); color: var(--t); }
-.ventana__cabeza p:first-of-type { font-weight: 600; }
-.ventana h2 { font: 400 clamp(30px, 6vw, 44px)/1.06 var(--serif); text-transform: none; }
+.ventana [hidden] { display: none; }
+.ventana__cabeza { flex: none; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px 16px; padding: 16px clamp(18px, 5vw, 36px) 20px; background: var(--c); color: var(--t); }
+.ventana__cabeza p { font-weight: 600; }
+.ventana h2 { grid-column: 1 / -1; font: 400 clamp(26px, 5.6vw, 42px)/1.02 var(--serif); text-transform: uppercase; overflow-wrap: break-word; }
 .ventana h2::first-letter { color: inherit; font-size: inherit; }
-.ventana__cerrar { justify-self: end; min-height: 44px; padding: 0 18px; border: 2px solid currentColor; border-radius: 8px; background: none; color: inherit; font: 700 14px/1 var(--fuente); cursor: pointer; }
-.ventana__cuerpo { display: grid; gap: 14px; padding: 28px clamp(20px, 5vw, 36px) 32px; }
-.ventana h3 { margin-top: 10px; font: 400 24px/1.2 var(--serif); color: var(--c-amarillo); }
-.ventana h3:first-child { margin-top: 0; }
-.ventana ol { display: grid; gap: 10px; padding-left: 22px; list-style: decimal; }
+/* Después de la portada el título se reduce para dejar sitio al paso. */
+.ventana:not([data-paso="portada"]) h2 { font-size: clamp(19px, 3.6vw, 24px); line-height: 1.1; }
+.ventana__cerrar { min-height: 44px; padding: 0 18px; border: 2px solid currentColor; border-radius: 8px; background: none; color: inherit; font: 700 14px/1 var(--fuente); cursor: pointer; }
+.ventana button:focus-visible, .ventana h3:focus-visible, .ventana input:focus-visible { outline: 3px solid var(--texto); outline-offset: 3px; }
+.ventana .ventana__cabeza button:focus-visible { outline-color: currentColor; }
+.ventana__avance { flex: none; display: grid; gap: 8px; padding: 14px clamp(18px, 5vw, 36px) 0; }
+.ventana__avance p { font-size: 14px; font-weight: 600; color: var(--texto-suave); }
+.ventana__barra { display: flex; gap: 4px; }
+.ventana__barra span { flex: 1; height: 6px; border-radius: 99px; background: var(--superficie-encima); }
+.ventana__barra span[data-visto] { background: var(--c); }
+.ventana__cuerpo { flex: 1; min-height: 0; padding: 20px clamp(18px, 5vw, 36px) 24px; overflow: hidden auto; overscroll-behavior: contain; }
+.ventana__pie { flex: none; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding: 14px clamp(18px, 5vw, 36px) calc(14px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--linea); background: #0b1a42; }
+#ventana-siguiente { margin-left: auto; }
+
+.ventana__boton { min-height: 46px; padding: 8px 18px; border: 2px solid var(--linea-fuerte); border-radius: 8px; background: none; color: var(--texto); font: 700 15px/1.2 var(--fuente); cursor: pointer; }
+.ventana__boton:hover:not(:disabled) { border-color: var(--texto); }
+.ventana__boton:disabled { opacity: .4; cursor: default; }
+.ventana__boton--principal, .ventana__boton--principal:hover:not(:disabled) { border-color: var(--c-amarillo); background: var(--c-amarillo); color: var(--c-oscuro); }
+/* Salir del curso es una acción general: píldora, como en el resto de la web. */
+.ventana__boton--salir { border-radius: 99px; }
+
+/* ---------- Pasos ---------- */
+.recorrido__paso { display: grid; align-content: start; gap: 16px; }
+.ventana h3 { font: 400 clamp(26px, 5vw, 34px)/1.05 var(--serif); text-transform: uppercase; color: var(--c-amarillo); }
+.recorrido__texto { max-width: 52ch; font-size: 18px; line-height: 1.55; }
+.recorrido__nota { padding-left: 14px; border-left: 4px solid var(--c); font-size: 14px; color: var(--texto-suave); }
+.recorrido__paso > .franja { margin-top: 4px; }
+
+/* Collage de la portada y del cierre: ráfaga detrás y recortes de borde irregular. */
+.recorrido__collage { position: relative; isolation: isolate; padding: 12px 10px; }
+/* La ráfaga queda dentro del margen del paso, también girada, para no ensanchar la ventana. */
+.recorrido__collage > .rafaga { --t: 170px; top: -34px; right: 2px; transform: rotate(14deg); }
+.recorrido__recorte { display: grid; gap: 12px; margin: 0; padding: 22px 24px; background: var(--texto); color: var(--fondo); transform: rotate(-1.5deg); clip-path: polygon(0 5%, 30% 0, 64% 4%, 100% 0, 98% 52%, 100% 96%, 66% 100%, 32% 96%, 0 100%, 1.5% 48%); }
+.recorrido__recorte dt { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.recorrido__recorte dd { margin: 0; font-size: 17px; font-weight: 600; line-height: 1.35; }
+.recorrido__ideas { display: grid; gap: 10px; }
+.recorrido__ideas li { padding: 14px 22px; background: var(--c); color: var(--t); font-size: 17px; font-weight: 700; transform: rotate(-1deg); clip-path: polygon(0 8%, 34% 0, 70% 7%, 100% 0, 98.5% 100%, 62% 93%, 30% 100%, 0 92%); }
+.recorrido__ideas li:nth-child(even) { transform: rotate(1.5deg); }
+
+/* ---------- Actividad: la consigna usa el color del tema ---------- */
+.actividad__consigna { padding: 16px 18px; border-radius: 8px; background: var(--c); color: var(--t); font-size: 18px; font-weight: 600; line-height: 1.45; }
 .ventana__opciones { display: grid; gap: 10px; }
 .ventana__opcion { min-height: 50px; padding: 12px 16px; border: 2px solid var(--linea-fuerte); border-radius: 8px; background: none; color: inherit; font: 500 16px/1.35 var(--fuente); text-align: left; cursor: pointer; }
 .ventana__opcion:hover { border-color: var(--texto); }
@@ -100,10 +137,43 @@
 .ventana__opcion[data-resultado="bien"]::before { content: "✓ "; }
 .ventana__opcion[data-resultado="mal"] { border-color: #ff8a90; background: #7d1118; }
 .ventana__opcion[data-resultado="mal"]::before { content: "✕ "; }
-.ventana__respuesta { min-height: 1.5em; font-weight: 600; }
-.ventana__nota { padding-top: 14px; border-top: 1px solid var(--linea); font-size: 14px; color: var(--texto-suave); }
-.ventana button:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
+.actividad__marcar { display: grid; gap: 10px; min-width: 0; margin: 0; padding: 0; border: 0; }
+.casilla { display: flex; align-items: center; gap: 14px; min-height: 50px; padding: 12px 16px; border: 2px solid var(--linea-fuerte); border-radius: 8px; cursor: pointer; }
+.casilla:hover { border-color: var(--texto); }
+.casilla:has(input:checked) { border-color: var(--texto); background: var(--superficie); }
+.casilla input { flex: none; width: 22px; height: 22px; margin: 0; accent-color: var(--accion); }
+.actividad__orden { display: grid; gap: 10px; counter-reset: orden; }
+.actividad__orden li { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; padding: 12px 14px; border: 2px solid var(--linea-fuerte); border-radius: 8px; counter-increment: orden; }
+.actividad__orden li::before { content: counter(orden); min-width: 1ch; font: 400 30px/1 var(--serif); color: var(--c-amarillo); }
+.actividad__elemento { flex: 1 1 180px; font-weight: 600; }
+.actividad__mover { display: flex; gap: 8px; margin-left: auto; }
+.actividad__aviso { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.campo { display: grid; gap: 8px; font-weight: 600; }
+.campo input { width: 100%; min-height: 48px; padding: 10px 14px; border: 2px solid var(--linea-fuerte); border-radius: 8px; background: var(--fondo); color: var(--texto); font: 400 16px/1.4 var(--fuente); }
+.campo input::placeholder { color: var(--texto-suave); }
+.recorrido__paso > .ventana__boton { justify-self: start; }
+/* El resultado dice «Correcto» o «Todavía no» con texto y signo, no solo con color. */
+.actividad__resultado { display: grid; gap: 4px; }
+.actividad__resultado[data-estado] { padding: 14px 16px; border: 2px solid; border-radius: 8px; }
+.actividad__resultado[data-estado="bien"] { border-color: #5ee08a; background: #0b5c27; }
+.actividad__resultado[data-estado="mal"] { border-color: #ff8a90; background: #7d1118; }
+.actividad__resultado[data-estado="bien"] strong::before { content: "✓ "; }
+.actividad__resultado[data-estado="mal"] strong::before { content: "✕ "; }
 html:has(.ventana[open]) { overflow: hidden; }
+
+/* En pantallas muy bajas se desplaza toda la ventana y los botones quedan abajo. */
+@media (max-height: 560px) {
+  .ventana { overflow: hidden auto; }
+  .ventana[open] { display: block; }
+  .ventana__cuerpo { overflow: visible; }
+  .ventana__pie { position: sticky; bottom: 0; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .recorrido__paso:not([hidden]) { animation: paso-entra .2s ease; }
+  .ventana__boton, .ventana__opcion, .casilla { transition: background-color .18s, color .18s, border-color .18s; }
+}
+@keyframes paso-entra { from { opacity: 0; translate: 12px 0; } }
 @media (prefers-reduced-motion: reduce) { .abajo .curso:has(.curso__abrir) { transition: none; } .abajo .curso:has(.curso__abrir):hover { transform: none; } }
 
 @media (max-width: 1020px) { .abajo .cursos__lista { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

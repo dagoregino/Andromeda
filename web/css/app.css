@@ -27,8 +27,6 @@ a { color: inherit; text-underline-offset: 3px; }
 .mapa__lienzo { position: absolute; inset: 0; background: var(--superficie); }
 .mapa__error { position: absolute; z-index: 1100; left: 16px; right: 16px; bottom: 32px; padding: 12px 16px; background: var(--superficie); border-left: 3px solid var(--c-rojo); border-radius: var(--radio); }
 
-.aviso { padding: 14px 18px; background: var(--superficie); border-radius: var(--radio); color: var(--texto-suave); font-size: 14px; }
-.aviso strong { color: var(--c-amarillo); font-weight: 600; }
 .estado { font-size: 14px; }
 .estado:empty { margin-top: -20px; }
 .estado.es-error { padding-left: 12px; border-left: 3px solid var(--c-rojo); font-weight: 500; }

@@ -18,10 +18,10 @@ El estilo es de collage editorial (`css/inicio.css` y `css/abajo.css`, con los c
 Reglas para editarlo (varias las revisa `tests/paginas.test.mjs`):
 
 - El titular y el título de la pestaña hablan de la ciudad, no del Mundial.
-- Es un escenario ficticio: la portada debe decirlo.
+- Es un escenario ficticio (en la realidad, la sede del Mundial 2034 es Arabia Saudita). Desde el 2026-11-26, a pedido del equipo, las páginas no lo dicen; tampoco muestran que las rutas no están verificadas ni que los cursos no tienen inscripciones.
 - Máximo tres datos, cada uno con fuente y fecha. Si no está verificado por un tercero, una línea lo dice.
 - Máximo cinco hitos y tres viñetas por hito. Lo que no está aprobado se marca como **Propuesta**.
-- Quien llega a las rutas desde el inicio ve que son de ejemplo.
+- Los avisos retirados no vuelven a la interfaz: lo revisa `tests/paginas.test.mjs`.
 
 | Dato en pantalla | Fuente | Fecha |
 |---|---|---|
@@ -59,7 +59,9 @@ Luego abre <http://localhost:4173> para el inicio o <http://localhost:4173/mapa/
 | `index.html`, `css/inicio.css`, `css/abajo.css`, `css/movimiento.css` | Inicio |
 | `cursos/`, `css/cursos.css`, `css/cursos-pagina.css`, `img/cursos/` | Cursos propuestos: un afiche por curso |
 | `js/cursos.js`, `js/cursos-filtro.js` | Filtros de cursos (lógica con pruebas y vista) |
-| `js/cursos-ventana.js`, `js/cursos-detalle.js` | Ventana de cada curso y su contenido de ejemplo. La clave de cada curso es el título de su `<h2>` |
+| `js/cursos-detalle.js` | Recorrido de los 14 cursos: pasos, actividad y cierre. La clave de cada curso es el título de su `<h2>` |
+| `js/cursos-recorrido.js` | Lógica de los recorridos (navegación y revisión de respuestas), con pruebas |
+| `js/cursos-ventana.js`, `js/cursos-pasosVista.js`, `js/cursos-actividadVista.js`, `js/cursos-dom.js` | Ventana del curso: un paso a la vez. No guarda ni envía lo que se escribe |
 | `img/logo.svg`, `favicon.svg` | Logo provisional (patacón en amarillo; el original está en `img/patacon-negro.svg`) |
 | `mapa/index.html` | La aplicación del mapa |
 | `js/app.js` | Interacción y estado del viaje |

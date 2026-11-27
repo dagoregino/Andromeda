@@ -137,7 +137,7 @@ function pintarCatalogo() {
   const deLaEmpresa = datos.rutas.filter((ruta) => !empresa || ruta.operador === empresa);
   const encontradas = filtrarCatalogo(deLaEmpresa, $('#buscar-ruta').value);
   $('[data-total-rutas]').textContent = encontradas.length
-    ? `${encontradas.length} de ${datos.rutas.length} recorridos de ejemplo. Toca uno para verlo en el mapa.`
+    ? `${encontradas.length} de ${datos.rutas.length} recorridos. Toca uno para verlo en el mapa.`
     : 'Ninguna ruta coincide con la búsqueda.';
   dibujarCatalogo($('[data-catalogo]'), encontradas, {
     idElegida: estado.rutaVista, lugares: datos.destinos, alElegir: verRuta,

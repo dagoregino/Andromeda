@@ -33,14 +33,12 @@ main:focus { outline: none; }
 .portada h1 { font-family: var(--serif); font-weight: 400; text-transform: uppercase; font-size: clamp(32px, 10.2vw, 148px); line-height: .9; letter-spacing: -.015em; }
 .portada__lema { display: block; color: var(--c-amarillo); }
 .estrella { display: inline-block; width: 1.45em; height: 1.45em; margin: -.5em -.42em; vertical-align: middle; fill: var(--c-amarillo); overflow: visible; }
-.portada__datos { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px clamp(24px, 6vw, 96px); align-items: start; margin-top: clamp(20px, 3vw, 40px); }
+.portada__datos { margin-top: clamp(20px, 3vw, 40px); }
 .portada__datos > div { display: grid; gap: 22px; justify-items: start; }
 .portada__subtitulo { max-width: 40ch; font-size: clamp(17px, 1.7vw, 23px); line-height: 1.4; color: var(--texto); }
 .portada__acciones { display: flex; flex-wrap: wrap; gap: 12px; }
 .portada__acciones .boton { min-height: 44px; padding: 0 24px; font-size: 15px; }
 .portada__acciones .boton--principal, .portada__acciones .boton--principal:hover { border-color: var(--c-amarillo); background: var(--c-amarillo); color: var(--c-oscuro); }
-.portada__nota { max-width: 40ch; justify-self: end; font-size: 14px; line-height: 1.4; color: var(--texto-suave); }
-.portada__nota strong { color: var(--c-amarillo); }
 
 .fotos { display: flex; align-items: center; justify-content: center; margin-top: clamp(40px, 6vw, 96px); padding-inline: 2%; }
 .foto { position: relative; flex: 1 1 0; max-width: 420px; aspect-ratio: 1 / 1.04; margin-inline: -1.5%; transform: rotate(var(--giro)); }
@@ -71,6 +69,4 @@ main:focus { outline: none; }
 @media (max-width: 800px) {
   .fila { grid-template-columns: minmax(0, 1fr); }
   .fila--inversa > :first-child { order: 0; }
-  .portada__datos { grid-template-columns: minmax(0, 1fr); }
-  .portada__nota { justify-self: start; }
 }

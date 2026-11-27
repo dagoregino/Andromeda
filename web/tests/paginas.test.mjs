@@ -34,12 +34,8 @@ test('la home cuenta la ciudad en general: ni solo moverse ni solo el Mundial', 
   assert.doesNotMatch(`${titulo} ${titular}`, /2034|Mundial|Muévete/i);
 });
 
-test('la portada menciona el Mundial como medio y avisa que el escenario es ficticio', () => {
-  const portada = texto(seccion('titulo'));
-
-  assert.match(portada, /Mundial 2034[^.]*no el fin/);
-  assert.match(portada, /Escenario ficticio/);
-  assert.match(portada, /Arabia Saudita/);
+test('la portada menciona el Mundial como medio y no como el fin', () => {
+  assert.match(texto(seccion('titulo')), /Mundial 2034[^.]*no el fin/);
 });
 
 test('las secciones van de la ciudad a las herramientas', () => {
@@ -91,8 +87,23 @@ test('el legado son cuatro líneas como máximo', () => {
   assert.ok(lineas > 0 && lineas <= 4);
 });
 
-test('quien llega a las rutas desde la home ve que son de ejemplo', () => {
-  assert.match(texto(seccion('usar-titulo')), /Rutas de ejemplo\./);
+// Retirados a pedido del usuario el 2026-11-26. No se revisan los comentarios del código.
+test('ninguna página muestra los avisos retirados', () => {
+  const retirados = [
+    /prospectiva|escenario ficticio/i,
+    /verificad[ao]s? con las empresas|sin verificar con las empresas/i,
+    /(rutas|recorridos|dato)( de bus)? de ejemplo/i,
+    /todavía no (hay|tiene) inscripciones|contenido de ejemplo|curso__estado/i,
+  ];
+  const visibles = [
+    ...PAGINAS.map((ruta) => [ruta, sinComentarios(leer(ruta))]),
+    // Textos que estos dos archivos escriben en el mapa.
+    ...['js/app.js', 'js/listas.js'].map((ruta) => [ruta, leer(ruta)]),
+  ];
+
+  for (const [ruta, contenido] of visibles) {
+    for (const aviso of retirados) assert.doesNotMatch(contenido, aviso, `${ruta} aún muestra ${aviso}`);
+  }
 });
 
 test('la barra de arriba enlaza las cuatro páginas y marca la actual', () => {

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://tile.openstreetmap.org; connect-src 'self' https://api.open-meteo.com; object-src 'none'; base-uri 'self'; form-action 'none'">
 <title>Barranquilla Lista: mapa para moverte por la ciudad</title>
-<meta name="description" content="Elige a dónde vas en Barranquilla, indica desde dónde sales y consulta qué rutas de bus de ejemplo te sirven.">
+<meta name="description" content="Elige a dónde vas en Barranquilla, indica desde dónde sales y consulta qué rutas de bus te sirven.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Barranquilla Lista: mapa para moverte por la ciudad">
 <meta property="og:description" content="Elige tu destino y consulta cómo llegar. Prototipo del Bootcamp QUIJAM.">
@@ -48,7 +48,7 @@
       <button class="pestana" type="button" data-modo="rutas" aria-pressed="false">Todas las rutas</button>
     </div>
     <h1 id="titulo">¿A dónde vas?</h1>
-    <p class="aviso"><strong>Rutas de ejemplo.</strong> No están verificadas con las empresas de bus. Confirma antes de salir.</p>
+    <!-- Las rutas no están verificadas con las empresas de bus (ver ../README.md). El aviso no se muestra. -->
     <p class="estado" role="status" aria-live="polite" data-estado>Cargando lugares y rutas…</p>
 
     <div class="vista" data-vista="viaje">
@@ -122,7 +122,7 @@
           <p class="ayuda" data-cuantas hidden></p>
           <ul class="rutas" data-rutas></ul>
           <button class="boton" type="button" data-mas-rutas hidden></button>
-          <p data-sin-rutas hidden>Ninguna de las rutas de ejemplo te sirve para este viaje sin transbordos. Puede que haya otras rutas, o que caminar sea más corto.</p>
+          <p data-sin-rutas hidden>Ninguna de las rutas te sirve para este viaje sin transbordos. Puede que haya otras rutas, o que caminar sea más corto.</p>
           <p class="ayuda" data-nota-caminata hidden>Los tramos a pie son líneas rectas aproximadas: no indican por dónde cruzar ni si el camino es accesible.</p>
         </div>
       </div>
