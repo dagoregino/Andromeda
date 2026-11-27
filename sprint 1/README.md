@@ -224,13 +224,13 @@ Los componentes de acción (A, B, C y E) envían información a D y reciben sus 
 
 | Experiencia | Qué tomamos o evitamos | Componente |
 |---|---|:-:|
-| [Barcelona 1992](https://github.com/dagoregino/Andromeda/blob/docs/investigacion-barranquilla-2034/investigacion/02-casos/01-barcelona-1992.md) | Plan de ciudad primero, evento después | F |
-| [Londres 2012](https://github.com/dagoregino/Andromeda/blob/docs/investigacion-barranquilla-2034/investigacion/02-casos/05-londres-2012.md) | Responsable del legado y metas sociales exigibles | F |
-| [París 2024](https://github.com/dagoregino/Andromeda/blob/docs/investigacion-barranquilla-2034/investigacion/02-casos/10-paris-2024.md) | Reutilizar y recuperar un cuerpo de agua visible | A |
-| [Medellín 2010](https://github.com/dagoregino/Andromeda/blob/docs/investigacion-barranquilla-2034/investigacion/02-casos/04-medellin-2010.md) | Censar y pactar con vendedores antes de intervenir | E |
-| [Brasil 2014](https://github.com/dagoregino/Andromeda/blob/docs/investigacion-barranquilla-2034/investigacion/02-casos/06-brasil-2014.md) | No prometer transporte sin proyectos maduros | C |
-| [Río 2016](https://github.com/dagoregino/Andromeda/blob/docs/investigacion-barranquilla-2034/investigacion/02-casos/07-rio-2016.md) | No incumplir saneamiento ni desplazar comunidades | B, F |
-| [Sudáfrica 2010](https://github.com/dagoregino/Andromeda/blob/docs/investigacion-barranquilla-2034/investigacion/12-dimensiones-complementarias.md) | Negociar las zonas comerciales antes de firmar | E |
-| [Barranquilla 2027](https://github.com/dagoregino/Andromeda/blob/docs/investigacion-barranquilla-2034/investigacion/02-casos/11-casos-complementarios.md) | Cumplir compromisos con garantías de todos los gobiernos | F |
+| [Barcelona 1992](../investigacion/02-casos/01-barcelona-1992.md) | Plan de ciudad primero, evento después | F |
+| [Londres 2012](../investigacion/02-casos/05-londres-2012.md) | Responsable del legado y metas sociales exigibles | F |
+| [París 2024](../investigacion/02-casos/10-paris-2024.md) | Reutilizar y recuperar un cuerpo de agua visible | A |
+| [Medellín 2010](../investigacion/02-casos/04-medellin-2010.md) | Censar y pactar con vendedores antes de intervenir | E |
+| [Brasil 2014](../investigacion/02-casos/06-brasil-2014.md) | No prometer transporte sin proyectos maduros | C |
+| [Río 2016](../investigacion/02-casos/07-rio-2016.md) | No incumplir saneamiento ni desplazar comunidades | B, F |
+| [Sudáfrica 2010](../investigacion/12-dimensiones-complementarias.md) | Negociar las zonas comerciales antes de firmar | E |
+| [Barranquilla 2027](../investigacion/02-casos/11-casos-complementarios.md) | Cumplir compromisos con garantías de todos los gobiernos | F |
 
-La investigación completa está en la rama [`docs/investigacion-barranquilla-2034`](https://github.com/dagoregino/Andromeda/tree/docs/investigacion-barranquilla-2034/investigacion).
+La [investigación completa](../investigacion/README.md) está en esta rama.
