@@ -32,12 +32,22 @@ export function dibujarLugares(lista, destinos, alElegir) {
   );
 }
 
-export function llenarSelector(selector, destinos) {
-  selector.append(
-    ...destinos.map((destino) => {
-      const opcion = crear('option', '', destino.nombre);
-      opcion.value = destino.id;
-      return opcion;
+/** Desplegable de sugerencias de geocodificación. El prefijo hace únicos los ids de cada campo. */
+export function dibujarSugerencias(lista, resultados, indiceActivo, alSeleccionar, prefijo = 'sugerencia') {
+  lista.replaceChildren(
+    ...resultados.map((resultado, indice) => {
+      const boton = crearBoton('sugerencia', () => alSeleccionar(resultado));
+      boton.id = `${prefijo}-${indice}`;
+      boton.setAttribute('role', 'option');
+      boton.setAttribute('aria-selected', String(indice === indiceActivo));
+      boton.append(
+        crear('span', 'sugerencia__nombre', resultado.nombre),
+        crear('span', 'sugerencia__zona', resultado.zona),
+      );
+      const item = document.createElement('li');
+      item.setAttribute('role', 'presentation');
+      item.append(boton);
+      return item;
     }),
   );
 }

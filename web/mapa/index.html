@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://tile.openstreetmap.org; connect-src 'self' https://api.open-meteo.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://tile.openstreetmap.org; connect-src 'self' https://api.open-meteo.com https://nominatim.openstreetmap.org https://photon.komoot.io; object-src 'none'; base-uri 'self'; form-action 'none'">
 <title>Barranquilla Lista: mapa para moverte por la ciudad</title>
 <meta name="description" content="Elige a dónde vas en Barranquilla, indica desde dónde sales y consulta qué rutas de bus te sirven.">
 <meta property="og:type" content="website">
@@ -54,10 +54,21 @@
     <div class="vista" data-vista="viaje">
       <div class="bloque" data-buscador>
         <label for="buscar">Destino</label>
-        <input id="buscar" type="search" placeholder="Busca un lugar" autocomplete="off" disabled>
+        <div class="campo-buscar" data-campo-buscar>
+          <input id="buscar" data-entrada type="search" placeholder="Busca cualquier lugar en Barranquilla" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="sugerencias" aria-autocomplete="list" aria-activedescendant="" disabled>
+          <button class="campo-buscar__limpiar" type="button" data-limpiar-buscar aria-label="Limpiar búsqueda" hidden>&times;</button>
+        </div>
         <p class="ayuda">También puedes tocar un punto del mapa.</p>
-        <ul class="lugares" data-lugares></ul>
-        <p class="ayuda" data-sin-lugares hidden>No encontramos ese lugar. Márcalo tocando el mapa.</p>
+        <p class="estado-buscar" role="status" aria-live="polite" data-estado-buscar></p>
+        <ul class="sugerencias" id="sugerencias" data-sugerencias role="listbox" aria-label="Sugerencias de destino" hidden></ul>
+        <div data-recientes hidden>
+          <p class="seccion-titulo">Recientes</p>
+          <ul class="lugares" data-lista-recientes></ul>
+        </div>
+        <div data-populares>
+          <p class="seccion-titulo">Lugares populares</p>
+          <ul class="lugares" data-lugares></ul>
+        </div>
       </div>
 
       <div class="elegido" data-destino hidden>
@@ -68,10 +79,24 @@
       <div class="bloque" data-origen-pedir hidden>
         <h2 id="titulo-origen" tabindex="-1">¿Desde dónde sales?</h2>
         <button class="boton" type="button" data-ubicacion>Usar mi ubicación</button>
-        <label for="origen">O elige un lugar</label>
-        <select id="origen"><option value="">Elige un lugar</option></select>
-        <button class="boton" type="button" data-usar-lugar disabled>Salir desde ese lugar</button>
-        <p class="ayuda">También puedes tocar el mapa. Tu ubicación se usa solo en este navegador y no se guarda; el mapa se descarga de OpenStreetMap según la zona que muestra.</p>
+        <div class="bloque" data-buscador-origen>
+          <label for="buscar-origen">O busca un lugar de salida</label>
+          <div class="campo-buscar" data-campo-buscar>
+            <input id="buscar-origen" data-entrada type="search" placeholder="Busca cualquier lugar en Barranquilla" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="sugerencias-origen" aria-autocomplete="list" aria-activedescendant="" disabled>
+            <button class="campo-buscar__limpiar" type="button" data-limpiar-buscar aria-label="Limpiar búsqueda de salida" hidden>&times;</button>
+          </div>
+          <p class="ayuda">También puedes tocar un punto del mapa. Tu ubicación se usa solo en este navegador y no se guarda; el mapa se descarga de OpenStreetMap según la zona que muestra.</p>
+          <p class="estado-buscar" role="status" aria-live="polite" data-estado-buscar></p>
+          <ul class="sugerencias" id="sugerencias-origen" data-sugerencias role="listbox" aria-label="Sugerencias de lugar de salida" hidden></ul>
+          <div data-recientes hidden>
+            <p class="seccion-titulo">Recientes</p>
+            <ul class="lugares" data-lista-recientes></ul>
+          </div>
+          <div data-populares>
+            <p class="seccion-titulo">Lugares populares</p>
+            <ul class="lugares" data-lugares></ul>
+          </div>
+        </div>
       </div>
 
       <div class="elegido" data-origen hidden>
@@ -140,7 +165,7 @@
     </div>
 
     <footer class="creditos">
-      <p>Mapa y rutas de Transmetro: © colaboradores de <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, licencia ODbL. Consultadas el <span data-consultado-osm>2026-11-26</span>.</p>
+      <p>Mapa, rutas de Transmetro y búsqueda de lugares: © colaboradores de <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, licencia ODbL. Búsqueda con <a href="https://photon.komoot.io/">Photon</a> y <a href="https://nominatim.openstreetmap.org/">Nominatim</a>. Consultadas el <span data-consultado-osm>2026-11-26</span>.</p>
       <p>Rutas de buses tradicionales: recorridos publicados por el <a href="https://www.ambq.gov.co/transporte/transporte-publico-colectivo/">Área Metropolitana de Barranquilla (AMB)</a>, consultados el <span data-consultado-amb>2026-11-26</span> y usados sin fines comerciales.</p>
       <p>Clima: datos de <a href="https://open-meteo.com/">Open-Meteo.com</a> (licencia <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>). Se consultan al abrir el mapa; el servicio recibe la dirección IP de tu conexión.</p>
       <p>Prototipo del equipo Andromeda para el Bootcamp QUIJAM. <a href="https://github.com/dagoregino/Andromeda/tree/main/investigacion">Ver la investigación</a>.</p>

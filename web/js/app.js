@@ -1,13 +1,15 @@
 // Interfaz: escucha al usuario, guarda el viaje y lo pinta. La lógica vive en geo, destinos y rutas.
 import { distanciaMetros, dentroDeZona, formatearDistancia } from './geo.js';
-import { validarDestinos, buscarDestinos, coordenadaDe } from './destinos.js';
+import { validarDestinos, coordenadaDe } from './destinos.js';
 import { validarRutas, buscarRutas, filtrarCatalogo } from './rutas.js';
 import { crearMapa } from './mapa.js';
-import { dibujarLugares, llenarSelector, llenarEmpresas, dibujarRutas, dibujarCatalogo } from './listas.js';
+import { llenarEmpresas, dibujarRutas, dibujarCatalogo } from './listas.js';
 import { validarAccesibilidad, buscarAccesibilidad } from './accesibilidad.js';
 import { crearVistaAccesibilidad } from './accesibilidadVista.js';
 import { urlClima, validarClima, resumenClima } from './clima.js';
 import { crearVistaClima } from './climaVista.js';
+import { buscarDireccion } from './geocodificacion.js';
+import { crearCampoBusqueda } from './campoBusqueda.js';
 
 const ESPERA_UBICACION_MS = 10000;
 const ESPERA_CLIMA_MS = 8000;
@@ -36,6 +38,20 @@ let cargandoClima = false;
 let solicitudUbicacion = 0;
 const vistaAccesibilidad = crearVistaAccesibilidad($('[data-acceso]'));
 const vistaClima = crearVistaClima($('[data-clima]'));
+
+// Dos campos con el mismo buscador: el destino y la salida.
+const campoDestino = crearCampoBusqueda({
+  raiz: $('[data-buscador]'),
+  populares: () => datos.destinos,
+  alElegir: (lugar) => elegirDestino(lugar),
+  alFueraDeZona: () => avisar(MENSAJE_FUERA, true),
+});
+const campoOrigen = crearCampoBusqueda({
+  raiz: $('[data-buscador-origen]'),
+  populares: () => datos.destinos,
+  alElegir: (lugar) => elegirOrigen(lugar),
+  alFueraDeZona: () => avisar(MENSAJE_FUERA, true),
+});
 
 function cambiar(parcial) {
   estado = Object.freeze({ ...estado, mensaje: '', esError: false, ...parcial });
@@ -161,6 +177,18 @@ function elegirOrigen(lugar) {
   if (estado.destino) $('[data-ver-rutas]').focus();
 }
 
+// Un punto marcado nace con nombre genérico; el nombre real llega después, si hay conexión.
+function nombrarPunto(clave, punto, campo) {
+  buscarDireccion(punto[0], punto[1]).then((info) => {
+    // Si el usuario ya cambió ese punto, la respuesta tardía no debe pisarlo.
+    if (estado[clave]?.punto !== punto) return;
+    const nombre = info.nombre || NOMBRE_PUNTO_MARCADO;
+    estado = Object.freeze({ ...estado, [clave]: { ...estado[clave], nombre, zona: info.zona || '' } });
+    campo.poner(nombre);
+    pintar();
+  }).catch(() => { /* sin conexión: el punto se queda con el nombre genérico */ });
+}
+
 function tocarMapa(punto) {
   if (estado.modo === 'rutas') {
     avisar('Para marcar un punto, pasa a "Cómo llegar".');
@@ -175,8 +203,13 @@ function tocarMapa(punto) {
     return;
   }
   const lugar = { nombre: NOMBRE_PUNTO_MARCADO, punto };
-  if (estado.destino) elegirOrigen(lugar);
-  else elegirDestino(lugar);
+  if (estado.destino) {
+    elegirOrigen(lugar);
+    nombrarPunto('origen', punto, campoOrigen);
+  } else {
+    elegirDestino(lugar);
+    nombrarPunto('destino', punto, campoDestino);
+  }
 }
 
 function recibirUbicacion({ coords }) {
@@ -211,21 +244,6 @@ function pedirUbicacion() {
   });
 }
 
-function filtrarLugares() {
-  const encontrados = buscarDestinos(datos.destinos, $('#buscar').value);
-  dibujarLugares($('[data-lugares]'), encontrados, (destino) => elegirDestino(lugarDe(destino)));
-  $('[data-sin-lugares]').hidden = encontrados.length > 0;
-}
-
-function usarLugarElegido() {
-  const selector = $('#origen');
-  const destino = datos.destinos.find((candidato) => candidato.id === selector.value);
-  if (!destino) return;
-  selector.value = '';
-  $('[data-usar-lugar]').disabled = true;
-  elegirOrigen(lugarDe(destino));
-}
-
 function escuchar() {
   document.querySelectorAll('[data-modo]').forEach((boton) => {
     boton.addEventListener('click', () => cambiar({ modo: boton.dataset.modo }));
@@ -233,19 +251,15 @@ function escuchar() {
   $('#buscar-ruta').addEventListener('input', pintarCatalogo);
   $('#empresa').addEventListener('change', pintarCatalogo);
   $('[data-mas-rutas]').addEventListener('click', () => cambiar({ todasLasOpciones: !estado.todasLasOpciones, elegida: 0 }));
-  $('#buscar').addEventListener('input', filtrarLugares);
-  // Se confirma con un botón: con teclado, el selector cambia de valor en cada flecha.
-  $('#origen').addEventListener('change', ({ target }) => { $('[data-usar-lugar]').disabled = !target.value; });
-  $('[data-usar-lugar]').addEventListener('click', usarLugarElegido);
   $('[data-ubicacion]').addEventListener('click', pedirUbicacion);
   $('[data-ver-rutas]').addEventListener('click', () => cambiar({ rutasVisibles: !estado.rutasVisibles }));
   $('[data-cambiar-destino]').addEventListener('click', () => {
     cambiar({ destino: null, ...RESULTADOS_NUEVOS });
-    $('#buscar').focus();
+    campoDestino.limpiar();
   });
   $('[data-cambiar-origen]').addEventListener('click', () => {
     cambiar({ origen: null, ...RESULTADOS_NUEVOS });
-    if (estado.destino) $('#origen').focus();
+    campoOrigen.limpiar({ enfocar: Boolean(estado.destino) });
   });
 }
 
@@ -308,6 +322,7 @@ async function arrancar() {
   } catch (error) {
     const detalle = error instanceof Error ? error.message : 'Error desconocido.';
     $('[data-buscador]').hidden = true;
+    $('[data-origen-pedir]').hidden = true;
     $('.pestanas').hidden = true;
     const texto = $('[data-estado]');
     texto.textContent = `No se pudieron cargar los lugares y las rutas. ${detalle} Si abriste el archivo directamente, usa un servidor local.`;
@@ -315,11 +330,10 @@ async function arrancar() {
     return;
   }
   vista = crearMapa('mapa', { alTocar: tocarMapa, alFallar: () => { $('[data-error-mapa]').hidden = false; } });
-  llenarSelector($('#origen'), datos.destinos);
   llenarEmpresas($('#empresa'), [...new Set(datos.rutas.map((ruta) => ruta.operador))].sort((a, b) => a.localeCompare(b, 'es')));
   escuchar();
-  $('#buscar').disabled = false;
-  filtrarLugares();
+  campoDestino.habilitar();
+  campoOrigen.habilitar();
   pintar();
   // Un enlace como mapa/?destino=malecon llega con el destino ya elegido.
   const destinoDelEnlace = datos.destinos.find((destino) => destino.id === new URLSearchParams(location.search).get('destino'));

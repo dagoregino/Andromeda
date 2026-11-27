@@ -66,6 +66,7 @@ Luego abre <http://localhost:4173> para el inicio o <http://localhost:4173/mapa/
 | `mapa/index.html` | La aplicación del mapa |
 | `js/app.js` | Interacción y estado del viaje |
 | `js/mapa.js`, `js/listas.js` | Mapa y listas |
+| `js/geocodificacion.js`, `js/campoBusqueda.js` | Búsqueda de cualquier lugar (usa servicios externos, ver «Búsqueda de lugares») y su campo |
 | `js/geo.js`, `js/destinos.js`, `js/rutas.js`, `js/accesibilidad.js` | Lógica sin interfaz, con pruebas |
 | `js/accesibilidadVista.js` | Bloque de accesibilidad del destino |
 | `js/clima.js`, `js/climaVista.js` | Línea «Antes de salir» con el clima (lógica con pruebas y vista) |
@@ -236,3 +237,11 @@ Están en `UMBRALES` de `js/clima.js` y son del equipo, fáciles de cambiar:
 | Es probable que llueva | 60 % o más, o ya está lloviendo |
 
 Los cortes de calor son los de «precaución extrema» y «peligro» del [índice de calor del Servicio Meteorológico de EE. UU.](https://www.weather.gov/ama/heatindex). La sensación térmica de Open-Meteo no es idéntica a ese índice: es una referencia, **no un aviso oficial**. Los de lluvia son un criterio del equipo.
+
+## Búsqueda de lugares
+
+La búsqueda de lugares del destino y de la salida usa datos de OpenStreetMap: primero [Photon](https://photon.komoot.io/) (busca por prefijo, así que sugiere mientras se escribe) y, si falla o no encuentra nada, [Nominatim](https://nominatim.openstreetmap.org/) con `viewbox` y `bounded=1`. Ambas se limitan al área metropolitana y se llaman una vez por consulta, tras una pausa de 450 ms. Nominatim también nombra los puntos que se tocan en el mapa. Por eso `connect-src` permite `https://nominatim.openstreetmap.org` y `https://photon.komoot.io`. Ambos son servicios públicos gratuitos, sin garantía de disponibilidad: para uso masivo hay que montar una instancia propia. El código está en `js/geocodificacion.js` y `js/campoBusqueda.js`.
+
+Lo que se escribe y los puntos que se tocan se envían a esos servicios. Las últimas 5 búsquedas quedan guardadas en el navegador (`localStorage`, «Recientes»).
+
+**Pendiente antes de publicar:** la [política de uso de Nominatim](https://operations.osmfoundation.org/policies/nominatim/) prohíbe usarlo para sugerir mientras se escribe, y el respaldo actual lo hace cuando Photon falla o no encuentra nada.

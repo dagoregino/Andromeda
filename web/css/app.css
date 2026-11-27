@@ -64,6 +64,30 @@ button:disabled { cursor: default; opacity: .5; }
 .lugar__nombre { font-weight: 600; }
 .lugar__zona { color: var(--texto-suave); font-size: 13px; }
 
+/* Campo de búsqueda con botón de limpiar */
+.campo-buscar { position: relative; }
+.campo-buscar input { padding-right: 48px; }
+.campo-buscar__limpiar { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--texto-suave); font-size: 20px; line-height: 1; cursor: pointer; transition: color var(--transicion), background-color var(--transicion); }
+.campo-buscar__limpiar:hover { background: var(--superficie-encima); color: var(--texto); }
+
+/* Desplegable de sugerencias de búsqueda */
+.sugerencias { position: relative; z-index: 100; margin: 0; padding: 4px; list-style: none; background: var(--superficie); border: 1px solid var(--linea-fuerte); border-radius: var(--radio); max-height: 320px; overflow-y: auto; scrollbar-width: thin; }
+.sugerencia { display: grid; width: 100%; min-height: 48px; padding: 10px 14px; text-align: left; background: transparent; border: 0; border-radius: calc(var(--radio) - 4px); font: inherit; color: var(--texto); cursor: pointer; transition: background-color var(--transicion); }
+.sugerencia:hover, .sugerencia[aria-selected="true"] { background: var(--superficie-encima); }
+.sugerencia__nombre { font-weight: 600; font-size: 15px; }
+.sugerencia__zona { color: var(--texto-suave); font-size: 13px; }
+
+/* Estado de búsqueda */
+.estado-buscar { font-size: 13px; color: var(--texto-suave); min-height: 0; }
+.estado-buscar:empty { display: none; }
+.estado-buscar.es-error { color: var(--c-rojo); }
+
+/* Título de secciones (Recientes, Lugares populares) */
+.seccion-titulo { margin: 4px 0 0; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--texto-suave); }
+
+/* Input enfocado: borde amarillo */
+.campo-buscar input:focus { border-color: var(--c-amarillo); outline: none; }
+
 .elegido { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 16px; padding: 12px 18px; background: var(--superficie); border-radius: var(--radio); }
 .elegido p { display: grid; }
 .elegido span { color: var(--texto-suave); font-size: 13px; }
