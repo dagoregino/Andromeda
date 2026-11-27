@@ -64,6 +64,12 @@
 /* Diseño: una sola vista del dispositivo, sin detallar sus partes. */
 .diseno__escena { height: 500px; margin-top: 40px; border-radius: var(--radio); background: var(--negro); }
 
+/* Prototipo: la carcasa del modelo de Fusion, girando. */
+.prototipo__escena { height: clamp(360px, 70svh, 600px); margin-top: 40px; border-radius: var(--radio); background: radial-gradient(75% 65% at 50% 55%, #3a68b4 0%, #1a3573 48%, #0b1a40 100%); }
+.prototipo .respaldo { height: auto; width: min(52%, 360px); aspect-ratio: 106 / 76; }
+.prototipo__pie { display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 24px; }
+.prototipo__nota { color: var(--suave-gris); font-size: 14px; text-align: center; }
+
 /* Demostración */
 .demo { background: radial-gradient(70% 50% at 50% 45%, #1b3f78 0%, #102456 75%); }
 /* La altura deja ver a la vez el dispositivo, la respuesta y las preguntas. */

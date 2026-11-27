@@ -55,8 +55,21 @@ export function crearEstudio(THREE) {
 
   const camara = new THREE.PerspectiveCamera(ANGULO, 1, 0.1, 100);
   const medida = new THREE.Vector2();
+  const objetos = new Set([pivote]);
 
-  function pintar(lienzo, { pose, pantalla, exposicion = 1 }) {
+  // Todos comparten la escena; en cada foto solo se ve uno.
+  function mostrarSolo(objeto) {
+    if (!objetos.has(objeto)) {
+      objetos.add(objeto);
+      escena.add(objeto);
+    }
+    objetos.forEach((otro) => {
+      otro.visible = otro === objeto;
+    });
+  }
+
+  // Ajusta el renderizador al lienzo de destino, encuadra la cámara y copia la imagen.
+  function copiar(lienzo, { exposicion, encuadrar }) {
     const densidad = Math.min(window.devicePixelRatio || 1, DENSIDAD_MAXIMA);
     const ancho = Math.round(lienzo.clientWidth * densidad);
     const alto = Math.round(lienzo.clientHeight * densidad);
@@ -69,16 +82,7 @@ export function crearEstudio(THREE) {
     renderer.getSize(medida);
     if (medida.x !== ancho || medida.y !== alto) renderer.setSize(ancho, alto, false);
 
-    const aspecto = ancho / alto;
-    const visible = alturaVisible({ ...DIMENSIONES, aspecto, ocupa: pose.ocupa });
-    camara.aspect = aspecto;
-    camara.position.set(0, 0, distanciaCamara(visible, ANGULO));
-    camara.updateProjectionMatrix();
-
-    dispositivo.mostrar(pantalla);
-    dispositivo.grupo.position.set(-pose.fx, -pose.fy, -pose.fz);
-    pivote.rotation.set(pose.rx, pose.ry, pose.rz);
-    pivote.position.set(pose.dx * visible * aspecto, pose.dy * visible, 0);
+    encuadrar(ancho / alto);
     renderer.toneMappingExposure = exposicion;
     renderer.render(escena, camara);
 
@@ -88,5 +92,39 @@ export function crearEstudio(THREE) {
     return true;
   }
 
-  return { pintar, lienzo: renderer.domElement };
+  function mirar(medidas, aspecto) {
+    const visible = alturaVisible({ ...medidas, aspecto });
+    camara.aspect = aspecto;
+    camara.position.set(0, 0, distanciaCamara(visible, ANGULO));
+    camara.updateProjectionMatrix();
+    return visible;
+  }
+
+  // El dispositivo conceptual, en la pose y con la pantalla de cada sección.
+  function pintar(lienzo, { pose, pantalla, exposicion = 1 }) {
+    return copiar(lienzo, {
+      exposicion,
+      encuadrar(aspecto) {
+        const visible = mirar({ ...DIMENSIONES, ocupa: pose.ocupa }, aspecto);
+        mostrarSolo(pivote);
+        dispositivo.mostrar(pantalla);
+        dispositivo.grupo.position.set(-pose.fx, -pose.fy, -pose.fz);
+        pivote.rotation.set(pose.rx, pose.ry, pose.rz);
+        pivote.position.set(pose.dx * visible * aspecto, pose.dy * visible, 0);
+      },
+    });
+  }
+
+  // Otro objeto (el prototipo) con las mismas luces; medidas = { ancho, alto, ocupa }.
+  function pintarObjeto(lienzo, objeto, medidas) {
+    return copiar(lienzo, {
+      exposicion: 1,
+      encuadrar(aspecto) {
+        mirar(medidas, aspecto);
+        mostrarSolo(objeto);
+      },
+    });
+  }
+
+  return { pintar, pintarObjeto, lienzo: renderer.domElement };
 }

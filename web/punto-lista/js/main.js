@@ -3,6 +3,7 @@ import { ESCENAS } from './escenas.js';
 import { crearEscenario } from './escenario.js';
 import { iniciarCarrusel } from './carrusel.js';
 import { iniciarDemo } from './demo.js';
+import { iniciarPrototipo } from './prototipo.js';
 import { iniciarPortada, iniciarBarraLocal, iniciarApariciones } from './pagina.js';
 
 const URL_THREE = 'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js';
@@ -19,9 +20,11 @@ iniciarCarrusel(document.querySelector('[data-destacados]'), entorno);
 iniciarDemo(document.querySelector('[data-demo]'), buscar('demo'), entorno);
 iniciarBarraLocal(document.querySelector('[data-barra-local]'), document.querySelector('.portada'));
 iniciarApariciones(document.querySelectorAll('[data-aparece]'), entorno);
+const prototipo = iniciarPrototipo(document.querySelector('[data-seccion-prototipo]'), entorno);
 
 function mostrarRespaldo() {
   escenarios.forEach((escenario) => escenario.desconectar());
+  prototipo.desconectar();
   document.querySelector('[data-aviso-3d]').hidden = false;
 }
 
@@ -33,6 +36,7 @@ async function iniciar3d() {
     estudio.lienzo.addEventListener('webglcontextlost', mostrarRespaldo);
     iniciarPortada(buscar('hero'), entorno);
     escenarios.forEach((escenario) => escenario.conectar(estudio));
+    prototipo.conectar(estudio, THREE);
   } catch (error) {
     // Sin conexión al CDN o sin WebGL: se avisa y queda la figura de respaldo.
     console.warn('No se pudo mostrar el modelo 3D:', error);
