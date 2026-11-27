@@ -7,10 +7,9 @@ node_modules/
 .env
 .env.*
 !.env.example
-.claude/settings.local.json
 
-# Estado local del instalador de ECC (contiene rutas de este equipo)
-.claude/ecc/
+# Configuración de Claude Code: se queda en cada equipo y no se sube
+.claude/
 
 # Temporales
 .playwright-cli/
