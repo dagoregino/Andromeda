@@ -6,8 +6,13 @@ import { crearMapa } from './mapa.js';
 import { dibujarLugares, llenarSelector, llenarEmpresas, dibujarRutas, dibujarCatalogo } from './listas.js';
 import { validarAccesibilidad, buscarAccesibilidad } from './accesibilidad.js';
 import { crearVistaAccesibilidad } from './accesibilidadVista.js';
+import { urlClima, validarClima, resumenClima } from './clima.js';
+import { crearVistaClima } from './climaVista.js';
 
 const ESPERA_UBICACION_MS = 10000;
+const ESPERA_CLIMA_MS = 8000;
+// Pasado este tiempo el pronóstico se considera viejo: se oculta y se vuelve a pedir.
+const VIGENCIA_CLIMA_MS = 60 * 60 * 1000;
 const NOMBRE_PUNTO_MARCADO = 'Punto marcado en el mapa';
 const MENSAJE_FUERA = 'Ese punto está fuera de la zona de Barranquilla. Elige otro.';
 const PERMISO_DENEGADO = 1;
@@ -26,8 +31,11 @@ let estado = Object.freeze({
 let datos = { destinos: [], rutas: [] };
 let vista = null;
 let accesibilidad = null;
+let clima = null;
+let cargandoClima = false;
 let solicitudUbicacion = 0;
 const vistaAccesibilidad = crearVistaAccesibilidad($('[data-acceso]'));
+const vistaClima = crearVistaClima($('[data-clima]'));
 
 function cambiar(parcial) {
   estado = Object.freeze({ ...estado, mensaje: '', esError: false, ...parcial });
@@ -72,6 +80,12 @@ function pintarAccesibilidad() {
   vistaAccesibilidad.pintar(buscarAccesibilidad(accesibilidad, estado.destino));
 }
 
+function pintarClima() {
+  const vigente = clima && Date.now() - clima.consultadoEn < VIGENCIA_CLIMA_MS ? clima : null;
+  vistaClima.pintar(vigente);
+  if (clima && !vigente) cargarClima();
+}
+
 function pintarCuantas(total) {
   const hayMas = total > OPCIONES_INICIALES;
   const resumen = $('[data-cuantas]');
@@ -92,6 +106,7 @@ function pintar() {
   pintarModo();
   pintarPasos();
   pintarViaje(opciones);
+  pintarClima();
   pintarAccesibilidad();
   pintarCatalogo();
   vista?.pintar(contenidoDelMapa(opciones));
@@ -242,7 +257,7 @@ async function cargarJson(ruta) {
 
 async function cargarDatos() {
   const [destinos, transmetro, tradicionales] = await Promise.all(
-    ['data/destinos.json', 'data/rutas.json', 'data/rutas-amb.json'].map(cargarJson),
+    ['../data/destinos.json', '../data/rutas.json', '../data/rutas-amb.json'].map(cargarJson),
   );
   const errores = [...validarDestinos(destinos), ...validarRutas(transmetro), ...validarRutas(tradicionales)];
   if (errores.length) throw new Error(errores[0]);
@@ -254,7 +269,7 @@ async function cargarDatos() {
 // Es un complemento: si falla, el viaje sigue igual y no se afirma nada sobre accesibilidad.
 async function cargarAccesibilidad() {
   try {
-    const leido = await cargarJson('data/accesibilidad.json');
+    const leido = await cargarJson('../data/accesibilidad.json');
     const errores = validarAccesibilidad(leido, datos.destinos);
     if (errores.length) throw new Error(errores.join(' '));
     accesibilidad = leido;
@@ -262,6 +277,29 @@ async function cargarAccesibilidad() {
   } catch (error) {
     console.warn('No se muestra la accesibilidad.', error);
   }
+}
+
+// Es un complemento: si falla o tarda, el viaje sigue igual y no se muestra nada del clima.
+async function cargarClima() {
+  if (cargandoClima) return;
+  cargandoClima = true;
+  const control = new AbortController();
+  const plazo = setTimeout(() => control.abort(), ESPERA_CLIMA_MS);
+  try {
+    const respuesta = await fetch(urlClima(), { signal: control.signal });
+    if (!respuesta.ok) throw new Error(`No se pudo leer el clima (${respuesta.status}).`);
+    const leido = await respuesta.json();
+    const errores = validarClima(leido);
+    if (errores.length) throw new Error(errores.join(' '));
+    clima = resumenClima(leido);
+  } catch (error) {
+    clima = null;
+    console.warn('No se muestra el clima.', error);
+  } finally {
+    clearTimeout(plazo);
+    cargandoClima = false;
+  }
+  pintarClima();
 }
 
 async function arrancar() {
@@ -283,7 +321,11 @@ async function arrancar() {
   $('#buscar').disabled = false;
   filtrarLugares();
   pintar();
+  // Un enlace como mapa/?destino=malecon llega con el destino ya elegido.
+  const destinoDelEnlace = datos.destinos.find((destino) => destino.id === new URLSearchParams(location.search).get('destino'));
+  if (destinoDelEnlace) cambiar({ destino: lugarDe(destinoDelEnlace), ...RESULTADOS_NUEVOS });
   cargarAccesibilidad();
+  cargarClima();
 }
 
 arrancar();

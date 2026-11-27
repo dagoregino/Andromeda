@@ -1,9 +1,9 @@
 /* Una sola pantalla: panel a la izquierda y mapa al lado. En móvil, el mapa arriba y el panel debajo.
-   La barra, los botones, las tarjetas y la letra siguen el mismo estilo de Punto Lista. */
+   Los botones, las tarjetas y la letra siguen el mismo estilo de Punto Lista. */
 *, *::before, *::after { box-sizing: border-box; }
 [hidden] { display: none !important; }
 
-:root { --barra: 52px; --radio: 16px; --radio-grande: 28px; --ancho: min(87.5vw, 1260px); --transicion: .25s ease; }
+:root { --barra: var(--nav-alto, 56px); --radio: 16px; --radio-grande: 28px; --ancho: min(87.5vw, 1260px); --transicion: .25s ease; }
 
 body {
   margin: 0; background: var(--fondo); color: var(--texto);
@@ -19,13 +19,6 @@ a { color: inherit; text-underline-offset: 3px; }
 .saltar { position: absolute; left: 16px; top: -80px; z-index: 1200; padding: 10px 16px; background: var(--texto); color: var(--c-oscuro); border-radius: 10px; }
 .saltar:focus { top: 8px; }
 .solo-lector { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-
-/* Barra: marca a la izquierda y las dos vistas a la derecha, alineadas con las de Punto Lista. */
-.barra { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: var(--ancho); height: var(--barra); margin-inline: auto; }
-.barra__marca { display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; font-weight: 600; white-space: nowrap; text-decoration: none; }
-.barra__nav { display: flex; gap: 8px; }
-.barra__enlace { display: inline-flex; align-items: center; min-height: 44px; padding: 0 8px; color: rgb(245 245 247 / .8); font-size: 13px; white-space: nowrap; text-decoration: none; transition: color var(--transicion); }
-.barra__enlace:hover, .barra__enlace[aria-current="page"] { color: var(--c-blanco); }
 
 .app { display: grid; grid-template-columns: minmax(320px, 390px) minmax(0, 1fr); gap: 24px; width: var(--ancho); height: calc(100dvh - var(--barra)); margin-inline: auto; padding-block: 8px 20px; }
 .panel { grid-column: 1; grid-row: 1; display: flex; flex-direction: column; gap: 20px; min-height: 0; padding: 12px 10px 4px 4px; overflow-y: auto; scrollbar-width: thin; }
@@ -102,6 +95,18 @@ button:disabled { cursor: default; opacity: .5; }
 .acceso__grupo h3 { margin: 0 0 6px; font-size: 15px; font-weight: 600; }
 .acceso__grupo li { font-size: 14px; }
 
+/* Antes de salir: clima de la ciudad. El color solo acompaña al texto, nunca lo reemplaza. */
+.clima { display: flex; flex-direction: column; gap: 10px; padding: 12px 0; border-block: 1px solid var(--linea); }
+.clima__titulo { font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--texto-suave); }
+.clima__linea { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 14px; }
+.clima__temperatura { font-size: 28px; font-weight: 600; letter-spacing: -.03em; }
+.clima__detalle { color: var(--texto-suave); font-size: 14px; }
+.clima__consejos { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.clima__consejos li { padding-left: 10px; border-left: 3px solid var(--linea-fuerte); font-size: 14px; }
+.clima__consejos li[data-tipo="calor"] { border-left-color: var(--c-amarillo); }
+.clima__consejos li[data-tipo="calor-peligroso"] { border-left-color: var(--c-rojo); }
+.clima__consejos li[data-tipo="lluvia"] { border-left-color: var(--c-azul); }
+
 #rutas { display: flex; flex-direction: column; gap: 12px; }
 .rutas { display: grid; gap: 8px; }
 .ruta { background: var(--superficie); border: 1px solid transparent; border-radius: var(--radio); overflow: hidden; }
@@ -142,5 +147,6 @@ button:disabled { cursor: default; opacity: .5; }
   h1 { font-size: 32px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .boton, .lugar, .barra__enlace, .pestana, .ruta__boton { transition: none; }
+  .boton, .lugar, .pestana, .ruta__boton { transition: none; }
 }
+

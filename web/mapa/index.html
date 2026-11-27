@@ -3,32 +3,37 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://tile.openstreetmap.org; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://tile.openstreetmap.org; connect-src 'self' https://api.open-meteo.com; object-src 'none'; base-uri 'self'; form-action 'none'">
 <title>Barranquilla Lista: mapa para moverte por la ciudad</title>
 <meta name="description" content="Elige a dónde vas en Barranquilla, indica desde dónde sales y consulta qué rutas de bus de ejemplo te sirven.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Barranquilla Lista: mapa para moverte por la ciudad">
 <meta property="og:description" content="Elige tu destino y consulta cómo llegar. Prototipo del Bootcamp QUIJAM.">
-<meta property="og:image" content="share.jpg">
+<meta property="og:image" content="../share.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#000000">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
-<link rel="stylesheet" href="css/paleta.css">
-<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="../vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="../css/paleta.css">
+<link rel="stylesheet" href="../css/app.css">
+<link rel="stylesheet" href="../css/navegacion.css">
 </head>
 <body>
 <a class="saltar" href="#panel">Saltar al buscador</a>
 
-<header class="barra">
-  <a class="barra__marca" href="./">Barranquilla Lista</a>
-  <nav class="barra__nav" aria-label="Principal">
-    <a class="barra__enlace" href="mapa.html" aria-current="page">Mapa</a>
-    <a class="barra__enlace" href="punto-lista/">Punto Lista</a>
-  </nav>
+<header class="nav-global">
+  <div class="nav-global__fila">
+    <a class="nav-global__marca" href="../"><img src="../img/logo.svg" alt="" width="30" height="30"><span>Barranquilla Lista</span></a>
+    <nav class="nav-global__menu" aria-label="Principal">
+      <a href="../">Inicio</a>
+      <a href="./" aria-current="page">Mapa</a>
+      <a href="../punto-lista/">Punto Lista</a>
+      <a href="../cursos/">Cursos</a>
+    </nav>
+  </div>
 </header>
 
 <main class="app">
@@ -78,6 +83,17 @@
         <dl class="datos">
           <div><dt>Distancia en línea recta</dt><dd data-distancia></dd></div>
         </dl>
+        <!-- Antes de salir: clima de la ciudad (Open-Meteo). Solo aparece si la consulta funcionó. -->
+        <section class="clima" data-clima aria-labelledby="clima-titulo" hidden>
+          <h2 class="clima__titulo" id="clima-titulo">Antes de salir</h2>
+          <p class="clima__linea">
+            <strong class="clima__temperatura" data-clima-temperatura></strong>
+            <span class="clima__detalle" data-clima-sensacion></span>
+            <span class="clima__detalle" data-clima-lluvia></span>
+          </p>
+          <ul class="clima__consejos" data-clima-consejos></ul>
+          <p class="ayuda">Pronóstico para toda la ciudad, no para tu barrio. Fuente: <a href="https://open-meteo.com/">Open-Meteo.com</a>. Actualizado a las <span data-clima-hora></span></p>
+        </section>
         <!-- Accesibilidad: solo aparece si data/accesibilidad.json tiene datos reales del destino (ejemplo: false),
              tomados de una fuente citada o de una visita del equipo. -->
         <section class="acceso" data-acceso aria-labelledby="acceso-titulo" hidden>
@@ -126,12 +142,13 @@
     <footer class="creditos">
       <p>Mapa y rutas de Transmetro: © colaboradores de <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, licencia ODbL. Consultadas el <span data-consultado-osm>2026-11-26</span>.</p>
       <p>Rutas de buses tradicionales: recorridos publicados por el <a href="https://www.ambq.gov.co/transporte/transporte-publico-colectivo/">Área Metropolitana de Barranquilla (AMB)</a>, consultados el <span data-consultado-amb>2026-11-26</span> y usados sin fines comerciales.</p>
+      <p>Clima: datos de <a href="https://open-meteo.com/">Open-Meteo.com</a> (licencia <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>). Se consultan al abrir el mapa; el servicio recibe la dirección IP de tu conexión.</p>
       <p>Prototipo del equipo Andromeda para el Bootcamp QUIJAM. <a href="https://github.com/dagoregino/Andromeda/tree/main/investigacion">Ver la investigación</a>.</p>
     </footer>
   </section>
 </main>
 
-<script src="vendor/leaflet/leaflet.js"></script>
-<script type="module" src="js/app.js"></script>
+<script src="../vendor/leaflet/leaflet.js"></script>
+<script type="module" src="../js/app.js"></script>
 </body>
 </html>

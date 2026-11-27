@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>Cursos: Escuela de ciudad Generación 2034</title>
+<meta name="description" content="Propuesta de cursos cortos y gratuitos para niños, jóvenes y adultos de Barranquilla, con filtros por edad y tema. Escenario ficticio de prospectiva.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cursos: Escuela de ciudad Generación 2034">
+<meta property="og:description" content="Cursos propuestos para conocer y cuidar Barranquilla. Escenario ficticio de prospectiva.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/paleta.css">
+<link rel="stylesheet" href="../css/inicio.css">
+<link rel="stylesheet" href="../css/cursos.css">
+<link rel="stylesheet" href="../css/abajo.css">
+<link rel="stylesheet" href="../css/cursos-pagina.css">
+<link rel="stylesheet" href="../css/navegacion.css">
+<script type="module" src="../js/cursos.js"></script>
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="nav-global">
+  <div class="nav-global__fila">
+    <a class="nav-global__marca" href="../"><img src="../img/logo.svg" alt="" width="30" height="30"><span>Barranquilla Lista</span></a>
+    <nav class="nav-global__menu" aria-label="Principal">
+      <a href="../">Inicio</a>
+      <a href="../mapa/">Mapa</a>
+      <a href="../punto-lista/">Punto Lista</a>
+      <a href="../cursos/" aria-current="page">Cursos</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido" tabindex="-1">
+  <!-- Cursos de ejemplo del componente G, «Escuela de ciudad: Generación 2034» (sprint 1/README.md).
+       Ninguno existe todavía: son propuestas. Para añadir uno, copia un <li class="curso"> y elige:
+       data-edad: una o varias de ninos, jovenes, adultos (separadas por espacio)
+       data-tema: calor, arroyos, movilidad, datos, barrio o participacion
+       Si añades una edad o un tema nuevo, agrégalo también a los filtros de arriba. -->
+  <div class="abajo">
+  <section class="tramo cursos cursos--pagina" aria-labelledby="cursos-titulo">
+    <div class="ancho">
+      <div class="fila cursos__encabezado">
+      <div class="cursos__cabecera">
+        <h1 id="cursos-titulo">Escuela de ciudad: Generación 2034</h1>
+        <p class="entrada">Cursos cortos y gratuitos para que niños, jóvenes y adultos conozcan los problemas de Barranquilla y sepan qué hacer. Empezarían en 2027 y seguirían después de 2034.</p>
+        <p class="entrada">Son ejemplos de lo que proponemos. Todavía no hay inscripciones, docentes ni sedes confirmadas.</p>
+      </div>
+      <div class="escena escena--corta" aria-hidden="true">
+        <span class="rafaga rafaga--amarilla"></span>
+        <div class="recorte recorte--e"><span class="recorte__foto"></span></div>
+      </div>
+      </div>
+
+      <form class="filtros" id="filtros-cursos" aria-label="Filtrar cursos" hidden>
+        <fieldset>
+          <legend>Edad</legend>
+          <div class="filtros__opciones">
+            <label class="opcion"><input type="radio" name="edad" value="todos" checked><span>Todas</span></label>
+            <label class="opcion"><input type="radio" name="edad" value="ninos"><span>Niños</span></label>
+            <label class="opcion"><input type="radio" name="edad" value="jovenes"><span>Jóvenes</span></label>
+            <label class="opcion"><input type="radio" name="edad" value="adultos"><span>Adultos</span></label>
+          </div>
+          <p class="filtros__nota">Niños: de 6 a 12 años. Jóvenes: de 13 a 17. Adultos: 18 o más.</p>
+        </fieldset>
+        <fieldset>
+          <legend>Tema</legend>
+          <div class="filtros__opciones">
+            <label class="opcion"><input type="radio" name="tema" value="todos" checked><span>Todos</span></label>
+            <label class="opcion"><input type="radio" name="tema" value="calor"><span>Calor y sombra</span></label>
+            <label class="opcion"><input type="radio" name="tema" value="arroyos"><span>Arroyos y residuos</span></label>
+            <label class="opcion"><input type="radio" name="tema" value="movilidad"><span>Moverse en la ciudad</span></label>
+            <label class="opcion"><input type="radio" name="tema" value="datos"><span>Datos y alertas</span></label>
+            <label class="opcion"><input type="radio" name="tema" value="barrio"><span>Economía de barrio</span></label>
+            <label class="opcion"><input type="radio" name="tema" value="participacion"><span>Participación</span></label>
+          </div>
+        </fieldset>
+        <div class="filtros__pie">
+          <p class="cursos__cuenta" id="cursos-cuenta" role="status"></p>
+          <button class="enlace-boton" type="reset">Quitar filtros</button>
+        </div>
+      </form>
+
+      <ul class="cursos__lista" id="lista-cursos">
+        <li class="curso" data-edad="ninos" data-tema="calor">
+          <p class="curso__tema">Calor y sombra</p>
+          <h2>Detectives del calor</h2>
+          <p class="curso__texto">Miden la temperatura al sol y a la sombra en el patio y en la cuadra, y descubren dónde hace falta un árbol.</p>
+          <ul class="curso__pie"><li class="curso__edad">Niños</li><li class="curso__estado">Propuesta</li></ul>
+        </li>
+        <li class="curso" data-edad="jovenes adultos" data-tema="calor">
+          <p class="curso__tema">Calor y sombra</p>
+          <h2>Una cuadra con sombra</h2>
+          <p class="curso__texto">Aprenden a dibujar el mapa de sombra del barrio y a proponer, con los vecinos, dónde sembrar y dónde poner un lugar de descanso.</p>
+          <ul class="curso__pie"><li class="curso__edad">Jóvenes</li><li class="curso__edad">Adultos</li><li class="curso__estado">Propuesta</li></ul>
+        </li>
+        <li class="curso" data-edad="ninos" data-tema="arroyos">
+          <p class="curso__tema">Arroyos y residuos</p>
+          <h2>¿A dónde va la basura?</h2>
+          <p class="curso__texto">Siguen el camino de un residuo hasta el arroyo y practican cómo separarlo y producir menos.</p>
+          <ul class="curso__pie"><li class="curso__edad">Niños</li><li class="curso__estado">Propuesta</li></ul>
+        </li>
+        <li class="curso" data-edad="jovenes adultos" data-tema="arroyos">
+          <p class="curso__tema">Arroyos y residuos</p>
+          <h2>Cuando llueve en mi barrio</h2>
+          <p class="curso__texto">Preparan a la familia y a la cuadra: rutas seguras, alertas por texto, voz y radio, y a quién avisar.</p>
+          <ul class="curso__pie"><li class="curso__edad">Jóvenes</li><li class="curso__edad">Adultos</li><li class="curso__estado">Propuesta</li></ul>
+        </li>
+        <li class="curso" data-edad="jovenes adultos" data-tema="arroyos">
+          <p class="curso__tema">Arroyos y residuos</p>
+          <h2>Residuos y reciclaje en comunidad</h2>
+          <p class="curso__texto">Separan en la fuente y conocen cómo los recicladores se vinculan al manejo de residuos de la ciudad.</p>
+          <ul class="curso__pie"><li class="curso__edad">Jóvenes</li><li class="curso__edad">Adultos</li><li class="curso__estado">Propuesta</li></ul>
+        </li>
+        <li class="curso" data-edad="ninos jovenes" data-tema="movilidad">
+          <p class="curso__tema">Moverse en la ciudad</p>
+          <h2>Todos caminamos distinto</h2>
+          <p class="curso__texto">Recorren la cuadra pensando en quien usa silla de ruedas, bastón o coche de bebé, y detectan las barreras de los andenes.</p>
+          <ul class="curso__pie"><li class="curso__edad">Niños</li><li class="curso__edad">Jóvenes</li><li class="curso__estado">Propuesta</li></ul>
+        </li>
+        <li class="curso" data-edad="adultos" data-tema="movilidad">
+          <p class="curso__tema">Moverse en la ciudad</p>
+          <h2>Muévete en bus con confianza</h2>
+          <p class="curso__texto">Aprenden a leer las rutas, planear un viaje y usar el <a href="../mapa/">mapa de Barranquilla Lista</a>.</p>
+          <ul class="curso__pie"><li class="curso__edad">Adultos</li><li class="curso__estado">Propuesta</li></ul>
+        </li>
+        <li class="curso" data-edad="ninos" data-tema="datos">
+          <p class="curso__tema">Datos y alertas</p>
+          <h2>Mi barrio en un mapa</h2>
+          <p class="curso__texto">Dibujan su barrio y marcan los lugares que quieren y los que les preocupan.</p>
+          <ul class="curso__pie"><li class="curso__edad">Niños</li><li class="curso__estado">Propuesta</li></ul>
+        </li>
+        <li class="curso" data-edad="jovenes adultos" data-tema="datos">
+          <p class="curso__tema">Datos y alertas</p>
+          <h2>Reporta y que te respondan</h2>
+          <p class="curso__texto">Aprenden a hacer un reporte útil (qué pasó, dónde y con foto), a dónde llega y cómo se protegen sus datos personales.</p>
+          <ul class="curso__pie"><li class="curso__edad">Jóvenes</li><li class="curso__edad">Adultos</li><li class="curso__estado">Propuesta</li></ul>
+        </li>
+        <li class="curso" data-edad="jovenes" data-tema="barrio">
+          <p class="curso__tema">Economía de barrio</p>
+          <h2>Anfitriones del barrio</h2>
+          <p class="curso__texto">Practican cómo orientar a un visitante y contar con orgullo la cultura de su barrio.</p>
+          <ul class="curso__pie"><li class="curso__edad">Jóvenes</li><li class="curso__estado">Propuesta</li></ul>
+        </li>
+        <li class="curso" data-edad="adultos" data-tema="barrio">
+          <p class="curso__tema">Economía de barrio</p>
+          <h2>Vender en el Mundial</h2>
+          <p class="curso__texto">Para vendedores y emprendedores: acuerdos previos, atención al visitante y cuentas básicas del negocio.</p>
+          <ul class="curso__pie"><li class="curso__edad">Adultos</li><li class="curso__estado">Propuesta</li></ul>
+        </li>
+        <li class="curso" data-edad="ninos" data-tema="participacion">
+          <p class="curso__tema">Participación</p>
+          <h2>Mi cuadra tiene voz</h2>
+          <p class="curso__texto">Aprenden a decir qué necesita su cuadra, a escuchar a los demás y a decidir juntos.</p>
+          <ul class="curso__pie"><li class="curso__edad">Niños</li><li class="curso__estado">Propuesta</li></ul>
+        </li>
+        <li class="curso" data-edad="jovenes" data-tema="participacion">
+          <p class="curso__tema">Participación</p>
+          <h2>Liderazgo de barrio</h2>
+          <p class="curso__texto">Conocen las juntas de acción comunal, aprenden a organizar una reunión y a llevar una propuesta.</p>
+          <ul class="curso__pie"><li class="curso__edad">Jóvenes</li><li class="curso__estado">Propuesta</li></ul>
+        </li>
+        <li class="curso" data-edad="adultos" data-tema="participacion">
+          <p class="curso__tema">Participación</p>
+          <h2>Cuentas claras</h2>
+          <p class="curso__texto">Aprenden a leer un presupuesto abierto y a hacer veeduría de lo que el Mundial deja en la ciudad.</p>
+          <ul class="curso__pie"><li class="curso__edad">Adultos</li><li class="curso__estado">Propuesta</li></ul>
+        </li>
+      </ul>
+
+      <div class="cursos__vacio" id="cursos-vacio" hidden>
+        <p>No hay cursos propuestos para esa combinación.</p>
+        <button class="enlace-boton" type="button" data-limpiar-cursos>Ver todos los cursos</button>
+      </div>
+
+      <p class="cursos__cierre">¿Falta un curso? <a href="https://github.com/dagoregino/Andromeda/issues/new">Propónlo en GitHub</a> <span>(pide una cuenta).</span></p>
+    </div>
+  </section>
+  </div>
+
+</main>
+
+<footer class="pie">
+  <p class="ancho">Prototipo del equipo Andromeda para el Bootcamp de Innovación QUIJAM. <a href="https://github.com/dagoregino/Andromeda/issues">Contacto</a>.</p>
+</footer>
+</body>
+</html>

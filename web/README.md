@@ -1,45 +1,6 @@
 # Web de Barranquilla Lista
 
-Tres páginas:
-
-| Dirección | Qué muestra |
-|---|---|
-| `/` (`index.html`) | Inicio **Barranquilla 2034**: el plan de ciudad antes y después del Mundial |
-| `mapa.html` | El mapa para moverse por la ciudad |
-| `punto-lista/` | La propuesta del dispositivo ([documentación](punto-lista/README.md)) |
-
-## Inicio
-
-Se lee de arriba abajo: barra superior, portada, **De dónde partimos**, **La ruta**, **Lo que queda**, **Participa** y pie. Presenta el plan de ciudad; los enlaces a Mapa, Punto Lista y Contacto van en la barra de arriba, no en el pie. No carga scripts, Leaflet ni datos del mapa.
-
-El diseño toma como referencia [`DESIGN.md`](../DESIGN.md) (análisis inspirado en el estilo de Apple, copiado de [awesome-design-md](https://github.com/VoltAgent/awesome-design-md), [licencia MIT](../DESIGN.LICENSE)), con los colores de `css/paleta.css` e Inter en lugar de SF Pro. Las animaciones son de CSS, se apagan si se pide reducir el movimiento y las ligadas al desplazamiento solo funcionan en navegadores con `animation-timeline`.
-
-Reglas para editarla (varias las revisa `tests/paginas.test.mjs`):
-
-- Es un escenario ficticio: la portada debe decirlo.
-- Máximo tres datos, cada uno con fuente y fecha. Si no está verificado por un tercero, una línea lo dice.
-- Máximo cinco hitos y tres viñetas por hito. Lo que no está aprobado se marca como **Propuesta**.
-- **Lo que queda** es una frase y máximo cuatro líneas.
-- No se listan funciones de la aplicación ni lanzamientos futuros.
-
-| Dato en pantalla | Fuente | Fecha |
-|---|---|---|
-| Calor: más de 5 °C de diferencia de superficie | [Banco Mundial](https://documents1.worldbank.org/curated/en/099101025093541356/pdf/P504085-aceef324-8f97-478b-b4cd-6624ef954e6a.pdf), que cita un análisis de Barranquilla | 2025 |
-| Transmetro: de 29,5 a 13,6 millones de validaciones | [Gabriel Olier](https://gabrielolier.substack.com/p/repensar-la-movilidad-de-barranquilla), análisis independiente | 11 de octubre de 2026 |
-| Arroyos: 14.200 toneladas de residuos | Alcaldía, en [El Tiempo](https://www.eltiempo.com/colombia/barranquilla/la-impresionante-cantidad-de-basura-que-termina-en-los-arroyos-de-barranquilla-14-200-toneladas-retiradas-en-2026-y-50-canales-intervenidos-3594947) | 20 de octubre de 2026 |
-
-Las tres cifras se contrastaron en la página original el 2026-11-26. La ruta resume la [hoja de ruta propuesta](../investigacion/08-barranquilla-preguntas-clave.md).
-
-**Participa** y **Contacto** llevan a las [incidencias del repositorio](https://github.com/dagoregino/Andromeda/issues). Escribir pide una cuenta de GitHub. Si se prefiere un correo o un formulario, se cambian esos dos enlaces en `index.html`.
-
-### Pendiente
-
-- G queda pendiente de definir; no se construye en esta entrega.
-- E queda para una entrega posterior, dentro del mapa.
-
-## Mapa
-
-Tiene dos vistas:
+Un mapa para moverse por Barranquilla, con dos vistas:
 
 - **Cómo llegar:** se elige un destino y el punto de salida, y se consultan las rutas de bus de ejemplo que sirven, sin transbordos.
 - **Todas las rutas:** se filtra por empresa, código o nombre y se ve el recorrido completo, los lugares conocidos cerca y las paradas cuando se conocen.
@@ -52,25 +13,25 @@ Desde la carpeta `web`:
 python -m http.server 4173
 ```
 
-Luego abre <http://localhost:4173> para el inicio o <http://localhost:4173/mapa.html> para el mapa. El mapa necesita un servidor: abrir el archivo con doble clic no carga los datos. La ubicación del navegador solo funciona en `localhost` o con HTTPS.
+Luego abre <http://localhost:4173>. Necesita un servidor: abrir el archivo con doble clic no carga los datos. La ubicación del navegador solo funciona en `localhost` o con HTTPS.
 
 ## Estructura
 
 | Ruta | Contenido |
 |---|---|
-| `index.html`, `css/inicio.css` | Inicio |
-| `mapa.html` | La aplicación del mapa |
-| `punto-lista/` | Página de Punto Lista, con sus propios estilos, scripts y pruebas |
+| `index.html`, `css/inicio.css`, `img/portada.svg` | Página de inicio |
+| `img/logo.svg`, `favicon.svg` | Logo provisional (patacón en amarillo; el original está en `img/patacon-negro.svg`) |
+| `mapa/index.html` | La aplicación del mapa |
 | `js/app.js` | Interacción y estado del viaje |
 | `js/mapa.js`, `js/listas.js` | Mapa y listas |
 | `js/geo.js`, `js/destinos.js`, `js/rutas.js`, `js/accesibilidad.js` | Lógica sin interfaz, con pruebas |
 | `js/accesibilidadVista.js` | Bloque de accesibilidad del destino |
+| `js/clima.js`, `js/climaVista.js` | Línea «Antes de salir» con el clima (lógica con pruebas y vista) |
 | `data/destinos.json` | Lugares de destino (ubicaciones aproximadas) |
 | `data/accesibilidad.json` | Accesibilidad de 6 destinos, según TUR4all |
 | `data/rutas.json` | 4 recorridos de Transmetro, de OpenStreetMap |
 | `data/rutas-amb.json` | 87 recorridos de buses tradicionales, del AMB |
-| `css/paleta.css` | Colores y letra, compartidos por el inicio y el mapa |
-| `css/app.css` | Diseño del mapa |
+| `css/paleta.css`, `css/app.css` | Colores y diseño |
 | `vendor/leaflet/` | Leaflet 1.9.4 (BSD-2) |
 
 ## Pruebas
@@ -212,3 +173,24 @@ Recorridos publicados en el [visor del Área Metropolitana de Barranquilla](http
 - Los tramos a pie son líneas rectas: no consideran calles, arroyos ni accesibilidad.
 
 Para agregar una ruta, añade su recorrido en el sentido de viaje al archivo de su fuente y ejecuta `npm test`. La prueba de cantidades en `tests/rutas.test.mjs` debe actualizarse.
+
+## Clima («Antes de salir»)
+
+En **Cómo llegar**, con destino y salida elegidos, aparece una línea con la temperatura, la sensación térmica, la probabilidad de lluvia y, si hace falta, consejos cortos (menos caminata y sombra con calor; paraguas y no cruzar arroyos con lluvia). Es el clima de **toda la ciudad**, no el de un barrio. Si la consulta falla, tarda más de 8 segundos o la respuesta no es válida, no aparece nada. Pasada una hora el dato se oculta y se vuelve a pedir.
+
+### De dónde salen los datos
+
+[Open-Meteo.com](https://open-meteo.com/), licencia [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). No pide clave. Su servicio gratuito es **solo para uso no comercial** (sin anuncios ni suscripciones); si el proyecto cambia de naturaleza, hay que revisar sus términos. La consulta la hace el navegador de cada persona, así que Open-Meteo recibe su dirección IP; el mapa lo avisa en los créditos. Por eso `mapa/index.html` permite `connect-src https://api.open-meteo.com` en su política de seguridad (las demás páginas no).
+
+### Criterios de los consejos
+
+Están en `UMBRALES` de `js/clima.js` y son del equipo, fáciles de cambiar:
+
+| Aviso | Cuándo |
+|---|---|
+| Calor | Sensación de 32 °C o más (90 °F) |
+| Calor muy fuerte | Sensación de 39 °C o más (103 °F) |
+| Puede llover | 30 % o más de probabilidad en las próximas horas |
+| Es probable que llueva | 60 % o más, o ya está lloviendo |
+
+Los cortes de calor son los de «precaución extrema» y «peligro» del [índice de calor del Servicio Meteorológico de EE. UU.](https://www.weather.gov/ama/heatindex). La sensación térmica de Open-Meteo no es idéntica a ese índice: es una referencia, **no un aviso oficial**. Los de lluvia son un criterio del equipo.

@@ -1,11 +1,11 @@
 /* Estilo de página de producto: fondo negro, titulares grandes y mucho aire. */
 :root {
-  --negro: #000;
-  --gris: #1d1d1f;
+  --negro: #102456;
+  --gris: #1a3573;
   --claro: #f5f5f7;
   --texto: #f5f5f7;
   --suave: #86868b;
-  --suave-gris: #a1a1a6;
+  --suave-gris: #b8c1da;
   --suave-claro: #6e6e73;
   --enlace: #2997ff;
   --accion: #0071e3;
@@ -84,17 +84,9 @@ main:focus { outline: none; }
 .saltar { position: fixed; top: 8px; left: 8px; z-index: 30; padding: 10px 16px; border-radius: 10px; background: var(--claro); color: var(--gris); transform: translateY(-200%); }
 .saltar:focus { transform: none; }
 
-.barra-global { position: absolute; inset: 0 0 auto; z-index: 5; font-size: 13px; }
-.barra-global__fila { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 52px; }
-.barra-global nav { display: flex; gap: 8px; }
-.barra-global a { display: inline-flex; align-items: center; min-height: 44px; padding-inline: 8px; color: rgb(245 245 247 / .8); }
-.barra-global__fila > a { padding-left: 0; color: var(--texto); font-weight: 600; font-size: 15px; }
-.barra-global a:hover { color: #fff; text-decoration: none; }
-.barra-global [aria-current="page"] { color: #fff; }
-
 .barra-local {
   position: fixed;
-  top: 10px;
+  top: calc(var(--nav-alto, 0px) + 10px);
   left: 50%;
   z-index: 10;
   display: flex;

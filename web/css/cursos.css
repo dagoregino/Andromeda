@@ -1,0 +1,48 @@
+/* Sección de cursos: tarjetas y dos filtros (edad y tema).
+   Se carga después de inicio.css y usa solo las variables de paleta.css. */
+
+.cursos { background: var(--superficie); color: var(--texto); }
+.cursos__cabecera { display: grid; gap: 16px; max-width: 62ch; margin-bottom: clamp(28px, 4vw, 48px); }
+.cursos__cabecera .entrada { color: var(--texto-suave); }
+
+/* ---------- Filtros ---------- */
+.filtros { display: grid; gap: 20px; margin-bottom: 24px; }
+.filtros[hidden] { display: none; }
+.filtros fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
+.filtros legend { padding: 0; margin-bottom: 10px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--texto-suave); }
+.filtros__opciones { display: flex; flex-wrap: wrap; gap: 8px; }
+.filtros__nota { margin-top: 8px; font-size: 13px; color: var(--texto-suave); }
+
+/* El radio real queda en pantalla (invisible) para conservar teclado y lector de pantalla. */
+.opcion { position: relative; }
+.opcion input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.opcion span {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px;
+  border: 1px solid var(--linea-fuerte); border-radius: 99px;
+  font-size: 15px; font-weight: 500; transition: background-color .18s, color .18s, border-color .18s;
+}
+.opcion input:hover + span { border-color: var(--texto); }
+.opcion input:checked + span { border-color: var(--texto); background: var(--texto); color: var(--fondo); font-weight: 600; }
+.opcion input:focus-visible + span { outline: 3px solid var(--accion); outline-offset: 3px; }
+
+.filtros__pie { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; }
+.cursos__cuenta { font-size: 14px; color: var(--texto-suave); }
+.enlace-boton { padding: 10px 0; border: 0; background: none; color: var(--enlace); font: inherit; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.enlace-boton:focus-visible { outline: 3px solid var(--accion); outline-offset: 3px; }
+
+/* ---------- Tarjetas ---------- */
+.cursos__lista { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); gap: 16px; margin: 0; padding: 0; list-style: none; }
+.cursos__lista[hidden], .cursos__vacio[hidden], .curso[hidden] { display: none; }
+.curso { display: flex; flex-direction: column; gap: 12px; padding: 24px; border: 1px solid var(--linea); border-radius: 16px; background: var(--fondo); }
+.curso__tema { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--texto-suave); }
+.curso h2 { font-size: 22px; font-weight: 700; line-height: 1.2; letter-spacing: -.015em; }
+.cursos h1 { font-size: clamp(32px, 5vw, 64px); font-weight: 800; line-height: 1; letter-spacing: -.035em; }
+.curso__texto { color: var(--texto-suave); }
+.curso__pie { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: auto 0 0; padding: 12px 0 0; list-style: none; }
+.curso__edad { padding: 4px 12px; border: 1px solid var(--linea-fuerte); border-radius: 99px; font-size: 13px; }
+.curso__estado { margin-left: auto; font-size: 13px; font-weight: 600; color: var(--c-amarillo); }
+
+.cursos__vacio { display: grid; justify-items: start; gap: 8px; padding: 28px; border: 1px dashed var(--linea-fuerte); border-radius: 16px; }
+.cursos__cierre { margin-top: 32px; color: var(--texto-suave); }
+
+@media (prefers-reduced-motion: reduce) { .opcion span { transition: none; } }

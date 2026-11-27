@@ -1,5 +1,5 @@
 /* Portada */
-.portada { position: relative; display: flex; flex-direction: column; justify-content: flex-end; height: 100vh; height: 100svh; min-height: 600px; overflow: hidden; }
+.portada { position: relative; display: flex; flex-direction: column; justify-content: flex-end; height: calc(100vh - var(--nav-alto, 0px)); height: calc(100svh - var(--nav-alto, 0px)); min-height: 600px; overflow: hidden; }
 .portada__fondo {
   position: absolute;
   top: 33%;
@@ -21,7 +21,7 @@
   from { opacity: 0; filter: blur(24px); transform: translate(-50%, -50%) scale(1.12); }
   to { opacity: 1; filter: blur(0); transform: translate(-50%, -50%) scale(1); }
 }
-.portada__escena { position: absolute; inset: 56px 0 150px; }
+.portada__escena { position: absolute; inset: 0 0 150px; }
 .portada__pie { position: relative; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; padding-bottom: 34px; }
 .portada h1 { font-size: clamp(42px, 6vw, 88px); font-weight: 600; line-height: 1.04; letter-spacing: -.032em; }
 .portada__nombre { display: block; margin-bottom: 8px; font-size: clamp(21px, 2vw, 28px); letter-spacing: 0; }
@@ -65,7 +65,7 @@
 .diseno__escena { height: 500px; margin-top: 40px; border-radius: var(--radio); background: var(--negro); }
 
 /* Demostración */
-.demo { background: radial-gradient(70% 50% at 50% 45%, #0e2347 0%, #000 75%); }
+.demo { background: radial-gradient(70% 50% at 50% 45%, #1b3f78 0%, #102456 75%); }
 /* La altura deja ver a la vez el dispositivo, la respuesta y las preguntas. */
 .demo__escena { height: clamp(300px, calc(100svh - 350px), 540px); margin-top: 24px; }
 .demo__respuesta { max-width: 720px; min-height: 3em; margin: 8px auto 0; font-size: clamp(20px, 2vw, 28px); font-weight: 600; line-height: 1.35; text-align: center; text-wrap: balance; }
